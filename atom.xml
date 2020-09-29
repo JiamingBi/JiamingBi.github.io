@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Baymax</title>
   
+  <subtitle>my blog</subtitle>
+  <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
-  <link href="http://jiamingbi.github.io/atom.xml" rel="self"/>
-  
-  <link href="http://jiamingbi.github.io/"/>
+  <link href="https://jiamingbi.github.io/"/>
   <updated>2020-09-29T10:19:23.359Z</updated>
-  <id>http://jiamingbi.github.io/</id>
+  <id>https://jiamingbi.github.io/</id>
   
   <author>
     <name>Baymax</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://jiamingbi.github.io/2020/09/29/hello-world/"/>
-    <id>http://jiamingbi.github.io/2020/09/29/hello-world/</id>
+    <link href="https://jiamingbi.github.io/2020/092916107.html"/>
+    <id>https://jiamingbi.github.io/2020/092916107.html</id>
     <published>2020-09-29T10:19:23.358Z</published>
     <updated>2020-09-29T10:19:23.359Z</updated>
     
