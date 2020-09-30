@@ -1,0 +1,1205 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="分布式计算的概念, Baymax">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>分布式计算的概念 | Baymax</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Baymax" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Baymax</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Baymax</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/JiamingBi/JiamingBi.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/JiamingBi/JiamingBi.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/source/images/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">分布式计算的概念</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/">
+                                <span class="chip bg-color">-分布式计算</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" class="post-category">
+                                分布式计算
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-09-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-09-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    30 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="分布式计算"><a href="#分布式计算" class="headerlink" title="分布式计算"></a>分布式计算</h1><p>​       分布式计算( Distributed computing )是一种把需要进行大量计算的工程数据分割成小块，由多台计算机分别计算，在上传运算结果后，将结果统一合并得出数据结论的科学。目前常见的分布式计算项目通常使用世界各地上千万志愿者计算机的闲置计算能力，通过互联网进行数据传输。</p>
+<h5 id="1-何为分布式"><a href="#1-何为分布式" class="headerlink" title="1.何为分布式"></a>1.何为分布式</h5><p>分布式就是计算机的一种算法。其实可以形象的将其比喻为撒网捕鱼，渔网中的每个节点都负责着各自的自责（不能脱离渔网，要牢不可破）。</p>
+<h5 id="2-何谓分布式存储"><a href="#2-何谓分布式存储" class="headerlink" title="2.何谓分布式存储"></a>2.<em>何谓分布式存储</em></h5><p>分布式存储技术是利用网络将数据分散地存储于多台独立的机器设备上。核心点是数据、网络、多台主机。</p>
+<h5 id="3-分布式计算"><a href="#3-分布式计算" class="headerlink" title="3.分布式计算"></a>3.<em>分布式计算</em></h5><p>所谓分布式计算是一门计算机科学，它研究如何把一个需要非常巨大的计算能力才能解决的问题分成许多小的部分，然后把这些部分分配给许多计算机进行处理，最后把这些计算结果综合起来得到最终的结果。</p>
+<p>明确了以上几个概念之后，我们需要将抽象的理论转变成一些可以学习的技术。那目前到底有哪一些是这个理论的实现方式呢？其实有很多关于分布式计算和存储的技术，比如Google的GFS和MapReduce，Hadoop中的hdfs和MapReduce，流式计算领域的Storm、Spark Streaming等。面对这些目不暇接的技术时，我们需要做一些权衡，到底需要给学生学习什么技术好一些呢？其实作为教学的话，往往偏向于从基础入手，那分布式最开始的时候是由Google发明的，当时互联网泡沫刚刚结束之后，Google采取了所谓的低成本之路的策略，需要将许许多多廉价的PC机串联起来，形成一个巨大的分布式主机网络。随之发表了GFS（Google File System）的论文，之后又发表了MapReduce分布式计算和BigTable的论文，这三篇论文的出现，奠定了分布式计算和存储技术的基础。至于Hadoop和HBase就是GFS、MapReduce、BigTable的开源实现。我们无法学习Google的分布式计算，但是我们可以学习开源的Hadoop分布式计算框架。这个也就是我们选择Hadoop来教学的原因。</p>
+<pre><code>   那Hadoop如何体现了分布式存储和分布式计算的原理呢？其实就是Hadoop的内部的两个核心部件：HDFS（Hadoop Distributed File System）和MapReduce。</code></pre>
+<p>  （1）HDFS（Hadoop Distributed File System）即Hadoop分布式文件系统，它解决了分布式存储的问题；</p>
+<p>  （2）MapReduce即分布式计算模型，它解决了分布式计算的问题；</p>
+<pre><code> 因此，针对分布式计算原理的课程，其主要内容就是学习Hadoop，学习Hadoop的HDFS和MapReduce以及Hadoop生态圈外围的一些组件。</code></pre>
+<h5 id="4-分布式和集群的区别？"><a href="#4-分布式和集群的区别？" class="headerlink" title="4.分布式和集群的区别？"></a>4.<strong>分布式和集群的区别？</strong></h5><p>分布式：一个业务分拆多个子业务，部署在不同的服务器上，实现的功能是有差异的，主要用于解决高并发问题。</p>
+<p>集群：同一个业务，部署在多个服务器上，实现相同的功能。系统在做负载均衡的时候，看看哪个服务器比较空闲，就将任务分配给哪个服务器。主要解决系统高可用的问题。</p>
+<p>比如，一个业务可以拆分成10个子业务，每个子业务完成需要1个小时，现在将他部署到10个服务器上，那么一个小时就可以完成，10个业务就需要10个小时（分布式）。<br>现在将该业务部署到由10台服务器组成的集群服务器上，单个任务完成的时间还是10小时，但是10个任务的完成时间还是10小时（集群）。</p>
+<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><h5 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h5><p>云计算（cloud computing）是基于互联网的相关服务的增加、使用和交付模式，通常涉及通过互联网来提供动态易扩展且经常是虚拟化的资源。云是网络、互联网的一种比喻说法。过去在图中往往用云来表示电信网，后来也用来表示互联网和底层基础设施的抽象。因此，云计算甚至可以让你体验每秒10万亿次的运算能力，拥有这么强大的计算能力可以模拟核爆炸、预测气候变化和市场发展趋势。用户通过电脑、笔记本、手机等方式接入数据中心，按自己的需求进行运算。 对云计算的定义有多种说法。对于到底什么是云计算，至少可以找到100种解释。现阶段广为接受的是美国国家标准与技术研究院（NIST）定义：云计算是一种按使用量付费的模式，这种模式提供可用的、便捷的、按需的网络访问， 进入可配置的计算资源共享池（资源包括网络，服务器，存储，应用软件，服务），这些资源能够被快速提供，只需投入很少的管理工作，或与服务供应商进行很少的交互。</p>
+<p>云计算（cloud computing）是分布式计算的一种，指的是通过网络“云”将巨大的数据计算处理程序分解成无数个小程序，然后，通过多部服务器组成的系统进行处理和分析这些小程序得到结果并返回给用户。云计算早期，简单地说，就是简单的分布式计算，解决任务分发，并进行计算结果的合并。因而，云计算又称为网格计算。通过这项技术，可以在很短的时间内（几秒种）完成对数以万计的数据的处理，从而达到强大的网络服务。 </p>
+<p>现阶段所说的云服务已经不单单是一种分布式计算，而是分布式计算、效用计算、负载均衡、并行计算、网络存储、热备份冗杂和虚拟化等计算机技术混合演进并跃升的结果。 [</p>
+<h5 id="2-特点"><a href="#2-特点" class="headerlink" title="2.特点"></a>2.特点</h5><p>云计算的可贵之处在于高灵活性、可扩展性和高性比等，与传统的网络应用模式相比，其具有如下优势与特点</p>
+<p>1、虚拟化技术。</p>
+<p>必须强调的是，虚拟化突破了时间、空间的界限，是云计算最为显著的特点，虚拟化技术包括应用虚拟和资源虚拟两种。众所周知，物理平台与应用部署的环境在空间上是没有任何联系的，正是通过虚拟平台对相应终端操作完成数据备份、迁移和扩展等。 </p>
+<p>2、动态可扩展。</p>
+<p>云计算具有高效的运算能力，在原有服务器基础上增加云计算功能能够使计算速度迅速提高，最终实现动态扩展虚拟化的层次达到对应用进行扩展的目的。 </p>
+<p>3、按需部署。</p>
+<p>计算机包含了许多应用、程序软件等，不同的应用对应的数据资源库不同，所以用户运行不同的应用需要较强的计算能力对资源进行部署，而云计算平台能够根据用户的需求快速配备计算能力及资源。</p>
+<p>4、灵活性高。</p>
+<p>目前市场上大多数IT资源、软、硬件都支持虚拟化，比如存储网络、操作系统和开发软、硬件等。虚拟化要素统一放在云系统资源虚拟池当中进行管理，可见云计算的兼容性非常强，不仅可以兼容低配置机器、不同厂商的硬件产品，还能够外设获得更高性能计算。 </p>
+<p>5、可靠性高。</p>
+<p>倘若服务器故障也不影响计算与应用的正常运行。因为单点<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571">服务器</a>出现故障可以通过虚拟化技术将分布在不同物理服务器上面的应用进行恢复或利用动态扩展功能部署新的服务器进行计算。 </p>
+<p>6、性价比高。</p>
+<p>将资源放在虚拟资源池中统一管理在一定程度上优化了物理资源，用户不再需要昂贵、存储空间大的主机，可以选择相对廉价的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/PC/107">PC</a>组成云，一方面减少费用，另一方面计算性能不逊于大型主机。 </p>
+<p>7、可扩展性。</p>
+<p>用户可以利用应用软件的快速部署条件来更为简单快捷的将自身所需的已有业务以及新业务进行扩展。如，计算机云计算系统中出现设备的故障，对于用户来说，无论是在计算机层面上，亦或是在具体运用上均不会受到阻碍，可以利用计算机云计算具有的动态扩展功能来对其他服务器开展有效扩展。这样一来就能够确保任务得以有序完成。在对虚拟化资源进行动态扩展的情况下，同时能够高效扩展应用，提高计算机云计算的操作水平。</p>
+<h5 id="3-服务类型"><a href="#3-服务类型" class="headerlink" title="3.服务类型"></a>3.服务类型</h5><p>通常，它的服务类型分为三类，即基础设施即服务(<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/IaaS/5863121">IaaS</a>)、平台即服务(<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/PaaS/219931">PaaS</a>)和软件即服务(<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SaaS/6703273">SaaS</a>)。这3种云计算服务有时称为云计算堆栈，因为它们构建堆栈，它们位于彼此之上，以下是这三种服务的概述： </p>
+<p>1、基础设施即服务(IaaS)</p>
+<p>基础设施即服务是主要的服务类别之一，它向云计算提供商的个人或组织提供虚拟化计算资源，如虚拟机、存储、网络和操作系统。 </p>
+<p>2、平台即服务(PaaS)</p>
+<p>平台即服务是一种服务类别，为开发人员提供通过全球互联网构建应用程序和服务的平台。Paas为开发、测试和管理软件应用程序提供按需开发环境。 [6] </p>
+<p>3、软件即服务(SaaS)</p>
+<p>软件即服务也是其服务的一类，通过互联网提供按需软件付费应用程序，云计算提供商托管和管理软件应用程序，并允许其用户连接到应用程序并通过全球互联网访问应用程序。</p>
+<h5 id="4-应用"><a href="#4-应用" class="headerlink" title="4.应用"></a>4.应用</h5><p>1、云物联</p>
+<p>“物联网就是物物相连的互联网”。这有两层意思：第一，物联网的核心和基础仍然是互联网，是在互联网基础上的延伸和扩展的网络；第二，其用户端延伸和扩展到了任何物品与物品之间，进行信息交换和通信。</p>
+<p>物联网的两种业务模式：MAI（M2M Application Integration), 内部MaaS；MaaS（M2M As A Service), MMO, Multi-Tenants(多租户模型）。</p>
+<p>云计算：从计算中心到数据中心在物联网的初级阶段，PoP即可满足需求；在物联网高级阶段，可能出现MVNO/MMO营运商（国外已存在多年），需要虚拟化云计算技术，SOA等技术的结合实现互联网的泛在服务：TaaS （everyTHING As A Service)。</p>
+<p>2、云安全</p>
+<p>“云安全”通过网状的大量客户端对网络中软件行为的异常监测，获取互联网中木马、恶意程序的最新信息，推送到Server端进行自动分析和处理，再把病毒和木马的解决方案分发到每一个客户端。</p>
+<h1 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h1><h5 id="一-什么是大数据"><a href="#一-什么是大数据" class="headerlink" title="一.什么是大数据"></a>一.什么是大数据</h5><p>大数据最直观的理解，就是数据量很大，但是多大才算是大呢？根据IDC作出的估测，数据一直以每年50%的速度增长，也就意味着数据每两年就增长一倍。 人类在近两年产生的数据相当于之前产生的全部数据量。预计到2020年，全球将总共拥有35ZB（1ZB=1024EB,1EB=1024PB,1PB=1024TB,1TB=1024GB）的数据量。</p>
+<p>其实，大数据不仅仅在与数据量大，大数据还包含了“快速化”、“多样化”、“价值化”等多种属性。</p>
+<p>大数据的处理速度很快，数据从生产到消耗，可用于生成决策的时间是非常短的，也就是大数据中的1秒定律（或称：秒级定律）：就是说对处理速度有要求,一般要在秒级时间范围内给出分析结果,时间太长就失去价值了.这个速度要求是大数据处理技术和传统的数据挖掘技术最大的区别。</p>
+<p>大数据的多样化体现在大数据的数据由10%的结构化数据（存储在数据库中），90%非机构化数据组成，这和人类信息密切相关。如在企业中我们常用的Email、文档、文件，web的文本、图像、视频，以及我们日常用的微信，Twitter、Facebook、Blog等。</p>
+<p>大数据的数据量很大，但是其价值密度也很低，例如：我们路上随处可见的视频监控，在连续不断的监控过程中，产生的大量数据其实都是没什么用的；但是如果发生事故，仅仅就几秒的数据，就会产生极高的价值。所以说尽管大数据的数据价值密度低，但是其商业价值却很高。</p>
+<h5 id="二-大数据的影响"><a href="#二-大数据的影响" class="headerlink" title="二.大数据的影响"></a>二.大数据的影响</h5><p>《大数据时代》这本书中讲到的大数据在思维方面的影响，大数据完全颠覆了传统的思维方式。主要体现在以下三点：</p>
+<p>​    全样而非抽样</p>
+<p>​    效率而非精确</p>
+<p>​    相关而非因果</p>
+<p>现如今，你在使用淘宝购物、百度搜索等应用的时候，你就会发现，它总能给你推荐你想要看的，这是大数据决策的体现，依据大数据分析，去匹配你属于哪一类人群，而从给你推荐这一类人群喜好的东西。</p>
+<p>大数据的新起，也让数据分析师，数据科学家，大数据工程师，数据可视化等职业成为了热门。现如今大数据已经无处不在，包括金融、汽车、零售、餐饮、电信、能源、政务、医疗、体育、娱乐等在内的社会各行各业都融入了大数据的印记。</p>
+<h5 id="三-大数据技术"><a href="#三-大数据技术" class="headerlink" title="三.大数据技术"></a>三.大数据技术</h5><p>数据采集</p>
+<p>​    利用ETL工具将分布的、异构数据源中的数据如关系数据、平面数据文件等，抽取到临时中间层后进行清洗、转换、集成，最后加载到数据仓库或数据集中，成为联机分析处理、数据挖掘的基础；或者也可以把实时采集的数据作为流计算系统的输入，进行实时处理分析。</p>
+<p>​    数据存储和管理</p>
+<p>​    利用分布式文件系统、数据仓库、关系数据库，NoSQL数据库、云数据库等，实现对结构化、半结构化和非结构化海量数据的存储和管理</p>
+<p>​    数据处理与分析</p>
+<p>​    利用分布式并行编程模型和计算框架，结合机器学习和数据挖掘算法，实现对海量数据的处理和分析；对分析结果进行可视化呈现，帮助人们更好的理解数据、分析数据</p>
+<p>​    数据隐私和安全</p>
+<p>​    从大数据中挖掘潜在的商业价值的同时，构建隐私数据保护体系和数据安全体系，有效保护个人隐私和数据安全。</p>
+<p>大数据的核心技术主要是： 分布式存储（HDFS） 和 分布式处理(MapReduce)</p>
+<h1 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h1><p>云计算和边缘计算是两个不同的概念，各有特点，许多人都在研究如何在云计算架构中添加边缘计算，下面来看看可行性及利弊分析。</p>
+<p>边缘计算并非对每个物联网设备或工作负载都具有意义。人们需要了解一些边缘计算示例，以了解应该在何时何地将其作为云计算架构的一部分。</p>
+<p>与传统的云计算架构相比，边缘计算的性能、安全性和成本优势使其越来越受欢迎，但并不总是最适用于分布式工作负载。</p>
+<p>边缘计算是指在最终用户的电脑、手机或物联网传感器等生成和消费数据的设备上或附近处理数据的架构。这不同于传统的云计算，云计算依靠中央服务器来接收数据、处理数据并将其发送回客户端设备。而边缘计算可以减少网络等待时间，减少数据在网络上的暴露，在某些情况下，通过将处理加载到最终用户的设备来降低成本。</p>
+<p>由于具有吸引人的优势，云计算架构师可能希望将尽可能多的工作负载推向边缘计算。但是在这样做之前，他们应该考虑每个应用程序的结构、性能要求和安全性注意事项以及其他因素。两种类型的边缘计算架构</p>
+<p>在权衡边缘计算模型是否合适时，首先要问的问题是哪种架构可用。主要有两种类型：</p>
+<p>设备-边缘计算，其中直接在客户端设备上处理数据。 云计算-边缘计算，其中在边缘计算硬件上处理数据，而边缘计算硬件在地理位置上比集中式云计算数据中心更靠近客户端设备。</p>
+<p>如果客户端设备能够以统一的方式处理该处理负担，则设备-边缘计算模型可以很好地工作。可以采用台式机或笔记本电脑来处理此问题，但低功率物联网传感器可能缺少有效处理数据所需的计算和存储资源。</p>
+<p>此外，如果企业依赖于许多不同类型的边缘设备和操作系统，所有这些设备可能具有不同的功能和配置，那么使用设备-边缘计算模型可能会很困难。</p>
+<p>借助云计算-边缘计算模型，最终用户设备并不是塑造架构的主要因素。如果企业使用云计算-边缘计算架构，那么最终用户使用的设备类型并不重要，因为不会将数据存储或处理从中央云转移到这些设备。与其相反，企业需要将负载转移到在云计算-边缘计算运行的服务器。这些服务器通常位于比中央云更靠近最终用户的数据中心。</p>
+<p>边缘计算的局限性</p>
+<p>在企业决定将工作负载移至边缘计算之前，需要评估支持这些边缘计算模型是否合理。这些限制可能使企业回到传统的云计算架构。</p>
+<p>边缘安全</p>
+<p>边缘计算通过很大程度地减少数据传输时间来降低一些安全风险，但同时也带来了更复杂的安全挑战。</p>
+<p>例如，如果企业在不受控制的最终用户设备上存储或处理数据，很难保证这些设备没有受到网络攻击者可能利用的漏洞的攻击。即使使用云计算-边缘计算模型来保留对边缘计算基础设施的控制，拥有更多可管理基础设施也会增加攻击面。</p>
+<p>与保护正在处理的数据相比，保护通过网络传输的数据(可以对其进行加密)通常要容易得多。因此，边缘计算的安全性的弊端可能超过其好处。</p>
+<p>这使得边缘计算对于具有高安全性规范的工作负载而言并非理想选择。如果企业要处理敏感数据或有特殊的合规性要求，则具有集中式服务器的标准云计算模型的风险可能会降低。</p>
+<p>延迟要求</p>
+<p>边缘计算可提高应用程序性能和响应能力，因为数据不必往返于云计算的数据中心进行处理。对于需要真正即时通信流的工作负载，这是一个关键优势。云计算提供商继续增加数据中心的位置，但是他们的大型数据中心设施通常位于远离人口中心的偏远位置。</p>
+<p>大多数工作负载具有较低的延迟标准。与传统的云计算架构相比，边缘计算网络可能只会将网络响应速度提高几毫秒。对于标准应用，常规架构带来的网络延迟是可以接受的。而确保延迟改善确实值得进行权衡，尤其是在考虑了增加的成本和管理负担之后。</p>
+<p>数据量</p>
+<p>考虑企业的工作负载需要处理多少数据，以及边缘计算基础设施是否可以有效地处理它。如果企业的工作负载产生大量数据，则需要一个庞大的基础设施来分析和存储该数据。从管理的角度来看，它可能成本更低，并且更容易将数据移至公共云数据中心。</p>
+<p>另一方面，如果工作负载基本上是无状态的并且不涉及大量数据，则它们往往是边缘计算的理想选择。</p>
+<p>边缘计算实例</p>
+<p>为了说明上面列出的取舍，以下是边缘计算何时适合和不适合的一些示例。</p>
+<p>采用边缘计算的很好例子包括：</p>
+<p>自动驾驶汽车。自动驾驶汽车会收集大量数据，需要实时做出决策，以确保道路上或附近的乘客和其他人的安全。延迟问题可能会导致自动驾驶汽车的响应时间延迟几毫秒，而这种情况可能会产生严重的影响。 智能恒温器。这些设备生成的数据相对较少。此外，收集的某些数据(例如人们回家的时间和调整温度)可能会影响隐私。将数据保留在边缘计算是切实可行的，可以帮助减轻安全隐患。 交通信号灯。交通信号灯具有三个特征，使其非常适合边缘计算：实时响应变化的需求;相对较低的数据输出;偶尔会失去互联网连接。</p>
+<p>以下是一些边缘计算效果不佳的示例：</p>
+<p>常规应用程序。很难想到需要边缘计算基础设施的性能或响应能力的常规应用程序。它可能会减少应用程序加载或响应请求所需的时间，但这种改进并不值得付出更多成本。 监控摄像系统。监控视频通常会产生大量数据。在边缘计算处理和存储数据是不切实际的，因为这将需要大型且专门的基础设施。将数据存储在集中式云计算设施成本将会低得多，也容易得多。 智能照明系统。允许用户通过互联网控制家庭或办公室中照明的系统不会生成大量数据。但是智能照明系统往往具有最小的处理能力，也没有超低延迟要求，如果打开灯具需要一两秒钟的时间，那没什么大不了的。用户可以构建用于管理这些系统的边缘基础设施，但这在大多数情况下都不值得花费更多的成本。</p>
+<h1 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h1><p>并行计算或称平行计算是相对于串行计算来说的。它是一种一次可执行多个指令的算法，目的是提高计算速度，及通过扩大问题求解规模，解决大型而复杂的计算问题。所谓并行计算可分为时间上的并行和空间上的并行。 时间上的并行就是指<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/1119843">流水线技术</a>，而空间上的并行则是指用多个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E5%99%A8/914419">处理器</a>并发的执行计算。</p>
+<p>并行计算与云计算</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>是在并行计算之后产生的概念，是由并行计算发展而来， 两者在很多方面有着共性。学习并行计算对于理解<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>有很大的帮助。并行计算是学习<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>必须要学习的基础课程。</p>
+<p>但并行计算不等于云计算，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>也不等同并行计算。两者区别如下。</p>
+<p>（1）<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>萌芽于并行计算</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>的萌芽应该从<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>的并行化开始，并行机的出现是人们不满足于CPU摩尔定率的增长速度，希望把多个计算机并联起来，从而获得更快的计算速度。这是一种很简单也很朴素的实现高速计算的方法，这种方法后来被证明是相当成功的。</p>
+<p>（2）并行计算、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E6%A0%BC%E8%AE%A1%E7%AE%97">网格计算</a>只用于特定的科学领域，专业的用户</p>
+<p>并行计算、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E6%A0%BC%E8%AE%A1%E7%AE%97">网格计算</a>的提出主要是为了满足科学和技术领域的专业需要，其应用领域也基本限于科学领域。传统并行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>的使用是一个相当专业的工作，需要使用者有较高的专业素质，多数是命令行的操作，这是很多专业人士的噩梦，更不用说普通的业余级用户了。</p>
+<p>（3）并行计算追求的高性能</p>
+<p>在并行计算的时代，人们极力追求的是高速的计算、采用昂贵的服务器，各国不惜代价在计算速度上超越他国，因此，并行计算时代的高性能<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%BA%E7%BE%A4">机群</a>是一个“快速消费品”，世界TOP500高性能<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>地排名不断地在刷新，一台大型机群如果在3年左右不能得到有效的利用就远远的落后了，巨额投资无法收回。</p>
+<p>（4）<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>对于单节点的计算能力要求低</p>
+<p>而<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>时代我们并不去追求使用昂贵的服务器，我们也不用去考虑TOP500的排名，云中心的计算力和存储力可随着需要逐步增加，云计算的基础架构支持这一动态增加的方式，高性能计算将在云计算时代成为“耐用消费品”。</p>
+<h1 id="高性能计算"><a href="#高性能计算" class="headerlink" title="高性能计算"></a>高性能计算</h1><p> 高性能计算(High performance computing) 指通常使用很多处理器(作为单个机器的一部分)或者某一集群中组织的几台计算机(作为单个计算资源操作)的计算系统和环境。高性能集群上运行的应用程序一般使用并行算法，把一个大的普通问题根据一定的规则分为许多小的子问题，在集群内的不同节点上进行计算，而这些小问题的处理结果，经过处理可合并为原问题的最终结果。由于这些小问题的计算一般是可以并行完成的，从而可以缩短问题的处理时间。</p>
+<pre><code>  高性能集群在计算过程中，各节点是协同工作的，它们分别处理大问题的一部分，并在处理中根据需要进行数据交换，各节点的处理结果都是最终结果的一部分。高性能集群的处理能力与集群的规模成正比，是集群内各节点处理能力之和，但这种集群一般没有高可用性。高性能计算的分类方法很多。这里从并行任务间的关系角度来对高性能计算分类。</code></pre>
+<p>一、高吞吐计算(High-throughput Computing)</p>
+<pre><code>  有一类高性能计算，可以把它分成若干可以并行的子任务，而且各个子任务彼此间没有什么关联。因为这种类型应用的一个共同特征是在海量数据上搜索某些特定模式，所以把这类计算称为高吞吐计算。所谓的Internet计算都属于这一类。按照Flynn的分类，高吞吐计算属于SIMDSingle Instruction/Multiple Data，单指令流-多数据流)的范畴。</code></pre>
+<p>二、分布计算(Distributed Computing)</p>
+<pre><code>  另一类计算刚好和高吞吐计算相反，它们虽然可以给分成若干并行的子任务，但是子任务间联系很紧密，需要大量的数据交换。按照Flynn的分类，分布式的高性能计算属于MIMD（Multiple Instruction/Multiple Data，多指令流-多数据流）的范畴。
+
+
+
+  有许多类型的HPC 系统，其范围从标准计算机的大型集群，到高度专用的硬件。大多数基于集群的HPC系统使用高性能网络互连，基本的网络拓扑和组织可以使用一个简单的总线拓扑。HPC系统由计算、存储、网络、集群软件四部分组成。</code></pre>
+<p>高性能计算HPC系统技术特点是什么？</p>
+<pre><code>  HPC系统目前主流处理器是X86处理器，操作系统是linux 系统(包括Intel、AMD、NEC、Power、PowerPC、Sparc等)、构建方式采用刀片系统，互联网络使用IB和10GE。
+
+
+
+
+
+
+
+
+  高性能计算HPC集群中计算节点一般 分3种: MPI节点、胖节点、GPU加速节点。双路节点称为瘦节点(MPI节点)，双路以上称为胖节点；胖节点配置大容量内存；集群中胖节点的数量要根据实际应用需求而定。
+
+
+
+
+
+
+
+
+  GPU英文全称Graphic Processing Unit，中文翻译为图形处理器。 在浮点运算、并行计算等部分计算方面，GPU可以提供数十倍乃至于上百倍于CPU的性能。目前GPU厂家只有三家NVIDIA GPU、AMD GPU和Intel Xeon PHI。可选择的GPU种类比较少。</code></pre>
+<p>NVIDIA 的GPU卡分图形卡和计算卡，图形卡有NVIDA K2000与K4000，计算卡K20X/K40M/K80 。</p>
+<p>Intel 的GPU是Intel Xeon Phi 系列，属于计算卡，主要产品有Phi 5110P 、Phi 3210P、Phi 7120P、Phi 31S1P。</p>
+<p>AMD 的GPU是图形和计算合一，主要产品有W5000、W9100、S7000、S9000、S10000。</p>
+<p>1、公有云（PublicClouds），“公有”反映了这类云服务并非用户所拥有，公有云是面向大众提供计算资源的服务。是由IDC服务商或第三方提供资源，如应用和存储，这些资源是在服务商的场所内部署。用户通过Internet互联网来获取这些资源的使用。公有云服务提供商有Amazon、Google和微软，以及国内的阿里云、腾讯云等。</p>
+<p> 公有云的优势是成本低，扩展性非常好。缺点是对于云端的资源缺乏控制、保密数据的安全性、网络性能和匹配性问题。</p>
+<p>2、私有云（PrivateClouds），私有云是企业传统数据中心的延伸和优化，能够针对各种功能提供存储容量和处理能力。“私有”更多是指此类平台属于非共享资源，而非指其安全优势。私有云是为了一个客户单独使用而构建的，所以这些数据、安全和服务质量都较公有云有着更好地保障。而私有云由于是客户独享，则用户拥有着构建云的基础设置，并可以控制在此技术设置上部署应有程序的方式。</p>
+<p>在私有云模式中，云平台的资源为包含多个用户的单一组织专用。私有云可由该组织、第三方或两者联合拥有、管理和运营。私有云的部署场所可以是在机构内部，也可以在外部。</p>
+<p>私有云又分为两种</p>
+<p>内部（on-premise）私有云：也被称为内部云，由组织在自己的数据中心内构建，如下图所示。该形式在规模和资源可扩展性上有局限，但是却有利于标准化云服务管理流程和安全性。组织依然要为物理资源承担资金成本和维护成本。这种方式适合那些需要对应用、平台配置和安全机制完全控制的机构。</p>
+<p>外部（off-premise）私有云：这种私有云部署在组织外部，由第三方机构负责管理。第三方为该组织提供专用的云环境，并保证隐私和机密性。该方案相对内部私有云成本更低，也更便于扩展业务规模。</p>
+<p>3、混合云（hybrid cloud）在混合云模式中，云平台由两种不同模式（私有或公有）云平台组合而成。这些平台依然是独立实体，但是利用标准化或专有技术实现绑定，彼此之间能够进行数据和应用的移植（例如，在不同云平台之间的均衡）。</p>
+<p>应用混合云模式，一个机构可以将次要的应用和数据部署到公有云上，充分利用公有云在扩展性和成本上的优势。同时将任务关键型应用和数据放在私有云中，安全性更高。</p>
+<p>区别1：从云的建设地点划分，公有云——互联网上发布的云计算服务，搭建云的资源在提供商的场所内；私有云——企业内部（专网）发布的云服务，搭建云平台所需的资源由企业自给。</p>
+<p>区别2：从云服务的协议开发程度划分，公有云——协议开放的云计算服务，不需要专有的客户端软件解析。所有应用都是以服务的形式提供给用户的，而不是以软件包的形式提供。私有云——比如微软的“云端（云+端）”，最终用户需要有专用的软件。</p>
+<p>区别3：从服务对象划分，私有云——为“一个”客户单独使用而构建的，因而提供对数据、安全性和服务质量的最有效控制；该公司拥有基础设施，并可以控制在此基础设施上部署应用程序的方式；私有云可部署在企业数据中心的防火墙内，也可以将它们部署在一个安全的主机托管场所；私有云可由云提供商进行构建，通过托管模式，构筑一个公司企业数据中心内的专用云。而公有云——则是针对外部客户，通过网络方式提供可扩展的弹性服务。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Baymax</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jiamingbi.github.io/2020/093022851.html">https://jiamingbi.github.io/2020/093022851.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Baymax</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/">
+                                    <span class="chip bg-color">-分布式计算</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '38d5e0386b57ac4a08a0',
+        clientSecret: '193c9bdb953effcb9cfed62f0b88dd3f9db19ae9',
+        repo: 'blogtalk',
+        owner: 'JiamingBi',
+        admin: "JiamingBi",
+        id: '2020-09-30T08-07-56',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/09308489.html">
+                    <div class="card-image">
+                        
+                        <img src="/source/images/3.jpg" class="responsive-img" alt="the summary of &#39;Making Smart Contracts Smarter&#39;">
+                        
+                        <span class="card-title">the summary of &#39;Making Smart Contracts Smarter&#39;</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            讲述有关区块链和oyente工具的论文总结
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="post-category">
+                                    论文总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/summary/">
+                        <span class="chip bg-color">-summary</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/093038727.html">
+                    <div class="card-image">
+                        
+                        <img src="/source/images/3.jpg" class="responsive-img" alt="添加Gitalk评论插件">
+                        
+                        <span class="card-title">添加Gitalk评论插件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            为自己的博客添加Gitalk插件，可以支持访客利用github账号进行评论
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
+                                    博客
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">
+                        <span class="chip bg-color">-评论插件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Baymax</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">10.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "9";
+                    var startDate = "29";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/JiamingBi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1756494670@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1756494670" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1756494670" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
