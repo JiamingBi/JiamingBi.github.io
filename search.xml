@@ -20,7 +20,7 @@
       
         <tags>
             
-            <tag> -summary </tag>
+            <tag> summary </tag>
             
         </tags>
       
@@ -45,7 +45,7 @@
       
         <tags>
             
-            <tag> -分布式计算 </tag>
+            <tag> 分布式计算 </tag>
             
         </tags>
       
@@ -70,7 +70,7 @@
       
         <tags>
             
-            <tag> -评论插件 </tag>
+            <tag> 评论插件 </tag>
             
         </tags>
       
@@ -95,7 +95,9 @@
       
         <tags>
             
-            <tag> -linux -cmake </tag>
+            <tag> linux </tag>
+            
+            <tag> cmake </tag>
             
         </tags>
       
