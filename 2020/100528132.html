@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux系统下升级cmake版本, Baymax">
+    <meta name="keywords" content="STL--stack, Baymax">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux系统下升级cmake版本 | Baymax</title>
+    <title>STL--stack | Baymax</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/image/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux系统下升级cmake版本</h1>
+                    <h1 class="description center-align post-title">STL--stack</h1>
                 </div>
             </div>
         </div>
@@ -336,8 +336,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cmake/">
-                                <span class="chip bg-color">cmake</span>
+                            <a href="/tags/STL/">
+                                <span class="chip bg-color">STL</span>
                             </a>
                         
                     </div>
@@ -348,8 +348,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/C/" class="post-category">
+                                C++
                             </a>
                         
                     </div>
@@ -361,28 +361,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-30
+                    2020-10-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-03
+                    2020-10-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -397,17 +397,156 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="1-问题出现"><a href="#1-问题出现" class="headerlink" title="1.问题出现"></a>1.问题出现</h3><pre><code>cmake版本太低，无法支持某些操作</code></pre>
-<h3 id="2-查看对应的cmake版本"><a href="#2-查看对应的cmake版本" class="headerlink" title="2.查看对应的cmake版本"></a>2.查看对应的cmake版本</h3><pre><code>cmake --version</code></pre>
-<h3 id="3-卸载过去旧的版本"><a href="#3-卸载过去旧的版本" class="headerlink" title="3.卸载过去旧的版本"></a>3.卸载过去旧的版本</h3><pre><code>sudo apt-get autoremove cmake</code></pre>
-<h3 id="4-下载新的版本"><a href="#4-下载新的版本" class="headerlink" title="4.下载新的版本"></a>4.下载新的版本</h3><pre><code>cd ~
-wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz
-tar xvf cmake-3.13.2.tar.gz
-cd cmake-3.13.2</code></pre>
-<h3 id="5-安装"><a href="#5-安装" class="headerlink" title="5.安装"></a>5.安装</h3><pre><code>./bootstrap --prefix=/usr
- make
- sudo make install</code></pre>
-<h3 id="6-查看新的版本"><a href="#6-查看新的版本" class="headerlink" title="6.查看新的版本"></a>6.查看新的版本</h3><pre><code>cmake --version</code></pre>
+                <h2 id="一、stack的简介"><a href="#一、stack的简介" class="headerlink" title="一、stack的简介"></a>一、stack的简介</h2><p>C++ Stack（堆栈） 是一个容器类的改编，为程序员提供了堆栈的全部功能，也就是说实现了一个先进后出（FILO）的数据结构。</p>
+<p>C++ STL 的堆栈泛化是直接通过现有的序列容器来实现的，默认使用双端队列deque的数据结构，当然，可以采用其他线性结构（vector 或 list等），只要提供堆栈的入栈、出栈、栈顶元素访问和判断是否为空的操作即可。由于堆栈的底层使用的是其他容器，因此，堆栈可看做是一种适配器，将一种容器转换为另一种容器(堆栈容器)。<br>   为了严格遵循堆栈的数据后进先出原则，stack 不提供元素的任何迭代器操作，因此，stack 容器也就不会向外部提供可用的前向或反向迭代器类型。</p>
+<p><strong>c++ stl栈stack的头文件为</strong>: </p>
+<p>#include<stack> </stack></p>
+<h2 id="二、stack操作汇总"><a href="#二、stack操作汇总" class="headerlink" title="二、stack操作汇总"></a>二、stack操作汇总</h2><ul>
+<li>top()：返回一个栈顶元素的引用，类型为 T&amp;。如果栈为空，返回值未定义。</li>
+<li>push(const T&amp; obj)：可以将对象副本压入栈顶。这是通过调用底层容器的 push_back() 函数完成的。</li>
+<li>push(T&amp;&amp; obj)：以移动对象的方式将对象压入栈顶。这是通过调用底层容器的有右值引用参数的 push_back() 函数完成的。</li>
+<li>pop()：弹出栈顶元素。</li>
+<li>size()：返回栈中元素的个数。</li>
+<li>empty()：在栈中没有元素的情况下返回 true。</li>
+<li>emplace()：用传入的参数调用构造函数，在栈顶生成对象。</li>
+<li>swap(stack<t> &amp; other_stack)：将当前栈中的元素和参数中的元素交换。参数所包含元素的类型必须和当前栈的相同。对于 stack 对象有一个特例化的全局函数 swap() 可以使用。</t></li>
+</ul>
+<h2 id="三、stack的成员函数详解"><a href="#三、stack的成员函数详解" class="headerlink" title="三、stack的成员函数详解"></a>三、stack的成员函数详解</h2><h4 id="创建-stack-对象"><a href="#创建-stack-对象" class="headerlink" title="创建 stack 对象"></a>创建 stack 对象</h4><p>使用堆栈前，先要利用构造函数进行初始化，创建一个堆栈对象，以进行元素的入栈、出栈等操作。</p>
+<p>（1）   stack()<br>   默认构造函数，创建一个空的 stack 对象。<br>   例如，下面一行代码使用默认的 deque 为底层容器，创建一个空的堆栈对象 s 。<br>   stack<int> s;</int></p>
+<p> （2） stack(const stack&amp;)<br>   复制构造函数，用一个 stack 堆栈创建一个新的堆栈。<br>   例如，下面的代码利用 s1 ，创建一个以双向链表为底层容器的空堆栈对象 s2 。<br>   stack&lt;int, list<int> &gt;  s1;<br>   stack&lt;int, list<int> &gt;  s2(s1);</int></int></p>
+<h4 id="元素入栈"><a href="#元素入栈" class="headerlink" title="元素入栈"></a>元素入栈</h4><p>   stack堆栈容器的元素入栈函数为 push 函数。由于 C++ STL 的堆栈函数是不预设大小的，因此，入栈函数就不考虑堆栈空间是否为满，均将元素压入堆栈，从而函数没有标明入栈成功与否的返回值。<br>   如下是他的使用原型：<br>   void push(const value_type&amp; x) </p>
+<h4 id="元素出栈"><a href="#元素出栈" class="headerlink" title="元素出栈"></a>元素出栈</h4><p>   stack容器的元素出栈函数为 pop 函数，由于函数并没有判断堆栈是否为空，才进行元素的弹出，因此，需要自行判断堆栈是否为空，才可执行 pop 函数。<br>   void pop()</p>
+<p>   下面的示例代码，将堆栈的所有元素全部出栈，这也是经常拿来清除stack中的成员</p>
+<pre class=" language-c++"><code class="language-c++"> stack<int> s;
+ while(!s.empty())
+ {
+     s.pop();// 出栈
+  }</code></pre>
+<h4 id="取栈顶元素"><a href="#取栈顶元素" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h4><p>   stack容器的栈顶元素的读取函数为 pop 函数，将取出最后入栈的元素，如下是它的使用原型<br>   value_type&amp; top()</p>
+<h4 id="堆栈非空判断"><a href="#堆栈非空判断" class="headerlink" title="堆栈非空判断"></a>堆栈非空判断</h4><p>   随着堆栈元素不断出栈，堆栈可能会出现空的情况，因此，一般需要调用 empty 函数判断是否非空，才作元素出栈和取栈顶元素的操作。<br>   bool empty()<br>   判断堆栈是否为空，返回 true 表示堆栈已空，false 表示堆栈非空。</p>
+<h2 id="四、栈的实现原理"><a href="#四、栈的实现原理" class="headerlink" title="四、栈的实现原理"></a>四、栈的实现原理</h2><p>以某种既有容器作为底部结构，将其接口改变，使之符合“先进后出”的特性，形成一个 stack，是很容易做到的。deque 是双向开口的数据结构，若以 deque 为底部结构并封闭其头端开口，便轻而易举地形成了一个 stack。因此，STL便以 deque 作为缺省情况下的 stack 底部结构。</p>
+<p>  由于 stack 系以底部容器完成其所有工作，而具有这种“修改某物接口，形成另一种风貌”之性质者，称为 adapter（配接器），因此 stack 往往被归类为容器配接器。</p>
+<h2 id="五、栈的完整定义"><a href="#五、栈的完整定义" class="headerlink" title="五、栈的完整定义"></a>五、栈的完整定义</h2><pre class=" language-C++"><code class="language-C++">stl_stack.h
+// Filename:    stl_stack.h
+
+
+#ifndef __SGI_STL_INTERNAL_STACK_H
+#define __SGI_STL_INTERNAL_STACK_H
+
+__STL_BEGIN_NAMESPACE
+
+// 如果编译器不能根据前面模板参数推导出后面使用的默认参数类型,
+// 那么就需要手工指定, 本实作stack内部容器默认使用deque
+// 选用deque可以在存储空间不足时可以动态增加, 而且代价很低
+#ifndef __STL_LIMITED_DEFAULT_TEMPLATES
+template <class T, class Sequence = deque<T> >
+#else
+template <class T, class Sequence>
+#endif
+class stack
+{
+  // 特化的全局运算符, 提供operator==和<重载则构建出所有运算符
+  // 其具体细节见<stl_pair.h>中的说明
+  friend bool operator== __STL_NULL_TMPL_ARGS (const stack&, const stack&);
+  friend bool operator< __STL_NULL_TMPL_ARGS (const stack&, const stack&);
+
+public:
+  // 由于stack仅支持对栈顶元素的操作, 所以不定义STL要求的
+  // pointer, iterator, difference_type
+  typedef typename Sequence::value_type value_type;
+  typedef typename Sequence::size_type size_type;
+  typedef typename Sequence::reference reference;
+  typedef typename Sequence::const_reference const_reference;
+
+protected:
+  Sequence c;   // 这个是我们实际维护的容器
+
+public:
+  // 下面的操作完全使用内部容器的成员函数实现
+  // 这再次体现了STL高度的可复用性:-)
+
+  // 判断stack是否为空
+  bool empty() const { return c.empty(); }
+
+  // stack中元素个数
+  size_type size() const { return c.size(); }
+
+  // 返回栈顶元素, 注意这里返回的是引用!!!
+  reference top() { return c.back(); }
+  const_reference top() const { return c.back(); }
+
+  // 在栈顶追加新元素
+  void push(const value_type& x) { c.push_back(x); }
+
+  // 移除栈顶元素, 注意不返回元素的引用,
+  // 很多初学者随机用此容器时经常误认为pop()操作同时会返回栈顶元素的引用
+  void pop() { c.pop_back(); }
+};
+
+// 判断两个stack是否相等, 就要测试其内部维护容器是否相等
+// x.c == y.c会调用容器重载的operator ==
+template <class T, class Sequence>
+bool operator==(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
+{
+  return x.c == y.c;
+}
+
+template <class T, class Sequence>
+bool operator<(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
+{
+  return x.c < y.c;
+}
+__STL_END_NAMESPACE
+#endif /* __SGI_STL_INTERNAL_STACK_H */
+// Local Variables:
+// mode:C++
+// End:</code></pre>
+<p>stack虽然默认基于deque（双端队列）实现的，但是我们可以传入参数，使其底层以其他可以的顺序容器来实现，比如：</p>
+<pre class=" language-c++"><code class="language-c++">stack<int, list<int>> 
+stack<int, vector<int>>
+stack<int, array<int>></code></pre>
+<p>下面给出stl的stack的使用示例：</p>
+<pre class=" language-c++"><code class="language-c++">
+// constructing stacks
+#include <iostream>       // std::cout
+#include <stack>          // std::stack
+#include <vector>         // std::vector
+#include <deque>          // std::deque
+
+int main ()
+{
+  std::deque<int> mydeque (3,100);          // deque with 3 elements
+  std::vector<int> myvector (2,200);        // vector with 2 elements
+
+  std::stack<int> first;                    // empty stack
+  std::stack<int> second (mydeque);         // stack initialized to copy of deque
+
+  std::stack<int,std::vector<int> > third;  // empty stack using vector
+  std::stack<int,std::vector<int> > fourth (myvector);
+
+  std::cout << "size of first: " << first.size() << '\n';
+  std::cout << "size of second: " << second.size() << '\n';
+  std::cout << "size of third: " << third.size() << '\n';
+  std::cout << "size of fourth: " << fourth.size() << '\n';
+  second.push(2);
+  std::cout << "The element at the top of stack second is: "
+        << second.top( ) << "." << std::endl;
+  std::cout << "size of second: " << second.size() << '\n';
+
+  return 0;
+}
+
+Output:
+size of first: 0
+size of second: 3
+size of third: 0
+size of fourth: 2
+The element at the top of stack second is:2 .
+size of second: 4
+</code></pre>
+<h2 id="六、stack的使用注意事项"><a href="#六、stack的使用注意事项" class="headerlink" title="六、stack的使用注意事项"></a>六、stack的使用注意事项</h2><p>1、stack的pop()以及push()都是void类型，并没有返回值</p>
+<p>2、因为stack的pop()成员是有返回值的，并且返回值类型是_Container::reference类型，也就是stack的引用类型。</p>
+<p>3、stack底层一般用<strong>list或deque</strong>实现，封闭头部即可，不用vector的原因应该是容量大小有限制，扩容耗时。用其他容器做底层数据结构也可是实现栈，vector、list也支持empty、size、back、push_back、pop_back操作。如果用vector在重新分配空间时需要拷贝原来空间的元素，释放原来空间。如果使用list的话，每一次push_back、pop_back都涉及空间的分配和释放。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -451,7 +590,7 @@ cd cmake-3.13.2</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jiamingbi.github.io/2020/093056989.html">https://jiamingbi.github.io/2020/093056989.html</a>
+                    <a href="https://jiamingbi.github.io/2020/100528132.html">https://jiamingbi.github.io/2020/100528132.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -489,8 +628,8 @@ cd cmake-3.13.2</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/cmake/">
-                                    <span class="chip bg-color">cmake</span>
+                                <a href="/tags/STL/">
+                                    <span class="chip bg-color">STL</span>
                                 </a>
                             
                         </div>
@@ -661,7 +800,7 @@ cd cmake-3.13.2</code></pre>
         repo: 'blogtalk',
         owner: 'JiamingBi',
         admin: "JiamingBi",
-        id: '2020-09-30T07-57-54',
+        id: '2020-10-05T23-06-11',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -685,45 +824,48 @@ cd cmake-3.13.2</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/093038727.html">
+                <a href="/2020/100528132.html">
                     <div class="card-image">
                         
-                        <img src="/image/4.jpg" class="responsive-img" alt="添加Gitalk评论插件">
                         
-                        <span class="card-title">添加Gitalk评论插件</span>
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="STL--stack">
+                        
+                        <span class="card-title">STL--stack</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为自己的博客添加Gitalk插件，可以支持访客利用github账号进行评论
+                            C++中关于stack(栈)容器的使用
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
-                                    博客
+                            <a href="/categories/C/" class="post-category">
+                                    C++
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">
-                        <span class="chip bg-color">评论插件</span>
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
                     </a>
                     
                 </div>
@@ -737,32 +879,44 @@ cd cmake-3.13.2</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/092916107.html">
+                <a href="/2020/100417570.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="STL--vector">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">STL--vector</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            C++中用的很多的vector容器的使用，包括函数说明和具体实例。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Baymax
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
                 </div>
                 
             </div>

@@ -6,7 +6,7 @@
   <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiamingbi.github.io/"/>
-  <updated>2020-10-04T11:39:03.019Z</updated>
+  <updated>2020-10-05T15:33:19.657Z</updated>
   <id>https://jiamingbi.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>STL--stack</title>
+    <link href="https://jiamingbi.github.io/2020/100528132.html"/>
+    <id>https://jiamingbi.github.io/2020/100528132.html</id>
+    <published>2020-10-05T15:06:11.000Z</published>
+    <updated>2020-10-05T15:33:19.657Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、stack的简介&quot;&gt;&lt;a href=&quot;#一、stack的简介&quot; class=&quot;headerlink&quot; title=&quot;一、stack的简介&quot;&gt;&lt;/a&gt;一、stack的简介&lt;/h2&gt;&lt;p&gt;C++ Stack（堆栈）</summary>
+        
+      
+    
+    
+    
+    <category term="C++" scheme="https://jiamingbi.github.io/categories/C/"/>
+    
+    
+    <category term="STL" scheme="https://jiamingbi.github.io/tags/STL/"/>
+    
+  </entry>
   
   <entry>
     <title>STL--vector</title>
