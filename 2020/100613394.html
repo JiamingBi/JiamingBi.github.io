@@ -690,80 +690,9 @@ public:
     bool operator==(const Queue<T,list<T>> & x) {return c==x.c ;}
     bool operator!=(const Queue<T,list<T>> & x) {return c!=x.c ;}
 };</code></pre>
-<h2 id="五、广度优先搜索（BFS-STL-queue）实现"><a href="#五、广度优先搜索（BFS-STL-queue）实现" class="headerlink" title="五、广度优先搜索（BFS+STL queue）实现"></a>五、广度优先搜索（BFS+STL queue）实现</h2><p>宽度优先搜索算法（又称广度优先搜索）是最简便的图的搜索算法之一，这一算法也是很多重要的图的算法的原型。Dijkstra<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/1939816.htm">单源最短路径</a>算法和Prim<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/288214.htm">最小生成树</a>算法都采用了和宽度优先搜索类似的思想。其别名又叫BFS，属于一种盲目搜寻法，目的是系统地展开并检查图中的所有节点，以找寻结果。换句话说，它并不考虑结果的可能位置，彻底地搜索整张图，直到找到结果为止。</p>
+<h2 id="五、广度优先搜索"><a href="#五、广度优先搜索" class="headerlink" title="五、广度优先搜索"></a>五、广度优先搜索</h2><p>宽度优先搜索算法（又称广度优先搜索）是最简便的图的搜索算法之一，这一算法也是很多重要的图的算法的原型。Dijkstra<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/1939816.htm">单源最短路径</a>算法和Prim<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/288214.htm">最小生成树</a>算法都采用了和宽度优先搜索类似的思想。其别名又叫BFS，属于一种盲目搜寻法，目的是系统地展开并检查图中的所有节点，以找寻结果。换句话说，它并不考虑结果的可能位置，彻底地搜索整张图，直到找到结果为止。</p>
 <p>实现bfs时会需要实现一个队列，用queue可以提高程序的准确性</p>
 <p>另外要注意使用front()和pop()之前最好要使用empty()判断队列非空</p>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<queue>
-using namespace std;
-
-const int maxn = 100;
-bool visited[maxn][maxn];
-int move[4][2]={{-1,0},{1,0},{0,-1},{0,1}};
-int m, n;
-
-struct Node
-{
-    int wall;
-    int step;
-};
-
-struct Pot
-{
-    Pot(int x, int y):x(x),y(y){}
-    int x;
-    int y;
-};
-
-Node map[maxn][maxn];
-
-void bfs(int x, int y)
-{
-    int steps = 0;
-    queue<Pot> Q;
-    Pot start(x, y);
-    visited[x][y] = 1;
-    map[x][y].step = steps;
-    Q.push(start);
-    int i;
-    while(!Q.empty())
-    {
-        Pot now = Q.front();
-        Q.pop();
-        steps = map[now.x][now.y].step;
-        for(i=0;i<4;i++)
-        {
-            int nx = now.x+move[i][0];
-            int ny = now.y+move[i][1];
-            if(nx>=0 && nx<m && ny>=0 && ny<n && !visited[nx][ny] && !map[nx][ny].wall)
-            {
-                Pot p(nx, ny);
-                map[nx][ny].step = steps+1;
-                Q.push(p);
-                visited[nx][ny]=true;
-            }
-        }
-    }
-}
-
-int main()
-{
-    memset(visited, false, sizeof(visited));
-    cin>>m>>n;
-    for(int i=0;i<m;i++)
-        for(int j=0;j<n;j++)
-            cin>>map[i][j].wall;
-    bfs(0,0);
-    for(int i=0;i<3;i++)
-    {
-        for(int j=0;j<3;j++)
-            cout<<map[i][j].step<<" ";
-        cout<<endl;
-    }
-    return 0;
-}</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1338,7 +1267,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.3k</span>&nbsp;字
+                class="white-color">18.2k</span>&nbsp;字
             
             
             
