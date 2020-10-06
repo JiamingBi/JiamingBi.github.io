@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STL--list, Baymax">
+    <meta name="keywords" content="Baymax">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>STL--list | Baymax</title>
+    <title>Baymax</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -386,12 +386,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STL--list</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -506,25 +506,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/STL/">
-                                <span class="chip bg-color">STL</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/C/" class="post-category">
-                                C++
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -547,14 +534,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -569,760 +556,202 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、list的概述"><a href="#一、list的概述" class="headerlink" title="一、list的概述"></a>一、list的概述</h2><p>list 由双向链表（doubly linked list）实现而成，元素也存放在堆中，每个元素都是放在一块内存中，他的内存空间可以是不连续的，通过指针来进行数据的访问，这个特点使得它的随机存取变得非常没有效率，因此它没有提供 [] 操作符的重载。但是由于链表的特点，它可以很有效率的支持任意地方的插入和删除操作。</p>
-<p>stl_list其中的增删改查的细节实现本质是一样的，都是处理指针偏移。相比于vector，stl_List在插入和删除的时候可以达到O(1)的时间复杂度。</p>
-<p>stl_list是一个双向循环链表，相对单链表来说查找效率高，无论是插入时的前插和后插，还是从后往前查找某个元素等。既然查找效率高了，自然添加，删除和修改元素时效率也就更高。唯一一个可以称为不足的就是每个节点需要耗费4字节指针来保存前一个节点的地址，因此如果遇到对内存要求比较苛刻的场景，而且一些操作单链表即可满足，那么可以考虑使用标准库中的forward_list（单链表）。</p>
-<h2 id="二、定义和初始化"><a href="#二、定义和初始化" class="headerlink" title="二、定义和初始化"></a>二、定义和初始化</h2><p>使用之前必须加相应容器的头文件：</p>
-<pre class=" language-c++"><code class="language-c++">#include <list> // list属于std命名域的，因此需要通过命名限定，例如using std::list;</code></pre>
-<p>定义的代码如下：</p>
-<pre class=" language-c++"><code class="language-c++">list<int> a; // 定义一个int类型的列表a
-list<int> a(10); // 定义一个int类型的列表a，并设置初始大小为10
-list<int> a(10, 1); // 定义一个int类型的列表a，并设置初始大小为10且初始值都为1
-list<int> b(a); // 定义并用列表a初始化列表b
-deque<int> b(a.begin(), ++a.end()); // 将列表a中的第1个元素作为列表b的初始值</code></pre>
-<p>除此之外，还可以直接使用数组来初始化向量：</p>
-<pre class=" language-c++"><code class="language-c++">int n[] = { 1, 2, 3, 4, 5 };
-list<int> a(n, n + 5); // 将数组n的前5个元素作为列表a的初值</code></pre>
-<h2 id="三、list的实现原理"><a href="#三、list的实现原理" class="headerlink" title="三、list的实现原理"></a>三、list的实现原理</h2><pre class=" language-c++"><code class="language-c++">#include "stl_def.h"
+                <p>title: STL–queue<br>date: 2020-10-06 16:39:39<br>author: Baymax<br>top: false<br>cover: false<br>toc: true<br>mathjax: false<br>summary: C++中关于queue容器的使用<br>categories: C++<br>tags: STL</p>
+<h2 id="一、queue的简介"><a href="#一、queue的简介" class="headerlink" title="一、queue的简介"></a>一、queue的简介</h2><p>对于queue，用的比较多，所以在这里详细介绍一下queue的用法。</p>
+<p>队列也是一种逻辑数据结构，其具有先进先出的特性，只能在队的前端进行删除， 在队的后端进行插入。针对这种特性，可以实现一些较为复杂的逻辑。在实际应用中，部分程序也正需要这样一种顺序进出的数据处理方式。使用这样的逻辑处理方式，使得我们可以将更多精力放在如何处理顺序逻辑之外的事情，对于编程、开发来讲，提供了极大的方便。</p>
+<p>同stack类似，queue也可以看成是容器的容器，内部是使用其它容器来存放具体数据。加了一个外壳，使得我们的数据操作只能是在头或尾。从尾部添加数据，从头部取数据，从而实现FIFO的特性。同stack一样，内部默认数据存放容器为deque，若要用非默认容器初始化，必须要在模板中指定容器类型。</p>
+<h2 id="二、queue的成员函数"><a href="#二、queue的成员函数" class="headerlink" title="二、queue的成员函数"></a>二、queue的成员函数</h2><p>queue入队，如例：q.push(x); 将x 接到队列的末端。</p>
+<p>queue出队，如例：q.pop(); 弹出队列的第一个元素，注意，并不会返回被弹出元素的值。</p>
+<p>访问queue队首元素，如例：q.front()，即最早被压入队列的元素。</p>
+<p>访问queue队尾元素，如例：q.back()，即最后被压入队列的元素。</p>
+<p>判断queue队列空，如例：q.empty()，当队列空时，返回true。</p>
+<p>访问队列中的元素个数，如例：q.size()</p>
+<h2 id="三、成员函数详细说明"><a href="#三、成员函数详细说明" class="headerlink" title="三、成员函数详细说明"></a>三、成员函数详细说明</h2><h4 id="1、头文件、定义"><a href="#1、头文件、定义" class="headerlink" title="1、头文件、定义"></a>1、头文件、定义</h4><pre><code>#include&lt;queue&gt;
+queue&lt;Data_Type&gt; name;</code></pre>
+<p>用队列时记得要写上这个头文件。<em>Data_type</em> 为队列要存储数据的类型，<em>name</em> 为该队列的名字。</p>
+<h4 id="2-push"><a href="#2-push" class="headerlink" title="2. push"></a><strong>2. push</strong></h4><p>队列中由于是先进先出，push即在队尾插入一个元素，如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="3-pop"><a href="#3-pop" class="headerlink" title="3. pop"></a><strong>3. pop</strong></h4><p>将队列中最靠前位置的元素拿掉，是没有返回值的void函数。如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="4-size"><a href="#4-size" class="headerlink" title="4. size"></a><strong>4. size</strong></h4><p>返回队列中元素的个数，返回值类型为unsigned int。如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="5-empty"><a href="#5-empty" class="headerlink" title="5. empty"></a><strong>5. empty</strong></h4><p>判断队列是否为空的，如果为空则返回true。如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> 
+  queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+  cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="6-front"><a href="#6-front" class="headerlink" title="6. front"></a><strong>6. front</strong></h4><p>返回值为队列中的第一个元素，也就是最早、最先进入队列的元素。注意这里只是返回最早进入的元素，并没有把它剔除出队列。如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="7-back"><a href="#7-back" class="headerlink" title="7. back"></a><strong>7. back</strong></h4><p>返回队列中最后一个元素，也就是最晚进去的元素。如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  queue<span class="token operator">&lt;</span>string<span class="token operator">></span> q<span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   cout<span class="token operator">&lt;&lt;</span>q<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>C++ stl队列queue示例代码1:</strong></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>   <span class="token keyword">int</span> e<span class="token punctuation">,</span>n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
+    queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q1<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>      q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>q1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    cout<span class="token operator">&lt;&lt;</span><span class="token string">"dui lie  bu kong\n"</span><span class="token punctuation">;</span>
+    n<span class="token operator">=</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span>n<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    m<span class="token operator">=</span>q1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span>m<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>  e<span class="token operator">=</span>q1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       cout<span class="token operator">&lt;&lt;</span>e<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+       q1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>q1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    cout<span class="token operator">&lt;&lt;</span><span class="token string">"dui lie  kong\n"</span><span class="token punctuation">;</span>
+    n<span class="token operator">=</span>q1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"q1.zsize is "</span><span class="token operator">&lt;&lt;</span>n<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="四、queue的实现源码"><a href="#四、queue的实现源码" class="headerlink" title="四、queue的实现源码"></a>四、queue的实现源码</h2><p><strong>STL中queue的实现是默认以deque为底层实现的 ，同样底层也可以是list实现。</strong></p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
 
-/** @file stl_list.h
- * 
- *  This is an stl_list header file, implement double loop list warppes  
- * 
- *  Created by yejy on 18-8-18
- *  copyright (c) yejy. all rights reserved
- * 
- */
+using namespace std;
 
-__YAMI_BEGIN
-
-
-/* stl list  allocate 直接使用默认new/delete */
-template <typename T>
-class list
+template<class T, class Squence = list<T> >
+class Queue
 {
+    typedef typename Squence :: value_type value_type;
+    typedef typename Squence :: reference reference;
+    typedef typename Squence :: const_reference const_reference;
+
+protected:
+    Squence c;
 public:
-  // 不包数据实体，只包含指针和相关操作, 可以认为是节省一个指针大小的内存
-  struct list_node_base  
-  {
-    list_node_base* Next;
-    list_node_base* Prev;
-
-    list_node_base():Next(nullptr), Prev(nullptr){}
-  };
-
-  // dataEntry node
-  struct list_node: public list_node_base
-  {
-      T dataEntry;
-  };
-
-  // 迭代器 iterator
-  struct list_iterator
-  {
-    typedef list_iterator   _Self;
-    typedef T               value_type;
-    typedef T*              pointer;
-    typedef T&              reference;
-
-    list_iterator() _T_STD_NOEXCEPT
-    {
-      m_smartPtr = nullptr;
-    }
-
-    explicit list_iterator(list_node_base * pNode) _T_STD_NOEXCEPT
-    {
-      m_smartPtr = pNode;
-    }
-
-    reference operator*() _T_STD_NOEXCEPT
-    {
-      return  static_cast<list_node *>(m_smartPtr)->dataEntry;
-    }
-
-    list_node_base* operator->() _T_STD_NOEXCEPT
-    {
-      return m_smartPtr;
-    }
-
-    _Self operator++(int) _T_STD_NOEXCEPT // 后 ++
-    {
-      _Self __tmp = *this;
-      m_smartPtr = m_smartPtr->Next;
-      return __tmp;
-    }
-
-    _Self& operator++() _T_STD_NOEXCEPT // 前 ++
-    {
-      m_smartPtr = m_smartPtr->Next;
-      return *this;
-    }
-
-    _Self operator--(int) _T_STD_NOEXCEPT
-    {
-      _Self __tmp = *this;
-      m_smartPtr = m_smartPtr->Prev;
-      return __tmp;
-    }
-
-    _Self& operator--() _T_STD_NOEXCEPT
-    {
-      m_smartPtr = m_smartPtr->Prev;
-      return *this;
-    }
-
-    bool operator==(const list_iterator & _Right) const _T_STD_NOEXCEPT
-    {
-      return m_smartPtr == _Right.m_smartPtr;
-    }
-
-    bool operator!=(const list_iterator & _Right) const _T_STD_NOEXCEPT
-    {
-       return m_smartPtr != _Right.m_smartPtr;
-    }
-
-    list_node_base * m_smartPtr; // 节点指针
-  };
+    bool empty() {return c.empty();}  
+    size_t size() {return c.size();}
+    reference front() {return *(c.begin());} // 返回队首的元素
+    void push(const T& x) {return c.push_back(x);} //压入元素
+    reference back() {return *(--(c.end()));} //返回队尾元素
+    void pop(){c.pop_front();}  //抛出队首元素
 
 public:
-  typedef list_iterator iterator;
+    bool operator==(const Queue<T,list<T>> & x) {return c==x.c ;}
+    bool operator!=(const Queue<T,list<T>> & x) {return c!=x.c ;}
+};</code></pre>
+<h2 id="五、广度优先搜索（BFS-STL-queue）实现"><a href="#五、广度优先搜索（BFS-STL-queue）实现" class="headerlink" title="五、广度优先搜索（BFS+STL queue）实现"></a>五、广度优先搜索（BFS+STL queue）实现</h2><p>宽度优先搜索算法（又称广度优先搜索）是最简便的图的搜索算法之一，这一算法也是很多重要的图的算法的原型。Dijkstra<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/1939816.htm">单源最短路径</a>算法和Prim<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/288214.htm">最小生成树</a>算法都采用了和宽度优先搜索类似的思想。其别名又叫BFS，属于一种盲目搜寻法，目的是系统地展开并检查图中的所有节点，以找寻结果。换句话说，它并不考虑结果的可能位置，彻底地搜索整张图，直到找到结果为止。</p>
+<p>实现bfs时会需要实现一个队列，用queue可以提高程序的准确性</p>
+<p>另外要注意使用front()和pop()之前最好要使用empty()判断队列非空</p>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<queue>
+using namespace std;
 
-public:
-  list()  // 默认构造
-  { 
-    empty_init();
-  }
+const int maxn = 100;
+bool visited[maxn][maxn];
+int move[4][2]={{-1,0},{1,0},{0,-1},{0,1}};
+int m, n;
 
-  list(const list<T> & rhs) // 拷贝构造
-  {
-    if(this != &rhs)
-    {
-      empty_init(); // 初始化
-
-      iterator itrBegin = rhs.begin();
-      iterator itrEnd = rhs.end();
-
-      while(itrBegin != itrEnd)
-      {
-         list_node * tmp = static_cast<list_node *>(itrBegin.m_smartPtr);
-
-         push_back(tmp->dataEntry);
-
-         ++itrBegin;
-      }
-    }
-  }
-
-  list & operator = (const list<T> & rhs) // 赋值运算符重载
-  {
-    if(this != &rhs)
-    {
-      // 如果原来链表有值，则先清空
-      if(begin() != end())
-      {
-        clear();
-      }
-
-      iterator itrBegin = rhs.begin();
-      iterator itrEnd = rhs.end();
-
-      while(itrBegin != itrEnd)
-      {
-         list_node * tmp = static_cast<list_node *>(itrBegin.m_smartPtr);
-
-         push_back(tmp->dataEntry);
-
-         ++itrBegin;
-      }
-    }
-  }
-
-  ~list()
-  {
-    clear();
-
-    if(pHeadNode)
-    {
-      delete pHeadNode;
-      pHeadNode = nullptr;
-    }
-  }
-
-  iterator begin() _T_STD_NOEXCEPT
-  {
-    return iterator(pHeadNode->Next);
-  }
-
-  iterator end() _T_STD_NOEXCEPT
-  {
-    return iterator(pHeadNode);
-  }
-
-  void push_back(const T & value)
-  {
-    insert(end(), value);
-  }
-
-  void push_front(const T & value)
-  {
-    insert(begin(), value);
-  }
-
-  void pop_front() 
-  {
-     erase(begin()); 
-  }
-
-  void pop_back() 
-  { 
-    iterator tmp = end();
-    erase(--tmp);
-  }
-
-  T & front()
-  {
-    return *begin();
-  }
-
-  T & back()
-  {
-    return *(--end());
-  }
-
-  unsigned int remove(const T & value)
-  {
-    unsigned int count = 0;
-
-    iterator itrBegin = begin();
-    while(itrBegin != end())
-    {
-      if(*itrBegin == value)
-      {
-        itrBegin = erase(itrBegin);
-        ++count;
-      }
-      else
-      {
-        ++itrBegin;
-      }
-    }
-
-    return count;
-  }
-
-  iterator erase(iterator position)
-  {
-    list_node_base* next_node = position.m_smartPtr->Next;
-    list_node_base* prev_node = position.m_smartPtr->Prev;
-    prev_node->Next = next_node;
-    next_node->Prev = prev_node;
-
-    delete position.m_smartPtr;
-    position.m_smartPtr = nullptr;
-
-    if(_size > 0)
-    {
-      _size--;
-    }
-
-    return iterator(next_node);
-  }
-
-  iterator insert(iterator position, const T& x) 
-  {
-    list_node* tmp = new list_node();
-    tmp->dataEntry = x;
-    tmp->Next = position.m_smartPtr;
-    tmp->Prev = position.m_smartPtr->Prev;
-    position.m_smartPtr->Prev->Next = tmp;
-    position.m_smartPtr->Prev = tmp;
-
-    ++_size;
-    return iterator(tmp);
-  }
-
-  void clear()
-  {
-    iterator itrBegin = begin();
-    while(itrBegin != end())
-    {
-      list_node* tmp =  static_cast<list_node *>(itrBegin.m_smartPtr);
-
-      ++itrBegin;
-
-      if(tmp)
-      {
-        delete tmp; // 差点犯了一个错误，delete会对用析构函数，并且释放内存。 需要析构子类还是父类，一定要传入正确类型
-      }
-    }
-
-    pHeadNode->Next = pHeadNode;
-    pHeadNode->Prev = pHeadNode;
-    _size = 0;
-  }
-
-  int size()
-  {
-    return _size;
-  }
-
-private:
-  void empty_init() 
-  { 
-    pHeadNode = new list_node_base();
-    pHeadNode->Next = pHeadNode;  // 初始化指针指向自己
-    pHeadNode->Prev = pHeadNode;
-
-    _size = 0;
-  }
-
-private:
-  list_node_base* pHeadNode; // 链表头
-
-  unsigned int _size; // 链表个数，提高查找效率，如果想为了节省内存，可以不要，临时查找
+struct Node
+{
+    int wall;
+    int step;
 };
 
-__YAMI_END
-</code></pre>
-<p>如果想具体看源码的实现，下面提供一个github的源代码</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Yejy813/stl_implement">stl_implement</a></p>
-<h2 id="四、基本函数"><a href="#四、基本函数" class="headerlink" title="四、基本函数"></a>四、基本函数</h2><h3 id="1、容量函数"><a href="#1、容量函数" class="headerlink" title="1、容量函数"></a>1、容量函数</h3><ul>
-<li>容器大小：size();</li>
-<li>容器最大容量：max_size();</li>
-<li>更改容器大小：resize();</li>
-<li>容器判空：empty();</li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
+struct Pot
 {
-    list<int> lst;
-    for (int i = 0; i<6; i++)
+    Pot(int x, int y):x(x),y(y){}
+    int x;
+    int y;
+};
+
+Node map[maxn][maxn];
+
+void bfs(int x, int y)
+{
+    int steps = 0;
+    queue<Pot> Q;
+    Pot start(x, y);
+    visited[x][y] = 1;
+    map[x][y].step = steps;
+    Q.push(start);
+    int i;
+    while(!Q.empty())
     {
-        lst.push_back(i);
+        Pot now = Q.front();
+        Q.pop();
+        steps = map[now.x][now.y].step;
+        for(i=0;i<4;i++)
+        {
+            int nx = now.x+move[i][0];
+            int ny = now.y+move[i][1];
+            if(nx>=0 && nx<m && ny>=0 && ny<n && !visited[nx][ny] && !map[nx][ny].wall)
+            {
+                Pot p(nx, ny);
+                map[nx][ny].step = steps+1;
+                Q.push(p);
+                visited[nx][ny]=true;
+            }
+        }
     }
-    cout << lst.size() << endl; // 输出：6
-    cout << lst.max_size() << endl; // 输出：357913941
-    lst.resize(0); // 更改元素大小
-    cout << lst.size() << endl; // 输出：0
-    if (lst.empty())
-        cout << "元素为空" << endl; // 输出：元素为空
-
-    return 0;
-}</code></pre>
-<h3 id="2、添加函数"><a href="#2、添加函数" class="headerlink" title="2、添加函数"></a>2、添加函数</h3><ul>
-<li>头部添加元素：<code>push_front(const T&amp; x);</code></li>
-<li>末尾添加元素：<code>push_back(const T&amp; x);</code></li>
-<li>任意位置插入一个元素：<code>insert(iterator it, const T&amp; x);</code></li>
-<li>任意位置插入 n 个相同元素：<code>insert(iterator it, int n, const T&amp; x);</code></li>
-<li>插入另一个向量的 [forst,last] 间的数据：<code>insert(iterator it, iterator first, iterator last);</code></li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-
-    // 头部增加元素
-    lst.push_front(4);
-    // 末尾添加元素
-    lst.push_back(5);
-    // 任意位置插入一个元素
-    list<int>::iterator it = lst.begin();
-    lst.insert(it, 2);
-    // 任意位置插入n个相同元素
-    lst.insert(lst.begin(), 3, 9);
-    // 插入另一个向量的[forst,last]间的数据
-    list<int> lst2(5, 8);
-    lst.insert(lst.begin(), lst2.begin(), ++lst2.begin());
-
-    // 遍历显示
-    for (it = lst.begin(); it != lst.end(); it++)
-        cout << *it << " "; // 输出：8 9 9 9 2 4 5
-    cout << endl;
-
-    return 0;
-}</code></pre>
-<h3 id="3、删除函数"><a href="#3、删除函数" class="headerlink" title="3、删除函数"></a>3、删除函数</h3><ul>
-<li>头部删除元素：<code>pop_front();</code></li>
-<li>末尾删除元素：<code>pop_back();</code></li>
-<li>任意位置删除一个元素：<code>erase(iterator it);</code></li>
-<li>删除 [first,last] 之间的元素：<code>erase(iterator first, iterator last);</code></li>
-<li>清空所有元素：<code>clear();</code></li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    for (int i = 0; i < 8; i++)
-        lst.push_back(i);
-
-    // 头部删除元素
-    lst.pop_front();
-    // 末尾删除元素
-    lst.pop_back();
-    // 任意位置删除一个元素
-    list<int>::iterator it = lst.begin();
-    lst.erase(it);
-    // 删除[first,last]之间的元素
-    lst.erase(lst.begin(), ++lst.begin());
-
-    // 遍历显示
-    for (it = lst.begin(); it != lst.end(); it++)
-        cout << *it << " "; // 输出：3 4 5 6
-    cout << endl;
-
-    // 清空所有元素
-    lst.clear();
-
-    // 判断list是否为空
-    if (lst.empty())
-    cout << "元素为空" << endl; // 输出：元素为空
-
-    return 0;
-}</code></pre>
-<h3 id="4、查询函数"><a href="#4、查询函数" class="headerlink" title="4、查询函数"></a>4、查询函数</h3><ul>
-<li>访问第一个元素：<code>front();</code></li>
-<li>访问最后一个元素：<code>back();</code></li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    for (int i = 0; i < 6; i++)
-        lst.push_back(i);
-
-    // 访问第一个元素
-    cout << lst.front() << endl; // 输出：0
-    // 访问最后一个元素
-    cout << lst.back() << endl; // 输出：5
-
-    return 0;
-}</code></pre>
-<h3 id="5、其他函数"><a href="#5、其他函数" class="headerlink" title="5、其他函数"></a>5、其他函数</h3><ul>
-<li>多个元素赋值：<code>assign(int nSize, const T&amp; x); // 类似于初始化时用数组进行赋值</code></li>
-<li>交换两个同类型容器的元素：<code>swap(list&amp;, list&amp;); 或 swap(list&amp;);</code></li>
-<li>合并两个列表的元素（默认升序排列）：<code>merge();</code></li>
-<li>在任意位置拼接入另一个list：<code>splice(iterator it, list&amp;);</code></li>
-<li>删除容器中相邻的重复元素：<code>unique();</code></li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-    // 多个元素赋值s
-    list<int> lst1;
-    lst1.assign(3, 1);
-    list<int> lst2;
-    lst2.assign(3, 2);
-
-    // 交换两个容器的元素
-    // swap(lst1, lst2); // ok
-    lst1.swap(lst2);
-    // 遍历显示
-    cout << "交换后的lst1: ";
-    list<int>::iterator it;
-    for (it = lst1.begin(); it!=lst1.end(); it++)
-        cout << *it << " "; // 输出：2 2 2
-    cout << endl;
-
-    // 遍历显示
-    cout << "交换后的lst2: ";
-    for (it = lst2.begin(); it != lst2.end(); it++)
-        cout << *it << " "; // 输出：1 1 1
-    cout << endl;
-
-    list<int> lst3;
-    lst3.assign(3, 3);
-    list<int> lst4;
-    lst4.assign(3, 4);
-    // 合并两个列表的元素
-    lst4.merge(lst3); // 不是简单的拼接，而是会升序排列
-    cout << "合并后的lst4: ";
-    for (it = lst4.begin(); it != lst4.end(); it++)
-        cout << *it << " "; // 输出：3 3 3 4 4 4
-    cout << endl;
-
-    list<int> lst5;
-    lst5.assign(3, 5);
-    list<int> lst6;
-    lst6.assign(3, 6);
-    // 在lst6的第2个元素处，拼接入lst5
-    lst6.splice(++lst6.begin(), lst5);
-    cout << "拼接后的lst6: ";
-    for (it = lst6.begin(); it != lst6.end(); it++)
-        cout << *it << " "; // 输出：6 5 5 5 6 6
-    cout << endl;
-
-    // 删除容器中相邻的重复元素
-    list<int> lst7;
-    lst7.push_back(1);
-    lst7.push_back(1);
-    lst7.push_back(2);
-    lst7.push_back(2);
-    lst7.push_back(3);
-    lst7.push_back(2);
-    lst7.unique();
-    cout << "删除容器中相邻的重复元素后的lst7: ";
-    for (it = lst7.begin(); it != lst7.end(); it++)
-        cout << *it << " "; // 输出：1 2 3 2
-    cout << endl;
-
-    return 0;
-}</code></pre>
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>void l.assign (int n, const val)void l.assign (it first, it last)</td>
-<td align="center">将链表l初始化为n个相同的val元素。将链表l初始化为从first到last指针所指向的这一段区域内的元素。It指针同l是一个类型的。方便将另一个链表中的某一段连续的元素copy到新链表。</td>
-</tr>
-<tr>
-<td>reference l.back ()</td>
-<td align="center">返回最后一个元素。经测试，可以直接l.back()=元素。</td>
-</tr>
-<tr>
-<td>It l.begin()</td>
-<td align="center">返回第1个元素的地址。</td>
-</tr>
-<tr>
-<td>Void l.clear()</td>
-<td align="center">清空链表。</td>
-</tr>
-<tr>
-<td>bool l.empty()</td>
-<td align="center">判断链表中是否有元素，若有，返回true。</td>
-</tr>
-<tr>
-<td>It l.end()</td>
-<td align="center">返回最后一个元素的下一个元素的地址，即此地址没有实际元素。</td>
-</tr>
-<tr>
-<td>it l.erase (it pos);it l.erase (it first, it last);</td>
-<td align="center">删除链表中it指针所指向的元素，返回被删元素的下一个元素地址。删除从first到last这一段的所有元素，返回最后一个被删元素的下一个元素地址。</td>
-</tr>
-<tr>
-<td>reference l.front ()</td>
-<td align="center">返回第一个元素。假如a=l.front()，那么a只是一个备份，对a修改不影响链表。</td>
-</tr>
-<tr>
-<td>get_allocator()</td>
-<td align="center">一直不知道此物何用？</td>
-</tr>
-<tr>
-<td>it l.insert (it pos, 元素类型val)void l.insert (it pos, int n,元素类型 val)void l.insert (it pos, it first, it last)</td>
-<td align="center">在pos的前一位置插入val元素，返回该元素的地址。Val元素是不会被修改的，只是拷贝。在pos的前一位置插入n个val元素。在pos的前一位置插入first到last之间的一段元素。可以是自己或其他链表中的。</td>
-</tr>
-<tr>
-<td>int l.max_size()</td>
-<td align="center">返回链表可装入的元素数量上限，一般数字很大。经测，数字已包含了链表中存在的元素。</td>
-</tr>
-<tr>
-<td>void l.merge (list&amp; x)void l.merge (list&amp; x, Compare comp)</td>
-<td align="center">将链表x接在l之后，合并为一个链表l，合并完后链表x中的元素为0了，但x仍存在。（不排序）将两链表合并在一起，按照comp函数的排序规则来排序。</td>
-</tr>
-<tr>
-<td>list&amp; l.operator= (const list&amp; x)</td>
-<td align="center">将整个链表x中所有元素赋给链表l，相当于清空链表l，再将x赋过去。不改变x的数据。注意括号内是参数x。</td>
-</tr>
-<tr>
-<td>void l.pop_back()</td>
-<td align="center">删除链表最后一个元素。</td>
-</tr>
-<tr>
-<td>void l.pop_front()</td>
-<td align="center">删除链表第一个元素。</td>
-</tr>
-<tr>
-<td>void l.push_back (const value_type&amp; val)</td>
-<td align="center">将元素val插入到链表的尾部。</td>
-</tr>
-<tr>
-<td>void l.push_front (const value_type&amp; val)</td>
-<td align="center">将元素val插入到链表的头部。</td>
-</tr>
-<tr>
-<td>it l.rbegin()</td>
-<td align="center">返回“反向链表”的第1个元素的地址。即返回链表的最后一个元素的地址。</td>
-</tr>
-<tr>
-<td>void l.remove (const value_type&amp; val)</td>
-<td align="center">删除值等于val的元素，得一模一样才能删除，估计比对的是整块内存的二进制。与erase不同。</td>
-</tr>
-<tr>
-<td>void l.remove_if (Predicate pred)</td>
-<td align="center">功能：删除元素。将链表中每个元素单独传入pred函数，只要返回的结果为true，就删除。pred不用加括号，它类似于sort里的comp。</td>
-</tr>
-<tr>
-<td>it l.rend()</td>
-<td align="center">返回“反向链表”的最后一个元素的下一个位置，这么说可能不正确，这个函数主要用于反向链表的操作。返回的是地址，该地址没有元素。</td>
-</tr>
-<tr>
-<td>void l.resize (size_type n, value_type val = value_type())</td>
-<td align="center">重新设置链表的元素个数，若大了，会插入默认元素，若少了，或者删除部分元素。标准是已存元素。</td>
-</tr>
-<tr>
-<td>void l.reverse()</td>
-<td align="center">将所有元素的顺序置为相反，比如升序变为降序。</td>
-</tr>
-<tr>
-<td>int l.size()</td>
-<td align="center">返回已存在的元素个数，如果之前刚调用过resize，那size的大小就是resize所设置的。</td>
-</tr>
-<tr>
-<td>void l.sort(comp)Void l.sort()</td>
-<td align="center">排序，按照comp函数所返回的那样，若true则不改变位置，若false则交换位置。排序，按照默认的方法排序，一般为增序，比如整数、字符串比较的是ascii码。</td>
-</tr>
-<tr>
-<td>void l.splice (it pos, list&amp; x)void l.splice (it pos, list&amp; x, it i)void l.splice (it pos, list&amp; x, it first, it last)</td>
-<td align="center">将链表x中所有的元素“剪切”到pos处，其实只是指针操作，不用赋值。将链表x中的元素i“剪切”到pos处，只是单个元素。将链表x中first到last这段元素都迁移到l中的pos处。这些操作都会在链表l中增加新元素，并在x中删除相应元素。</td>
-</tr>
-<tr>
-<td>void l.swap (list&amp; x)</td>
-<td align="center">将两个链表互换名字，元素数量可不同，但类型得相同。</td>
-</tr>
-<tr>
-<td>void l.unique()void l.unique (Predicate pred)</td>
-<td align="center">删除重复的多余元素，使每个元素唯一。相同元素的第一个都不会删。以pred函数为依据，删除重复的元素，当pred返回true时则删除其中一个。</td>
-</tr>
-<tr>
-<td>bool operator== (list&lt;T,Alloc&gt;&amp; lhs,list&lt;T,Alloc&gt;&amp; rhs);bool operator!= ( list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&lt; (list&lt;T,Alloc&gt;&amp; lhs,list&lt;T,Alloc&gt;&amp; rhs);bool operator&lt;= (list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&gt; (list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&gt;= ( list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);</td>
-<td align="center">一堆不常用的符号。直接比较，比如a==b。</td>
-</tr>
-<tr>
-<td>void swap (list&lt;T,Alloc&gt;&amp; x, list&lt;T,Alloc&gt;&amp; y)</td>
-<td align="center">交换两个链表。与l.swap是一样的效果。</td>
-</tr>
-</tbody></table>
-<h2 id="五、迭代器与算法"><a href="#五、迭代器与算法" class="headerlink" title="五、迭代器与算法"></a>五、迭代器与算法</h2><h3 id="1、迭代器"><a href="#1、迭代器" class="headerlink" title="1、迭代器"></a>1、迭代器</h3><ul>
-<li>开始迭代器指针：<code>begin();</code></li>
-<li>末尾迭代器指针：<code>end();</code> // 指向最后一个元素的下一个位置</li>
-<li>指向常量的开始迭代器指针：<code>cbegin();</code> // 意思就是不能通过这个指针来修改所指的内容，但还是可以通过其他方式修改的，而且指针也是可以移动的。</li>
-<li>指向常量的末尾迭代器指针：<code>cend();</code></li>
-<li>反向迭代器指针，指向最后一个元素：<code>rbegin();</code></li>
-<li>反向迭代器指针，指向第一个元素的前一个元素：<code>rend();</code></li>
-</ul>
-<p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
-
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    lst.push_back(1);
-    lst.push_back(2);
-    lst.push_back(3);
-
-    cout << *(lst.begin()) << endl; // 输出：1
-    cout << *(--lst.end()) << endl; // 输出：3
-    cout << *(lst.cbegin()) << endl; // 输出：1
-    cout << *(--lst.cend()) << endl; // 输出：3
-    cout << *(lst.rbegin()) << endl; // 输出：3
-    cout << *(--lst.rend()) << endl; // 输出：1
-    cout << endl;
-
-    return 0;
-}</code></pre>
-<h3 id="2、算法"><a href="#2、算法" class="headerlink" title="2、算法"></a>2、算法</h3><h4 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h4><pre><code>list&lt;int&gt;::iterator it;
-for (it = lst.begin(); it != lst.end(); it++)
-    cout &lt;&lt; *it &lt;&lt; endl;</code></pre>
-<h4 id="元素翻转"><a href="#元素翻转" class="headerlink" title="元素翻转"></a>元素翻转</h4><pre><code>#include &lt;algorithm&gt;
-reverse(lst.begin(), lst.end());</code></pre>
-<h4 id="元素排序"><a href="#元素排序" class="headerlink" title="元素排序"></a>元素排序</h4><pre><code>#include &lt;algorithm&gt;
-sort(lst.begin(), lst.end()); // 采用的是从小到大的排序
-
-// 如果想从大到小排序，可以采用先排序后反转的方式，也可以采用下面方法:
-// 自定义从大到小的比较器，用来改变排序方式
-bool Comp(const int&amp; a, const int&amp; b) 
-{
-    return a &gt; b;
 }
 
-sort(lst.begin(), lst.end(), Comp);</code></pre>
-<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>1、list 为双向迭代器，故不支持<code>it+=i</code>；</p>
-<p>2、list 不支持下标访问和at方法访问。</p>
-<h2 id="七、代码应用实例–约瑟夫问题"><a href="#七、代码应用实例–约瑟夫问题" class="headerlink" title="七、代码应用实例–约瑟夫问题"></a>七、代码应用实例–约瑟夫问题</h2><pre class=" language-c++"><code class="language-c++">/*
-约瑟夫问题是：有 n 只猴子，按顺时针方向围成一圈选大王（编号为 1~n），从第 1 号开始报数，一直数到 m，数到 m 的猴子退到圈外，剩下的猴子再接着从 1 开始报数。就这样，直到圈内只剩下一只猴子时，这个猴子就是猴王。编程求输入 n、m 后,输出最后猴王的编号。
-
-输入数据：每行是用空格分开的两个整数，第一个是 n，第二个是 m（0<m, n<=1 000 000）。最后一行是：
-0 0
-
-输出要求：对于每行输入数据（最后一行除外），输出数据也是一行，即最后猴王的编号。
-
-输入样例：
-6 2
-12 4
-8 3
-0 0
-
-输出样例：
-5
-1
-7
-*/
-#include <list>
-#include <iostream>
-using namespace std;
 int main()
 {
-    list<int> monkeys;
-    int n, m;
-    while (true) {
-        cin >> n >> m;
-        if (n == 0 && m == 0)
-            break;
-        monkeys.clear();  //清空list容器
-        for (int i = 1; i <= n; ++i)  //将猴子的编号放入list
-            monkeys.push_back(i);
-        list<int>::iterator it = monkeys.begin();
-        while (monkeys.size() > 1) { //只要还有不止一只猴子，就要找一只猴子让其出列
-            for (int i = 1; i < m; ++i) { //报数
-                ++it;
-                if (it == monkeys.end())
-                    it = monkeys.begin();
-            }
-            it = monkeys.erase(it); //删除元素后，迭代器失效，
-                                    //要重新让迭代器指向被删元素的后面
-            if (it == monkeys.end())
-                it = monkeys.begin();
-        }
-        cout << monkeys.front() << endl; //front返回第一个元素的引用
+    memset(visited, false, sizeof(visited));
+    cin>>m>>n;
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++)
+            cin>>map[i][j].wall;
+    bfs(0,0);
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+            cout<<map[i][j].step<<" ";
+        cout<<endl;
     }
     return 0;
 }</code></pre>
-<p>erase 成员函数返回被删除元素后面那个元素的迭代器。如果被删除的是最后一个元素，则返回 end()。</p>
-<p>这个程序也可以用 vector 实现，但是执行速度要慢很多。因为 vector 的 erase 操作牵涉元素的移动，不能在常数时间内完成，所花费的时间和容器中的元素个数有关；而 list 的 erase 操作只是修改几个指针而已，可以在常数时间内完成。当 n 很大（数十万）时，两种写法在速度上会有明显区别。</p>
-<h2 id="八、参考文献以及博客"><a href="#八、参考文献以及博客" class="headerlink" title="八、参考文献以及博客"></a>八、参考文献以及博客</h2><p>1、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxAndMcu/p/10260627.html">https://www.cnblogs.com/linuxAndMcu/p/10260627.html</a></p>
-<p>2、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blog-yejy/p/9535840.html">https://www.cnblogs.com/blog-yejy/p/9535840.html</a></p>
-<p>3、<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/351.html">http://c.biancheng.net/view/351.html</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1366,7 +795,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jiamingbi.github.io/2020/100655331.html">https://jiamingbi.github.io/2020/100655331.html</a>
+                    <a href="https://jiamingbi.github.io/2020/10060.html">https://jiamingbi.github.io/2020/10060.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1403,11 +832,7 @@ int main()
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/STL/">
-                                    <span class="chip bg-color">STL</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1576,7 +1001,7 @@ int main()
         repo: 'blogtalk',
         owner: 'JiamingBi',
         admin: "JiamingBi",
-        id: '2020-10-06T12-31-55',
+        id: '2020-10-06T16-39-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1600,9 +1025,48 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/10060.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            title: STL–queuedate: 2020-10-06 16:39:39author: Baymaxtop: falsecover: falsetoc: truemathjax: falsesummary: C++中关于queue
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Baymax
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/10069761.html">
                     <div class="card-image">
@@ -1620,57 +1084,8 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/C/" class="post-category">
-                                    C++
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/STL/">
-                        <span class="chip bg-color">STL</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/100528132.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="STL--stack">
-                        
-                        <span class="card-title">STL--stack</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            C++中关于stack(栈)容器的使用
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
                             </span>
                         <span class="publish-author">
                             

@@ -6,7 +6,7 @@
   <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiamingbi.github.io/"/>
-  <updated>2020-10-06T08:35:27.185Z</updated>
+  <updated>2020-10-06T08:57:53.336Z</updated>
   <id>https://jiamingbi.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://jiamingbi.github.io/2020/10060.html"/>
+    <id>https://jiamingbi.github.io/2020/10060.html</id>
+    <published>2020-10-06T08:39:39.938Z</published>
+    <updated>2020-10-06T08:57:53.336Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;title: STL–queue&lt;br&gt;date: 2020-10-06 16:39:39&lt;br&gt;author: Baymax&lt;br&gt;top: false&lt;br&gt;cover: false&lt;br&gt;toc: true&lt;br&gt;mathjax: false&lt;br&gt;summary:</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>STL--set</title>
