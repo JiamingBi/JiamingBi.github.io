@@ -267,9 +267,9 @@ mark {
     margin-bottom: 0;
 }
 
-/*.bg-color {
+.bg-color {
     background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-}*/
+}
 
 .text-color {
     color: #0f9d58 !important;
@@ -577,11 +577,11 @@ header .go-back i {
 .post-cover {
     height: 40vh !important;
 }
-
+/*
 .bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+}*/
 
 .bg-cover:before,
 .bg-cover:after {
