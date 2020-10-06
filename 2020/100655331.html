@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STL--stack, Baymax">
+    <meta name="keywords" content="STL--list, Baymax">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>STL--stack | Baymax</title>
+    <title>STL--list | Baymax</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STL--stack</h1>
+                    <h1 class="description center-align post-title">STL--list</h1>
                 </div>
             </div>
         </div>
@@ -361,14 +361,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-05
+                    2020-10-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-05
+                    2020-10-06
                 </div>
                 
 
@@ -382,7 +382,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -397,156 +397,760 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、stack的简介"><a href="#一、stack的简介" class="headerlink" title="一、stack的简介"></a>一、stack的简介</h2><p>C++ Stack（堆栈） 是一个容器类的改编，为程序员提供了堆栈的全部功能，也就是说实现了一个先进后出（FILO）的数据结构。</p>
-<p>C++ STL 的堆栈泛化是直接通过现有的序列容器来实现的，默认使用双端队列deque的数据结构，当然，可以采用其他线性结构（vector 或 list等），只要提供堆栈的入栈、出栈、栈顶元素访问和判断是否为空的操作即可。由于堆栈的底层使用的是其他容器，因此，堆栈可看做是一种适配器，将一种容器转换为另一种容器(堆栈容器)。<br>   为了严格遵循堆栈的数据后进先出原则，stack 不提供元素的任何迭代器操作，因此，stack 容器也就不会向外部提供可用的前向或反向迭代器类型。</p>
-<p><strong>c++ stl栈stack的头文件为</strong>: </p>
-<p>#include<stack> </stack></p>
-<h2 id="二、stack操作汇总"><a href="#二、stack操作汇总" class="headerlink" title="二、stack操作汇总"></a>二、stack操作汇总</h2><ul>
-<li>top()：返回一个栈顶元素的引用，类型为 T&amp;。如果栈为空，返回值未定义。</li>
-<li>push(const T&amp; obj)：可以将对象副本压入栈顶。这是通过调用底层容器的 push_back() 函数完成的。</li>
-<li>push(T&amp;&amp; obj)：以移动对象的方式将对象压入栈顶。这是通过调用底层容器的有右值引用参数的 push_back() 函数完成的。</li>
-<li>pop()：弹出栈顶元素。</li>
-<li>size()：返回栈中元素的个数。</li>
-<li>empty()：在栈中没有元素的情况下返回 true。</li>
-<li>emplace()：用传入的参数调用构造函数，在栈顶生成对象。</li>
-<li>swap(stack<t> &amp; other_stack)：将当前栈中的元素和参数中的元素交换。参数所包含元素的类型必须和当前栈的相同。对于 stack 对象有一个特例化的全局函数 swap() 可以使用。</t></li>
-</ul>
-<h2 id="三、stack的成员函数详解"><a href="#三、stack的成员函数详解" class="headerlink" title="三、stack的成员函数详解"></a>三、stack的成员函数详解</h2><h4 id="创建-stack-对象"><a href="#创建-stack-对象" class="headerlink" title="创建 stack 对象"></a>创建 stack 对象</h4><p>使用堆栈前，先要利用构造函数进行初始化，创建一个堆栈对象，以进行元素的入栈、出栈等操作。</p>
-<p>（1）   stack()<br>   默认构造函数，创建一个空的 stack 对象。<br>   例如，下面一行代码使用默认的 deque 为底层容器，创建一个空的堆栈对象 s 。<br>   stack<int> s;</int></p>
-<p> （2） stack(const stack&amp;)<br>   复制构造函数，用一个 stack 堆栈创建一个新的堆栈。<br>   例如，下面的代码利用 s1 ，创建一个以双向链表为底层容器的空堆栈对象 s2 。<br>   stack&lt;int, list<int> &gt;  s1;<br>   stack&lt;int, list<int> &gt;  s2(s1);</int></int></p>
-<h4 id="元素入栈"><a href="#元素入栈" class="headerlink" title="元素入栈"></a>元素入栈</h4><p>   stack堆栈容器的元素入栈函数为 push 函数。由于 C++ STL 的堆栈函数是不预设大小的，因此，入栈函数就不考虑堆栈空间是否为满，均将元素压入堆栈，从而函数没有标明入栈成功与否的返回值。<br>   如下是他的使用原型：<br>   void push(const value_type&amp; x) </p>
-<h4 id="元素出栈"><a href="#元素出栈" class="headerlink" title="元素出栈"></a>元素出栈</h4><p>   stack容器的元素出栈函数为 pop 函数，由于函数并没有判断堆栈是否为空，才进行元素的弹出，因此，需要自行判断堆栈是否为空，才可执行 pop 函数。<br>   void pop()</p>
-<p>   下面的示例代码，将堆栈的所有元素全部出栈，这也是经常拿来清除stack中的成员</p>
-<pre class=" language-c++"><code class="language-c++"> stack<int> s;
- while(!s.empty())
- {
-     s.pop();// 出栈
-  }</code></pre>
-<h4 id="取栈顶元素"><a href="#取栈顶元素" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h4><p>   stack容器的栈顶元素的读取函数为 pop 函数，将取出最后入栈的元素，如下是它的使用原型<br>   value_type&amp; top()</p>
-<h4 id="堆栈非空判断"><a href="#堆栈非空判断" class="headerlink" title="堆栈非空判断"></a>堆栈非空判断</h4><p>   随着堆栈元素不断出栈，堆栈可能会出现空的情况，因此，一般需要调用 empty 函数判断是否非空，才作元素出栈和取栈顶元素的操作。<br>   bool empty()<br>   判断堆栈是否为空，返回 true 表示堆栈已空，false 表示堆栈非空。</p>
-<h2 id="四、栈的实现原理"><a href="#四、栈的实现原理" class="headerlink" title="四、栈的实现原理"></a>四、栈的实现原理</h2><p>以某种既有容器作为底部结构，将其接口改变，使之符合“先进后出”的特性，形成一个 stack，是很容易做到的。deque 是双向开口的数据结构，若以 deque 为底部结构并封闭其头端开口，便轻而易举地形成了一个 stack。因此，STL便以 deque 作为缺省情况下的 stack 底部结构。</p>
-<p>  由于 stack 系以底部容器完成其所有工作，而具有这种“修改某物接口，形成另一种风貌”之性质者，称为 adapter（配接器），因此 stack 往往被归类为容器配接器。</p>
-<h2 id="五、栈的完整定义"><a href="#五、栈的完整定义" class="headerlink" title="五、栈的完整定义"></a>五、栈的完整定义</h2><pre class=" language-C++"><code class="language-C++">stl_stack.h
-// Filename:    stl_stack.h
+                <h2 id="一、list的概述"><a href="#一、list的概述" class="headerlink" title="一、list的概述"></a>一、list的概述</h2><p>list 由双向链表（doubly linked list）实现而成，元素也存放在堆中，每个元素都是放在一块内存中，他的内存空间可以是不连续的，通过指针来进行数据的访问，这个特点使得它的随机存取变得非常没有效率，因此它没有提供 [] 操作符的重载。但是由于链表的特点，它可以很有效率的支持任意地方的插入和删除操作。</p>
+<p>stl_list其中的增删改查的细节实现本质是一样的，都是处理指针偏移。相比于vector，stl_List在插入和删除的时候可以达到O(1)的时间复杂度。</p>
+<p>stl_list是一个双向循环链表，相对单链表来说查找效率高，无论是插入时的前插和后插，还是从后往前查找某个元素等。既然查找效率高了，自然添加，删除和修改元素时效率也就更高。唯一一个可以称为不足的就是每个节点需要耗费4字节指针来保存前一个节点的地址，因此如果遇到对内存要求比较苛刻的场景，而且一些操作单链表即可满足，那么可以考虑使用标准库中的forward_list（单链表）。</p>
+<h2 id="二、定义和初始化"><a href="#二、定义和初始化" class="headerlink" title="二、定义和初始化"></a>二、定义和初始化</h2><p>使用之前必须加相应容器的头文件：</p>
+<pre class=" language-c++"><code class="language-c++">#include <list> // list属于std命名域的，因此需要通过命名限定，例如using std::list;</code></pre>
+<p>定义的代码如下：</p>
+<pre class=" language-c++"><code class="language-c++">list<int> a; // 定义一个int类型的列表a
+list<int> a(10); // 定义一个int类型的列表a，并设置初始大小为10
+list<int> a(10, 1); // 定义一个int类型的列表a，并设置初始大小为10且初始值都为1
+list<int> b(a); // 定义并用列表a初始化列表b
+deque<int> b(a.begin(), ++a.end()); // 将列表a中的第1个元素作为列表b的初始值</code></pre>
+<p>除此之外，还可以直接使用数组来初始化向量：</p>
+<pre class=" language-c++"><code class="language-c++">int n[] = { 1, 2, 3, 4, 5 };
+list<int> a(n, n + 5); // 将数组n的前5个元素作为列表a的初值</code></pre>
+<h2 id="三、list的实现原理"><a href="#三、list的实现原理" class="headerlink" title="三、list的实现原理"></a>三、list的实现原理</h2><pre class=" language-c++"><code class="language-c++">#include "stl_def.h"
+
+/** @file stl_list.h
+ * 
+ *  This is an stl_list header file, implement double loop list warppes  
+ * 
+ *  Created by yejy on 18-8-18
+ *  copyright (c) yejy. all rights reserved
+ * 
+ */
+
+__YAMI_BEGIN
 
 
-#ifndef __SGI_STL_INTERNAL_STACK_H
-#define __SGI_STL_INTERNAL_STACK_H
-
-__STL_BEGIN_NAMESPACE
-
-// 如果编译器不能根据前面模板参数推导出后面使用的默认参数类型,
-// 那么就需要手工指定, 本实作stack内部容器默认使用deque
-// 选用deque可以在存储空间不足时可以动态增加, 而且代价很低
-#ifndef __STL_LIMITED_DEFAULT_TEMPLATES
-template <class T, class Sequence = deque<T> >
-#else
-template <class T, class Sequence>
-#endif
-class stack
+/* stl list  allocate 直接使用默认new/delete */
+template <typename T>
+class list
 {
-  // 特化的全局运算符, 提供operator==和<重载则构建出所有运算符
-  // 其具体细节见<stl_pair.h>中的说明
-  friend bool operator== __STL_NULL_TMPL_ARGS (const stack&, const stack&);
-  friend bool operator< __STL_NULL_TMPL_ARGS (const stack&, const stack&);
+public:
+  // 不包数据实体，只包含指针和相关操作, 可以认为是节省一个指针大小的内存
+  struct list_node_base  
+  {
+    list_node_base* Next;
+    list_node_base* Prev;
+
+    list_node_base():Next(nullptr), Prev(nullptr){}
+  };
+
+  // dataEntry node
+  struct list_node: public list_node_base
+  {
+      T dataEntry;
+  };
+
+  // 迭代器 iterator
+  struct list_iterator
+  {
+    typedef list_iterator   _Self;
+    typedef T               value_type;
+    typedef T*              pointer;
+    typedef T&              reference;
+
+    list_iterator() _T_STD_NOEXCEPT
+    {
+      m_smartPtr = nullptr;
+    }
+
+    explicit list_iterator(list_node_base * pNode) _T_STD_NOEXCEPT
+    {
+      m_smartPtr = pNode;
+    }
+
+    reference operator*() _T_STD_NOEXCEPT
+    {
+      return  static_cast<list_node *>(m_smartPtr)->dataEntry;
+    }
+
+    list_node_base* operator->() _T_STD_NOEXCEPT
+    {
+      return m_smartPtr;
+    }
+
+    _Self operator++(int) _T_STD_NOEXCEPT // 后 ++
+    {
+      _Self __tmp = *this;
+      m_smartPtr = m_smartPtr->Next;
+      return __tmp;
+    }
+
+    _Self& operator++() _T_STD_NOEXCEPT // 前 ++
+    {
+      m_smartPtr = m_smartPtr->Next;
+      return *this;
+    }
+
+    _Self operator--(int) _T_STD_NOEXCEPT
+    {
+      _Self __tmp = *this;
+      m_smartPtr = m_smartPtr->Prev;
+      return __tmp;
+    }
+
+    _Self& operator--() _T_STD_NOEXCEPT
+    {
+      m_smartPtr = m_smartPtr->Prev;
+      return *this;
+    }
+
+    bool operator==(const list_iterator & _Right) const _T_STD_NOEXCEPT
+    {
+      return m_smartPtr == _Right.m_smartPtr;
+    }
+
+    bool operator!=(const list_iterator & _Right) const _T_STD_NOEXCEPT
+    {
+       return m_smartPtr != _Right.m_smartPtr;
+    }
+
+    list_node_base * m_smartPtr; // 节点指针
+  };
 
 public:
-  // 由于stack仅支持对栈顶元素的操作, 所以不定义STL要求的
-  // pointer, iterator, difference_type
-  typedef typename Sequence::value_type value_type;
-  typedef typename Sequence::size_type size_type;
-  typedef typename Sequence::reference reference;
-  typedef typename Sequence::const_reference const_reference;
-
-protected:
-  Sequence c;   // 这个是我们实际维护的容器
+  typedef list_iterator iterator;
 
 public:
-  // 下面的操作完全使用内部容器的成员函数实现
-  // 这再次体现了STL高度的可复用性:-)
+  list()  // 默认构造
+  { 
+    empty_init();
+  }
 
-  // 判断stack是否为空
-  bool empty() const { return c.empty(); }
+  list(const list<T> & rhs) // 拷贝构造
+  {
+    if(this != &rhs)
+    {
+      empty_init(); // 初始化
 
-  // stack中元素个数
-  size_type size() const { return c.size(); }
+      iterator itrBegin = rhs.begin();
+      iterator itrEnd = rhs.end();
 
-  // 返回栈顶元素, 注意这里返回的是引用!!!
-  reference top() { return c.back(); }
-  const_reference top() const { return c.back(); }
+      while(itrBegin != itrEnd)
+      {
+         list_node * tmp = static_cast<list_node *>(itrBegin.m_smartPtr);
 
-  // 在栈顶追加新元素
-  void push(const value_type& x) { c.push_back(x); }
+         push_back(tmp->dataEntry);
 
-  // 移除栈顶元素, 注意不返回元素的引用,
-  // 很多初学者随机用此容器时经常误认为pop()操作同时会返回栈顶元素的引用
-  void pop() { c.pop_back(); }
+         ++itrBegin;
+      }
+    }
+  }
+
+  list & operator = (const list<T> & rhs) // 赋值运算符重载
+  {
+    if(this != &rhs)
+    {
+      // 如果原来链表有值，则先清空
+      if(begin() != end())
+      {
+        clear();
+      }
+
+      iterator itrBegin = rhs.begin();
+      iterator itrEnd = rhs.end();
+
+      while(itrBegin != itrEnd)
+      {
+         list_node * tmp = static_cast<list_node *>(itrBegin.m_smartPtr);
+
+         push_back(tmp->dataEntry);
+
+         ++itrBegin;
+      }
+    }
+  }
+
+  ~list()
+  {
+    clear();
+
+    if(pHeadNode)
+    {
+      delete pHeadNode;
+      pHeadNode = nullptr;
+    }
+  }
+
+  iterator begin() _T_STD_NOEXCEPT
+  {
+    return iterator(pHeadNode->Next);
+  }
+
+  iterator end() _T_STD_NOEXCEPT
+  {
+    return iterator(pHeadNode);
+  }
+
+  void push_back(const T & value)
+  {
+    insert(end(), value);
+  }
+
+  void push_front(const T & value)
+  {
+    insert(begin(), value);
+  }
+
+  void pop_front() 
+  {
+     erase(begin()); 
+  }
+
+  void pop_back() 
+  { 
+    iterator tmp = end();
+    erase(--tmp);
+  }
+
+  T & front()
+  {
+    return *begin();
+  }
+
+  T & back()
+  {
+    return *(--end());
+  }
+
+  unsigned int remove(const T & value)
+  {
+    unsigned int count = 0;
+
+    iterator itrBegin = begin();
+    while(itrBegin != end())
+    {
+      if(*itrBegin == value)
+      {
+        itrBegin = erase(itrBegin);
+        ++count;
+      }
+      else
+      {
+        ++itrBegin;
+      }
+    }
+
+    return count;
+  }
+
+  iterator erase(iterator position)
+  {
+    list_node_base* next_node = position.m_smartPtr->Next;
+    list_node_base* prev_node = position.m_smartPtr->Prev;
+    prev_node->Next = next_node;
+    next_node->Prev = prev_node;
+
+    delete position.m_smartPtr;
+    position.m_smartPtr = nullptr;
+
+    if(_size > 0)
+    {
+      _size--;
+    }
+
+    return iterator(next_node);
+  }
+
+  iterator insert(iterator position, const T& x) 
+  {
+    list_node* tmp = new list_node();
+    tmp->dataEntry = x;
+    tmp->Next = position.m_smartPtr;
+    tmp->Prev = position.m_smartPtr->Prev;
+    position.m_smartPtr->Prev->Next = tmp;
+    position.m_smartPtr->Prev = tmp;
+
+    ++_size;
+    return iterator(tmp);
+  }
+
+  void clear()
+  {
+    iterator itrBegin = begin();
+    while(itrBegin != end())
+    {
+      list_node* tmp =  static_cast<list_node *>(itrBegin.m_smartPtr);
+
+      ++itrBegin;
+
+      if(tmp)
+      {
+        delete tmp; // 差点犯了一个错误，delete会对用析构函数，并且释放内存。 需要析构子类还是父类，一定要传入正确类型
+      }
+    }
+
+    pHeadNode->Next = pHeadNode;
+    pHeadNode->Prev = pHeadNode;
+    _size = 0;
+  }
+
+  int size()
+  {
+    return _size;
+  }
+
+private:
+  void empty_init() 
+  { 
+    pHeadNode = new list_node_base();
+    pHeadNode->Next = pHeadNode;  // 初始化指针指向自己
+    pHeadNode->Prev = pHeadNode;
+
+    _size = 0;
+  }
+
+private:
+  list_node_base* pHeadNode; // 链表头
+
+  unsigned int _size; // 链表个数，提高查找效率，如果想为了节省内存，可以不要，临时查找
 };
 
-// 判断两个stack是否相等, 就要测试其内部维护容器是否相等
-// x.c == y.c会调用容器重载的operator ==
-template <class T, class Sequence>
-bool operator==(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
-{
-  return x.c == y.c;
-}
-
-template <class T, class Sequence>
-bool operator<(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
-{
-  return x.c < y.c;
-}
-__STL_END_NAMESPACE
-#endif /* __SGI_STL_INTERNAL_STACK_H */
-// Local Variables:
-// mode:C++
-// End:</code></pre>
-<p>stack虽然默认基于deque（双端队列）实现的，但是我们可以传入参数，使其底层以其他可以的顺序容器来实现，比如：</p>
-<pre class=" language-c++"><code class="language-c++">stack<int, list<int>> 
-stack<int, vector<int>>
-stack<int, array<int>></code></pre>
-<p>下面给出stl的stack的使用示例：</p>
-<pre class=" language-c++"><code class="language-c++">
-// constructing stacks
-#include <iostream>       // std::cout
-#include <stack>          // std::stack
-#include <vector>         // std::vector
-#include <deque>          // std::deque
-
-int main ()
-{
-  std::deque<int> mydeque (3,100);          // deque with 3 elements
-  std::vector<int> myvector (2,200);        // vector with 2 elements
-
-  std::stack<int> first;                    // empty stack
-  std::stack<int> second (mydeque);         // stack initialized to copy of deque
-
-  std::stack<int,std::vector<int> > third;  // empty stack using vector
-  std::stack<int,std::vector<int> > fourth (myvector);
-
-  std::cout << "size of first: " << first.size() << '\n';
-  std::cout << "size of second: " << second.size() << '\n';
-  std::cout << "size of third: " << third.size() << '\n';
-  std::cout << "size of fourth: " << fourth.size() << '\n';
-  second.push(2);
-  std::cout << "The element at the top of stack second is: "
-        << second.top( ) << "." << std::endl;
-  std::cout << "size of second: " << second.size() << '\n';
-
-  return 0;
-}
-
-Output:
-size of first: 0
-size of second: 3
-size of third: 0
-size of fourth: 2
-The element at the top of stack second is:2 .
-size of second: 4
+__YAMI_END
 </code></pre>
-<h2 id="六、stack的使用注意事项"><a href="#六、stack的使用注意事项" class="headerlink" title="六、stack的使用注意事项"></a>六、stack的使用注意事项</h2><p>1、stack的pop()以及push()都是void类型，并没有返回值</p>
-<p>2、因为stack的pop()成员是有返回值的，并且返回值类型是_Container::reference类型，也就是stack的引用类型。</p>
-<p>3、stack底层一般用<strong>list或deque</strong>实现，封闭头部即可，不用vector的原因应该是容量大小有限制，扩容耗时。用其他容器做底层数据结构也可是实现栈，vector、list也支持empty、size、back、push_back、pop_back操作。如果用vector在重新分配空间时需要拷贝原来空间的元素，释放原来空间。如果使用list的话，每一次push_back、pop_back都涉及空间的分配和释放。</p>
+<p>如果想具体看源码的实现，下面提供一个github的源代码</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Yejy813/stl_implement">stl_implement</a></p>
+<h2 id="四、基本函数"><a href="#四、基本函数" class="headerlink" title="四、基本函数"></a>四、基本函数</h2><h3 id="1、容量函数"><a href="#1、容量函数" class="headerlink" title="1、容量函数"></a>1、容量函数</h3><ul>
+<li>容器大小：size();</li>
+<li>容器最大容量：max_size();</li>
+<li>更改容器大小：resize();</li>
+<li>容器判空：empty();</li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    list<int> lst;
+    for (int i = 0; i<6; i++)
+    {
+        lst.push_back(i);
+    }
+    cout << lst.size() << endl; // 输出：6
+    cout << lst.max_size() << endl; // 输出：357913941
+    lst.resize(0); // 更改元素大小
+    cout << lst.size() << endl; // 输出：0
+    if (lst.empty())
+        cout << "元素为空" << endl; // 输出：元素为空
+
+    return 0;
+}</code></pre>
+<h3 id="2、添加函数"><a href="#2、添加函数" class="headerlink" title="2、添加函数"></a>2、添加函数</h3><ul>
+<li>头部添加元素：<code>push_front(const T&amp; x);</code></li>
+<li>末尾添加元素：<code>push_back(const T&amp; x);</code></li>
+<li>任意位置插入一个元素：<code>insert(iterator it, const T&amp; x);</code></li>
+<li>任意位置插入 n 个相同元素：<code>insert(iterator it, int n, const T&amp; x);</code></li>
+<li>插入另一个向量的 [forst,last] 间的数据：<code>insert(iterator it, iterator first, iterator last);</code></li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    list<int> lst;
+
+    // 头部增加元素
+    lst.push_front(4);
+    // 末尾添加元素
+    lst.push_back(5);
+    // 任意位置插入一个元素
+    list<int>::iterator it = lst.begin();
+    lst.insert(it, 2);
+    // 任意位置插入n个相同元素
+    lst.insert(lst.begin(), 3, 9);
+    // 插入另一个向量的[forst,last]间的数据
+    list<int> lst2(5, 8);
+    lst.insert(lst.begin(), lst2.begin(), ++lst2.begin());
+
+    // 遍历显示
+    for (it = lst.begin(); it != lst.end(); it++)
+        cout << *it << " "; // 输出：8 9 9 9 2 4 5
+    cout << endl;
+
+    return 0;
+}</code></pre>
+<h3 id="3、删除函数"><a href="#3、删除函数" class="headerlink" title="3、删除函数"></a>3、删除函数</h3><ul>
+<li>头部删除元素：<code>pop_front();</code></li>
+<li>末尾删除元素：<code>pop_back();</code></li>
+<li>任意位置删除一个元素：<code>erase(iterator it);</code></li>
+<li>删除 [first,last] 之间的元素：<code>erase(iterator first, iterator last);</code></li>
+<li>清空所有元素：<code>clear();</code></li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    list<int> lst;
+    for (int i = 0; i < 8; i++)
+        lst.push_back(i);
+
+    // 头部删除元素
+    lst.pop_front();
+    // 末尾删除元素
+    lst.pop_back();
+    // 任意位置删除一个元素
+    list<int>::iterator it = lst.begin();
+    lst.erase(it);
+    // 删除[first,last]之间的元素
+    lst.erase(lst.begin(), ++lst.begin());
+
+    // 遍历显示
+    for (it = lst.begin(); it != lst.end(); it++)
+        cout << *it << " "; // 输出：3 4 5 6
+    cout << endl;
+
+    // 清空所有元素
+    lst.clear();
+
+    // 判断list是否为空
+    if (lst.empty())
+    cout << "元素为空" << endl; // 输出：元素为空
+
+    return 0;
+}</code></pre>
+<h3 id="4、查询函数"><a href="#4、查询函数" class="headerlink" title="4、查询函数"></a>4、查询函数</h3><ul>
+<li>访问第一个元素：<code>front();</code></li>
+<li>访问最后一个元素：<code>back();</code></li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    list<int> lst;
+    for (int i = 0; i < 6; i++)
+        lst.push_back(i);
+
+    // 访问第一个元素
+    cout << lst.front() << endl; // 输出：0
+    // 访问最后一个元素
+    cout << lst.back() << endl; // 输出：5
+
+    return 0;
+}</code></pre>
+<h3 id="5、其他函数"><a href="#5、其他函数" class="headerlink" title="5、其他函数"></a>5、其他函数</h3><ul>
+<li>多个元素赋值：<code>assign(int nSize, const T&amp; x); // 类似于初始化时用数组进行赋值</code></li>
+<li>交换两个同类型容器的元素：<code>swap(list&amp;, list&amp;); 或 swap(list&amp;);</code></li>
+<li>合并两个列表的元素（默认升序排列）：<code>merge();</code></li>
+<li>在任意位置拼接入另一个list：<code>splice(iterator it, list&amp;);</code></li>
+<li>删除容器中相邻的重复元素：<code>unique();</code></li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    // 多个元素赋值s
+    list<int> lst1;
+    lst1.assign(3, 1);
+    list<int> lst2;
+    lst2.assign(3, 2);
+
+    // 交换两个容器的元素
+    // swap(lst1, lst2); // ok
+    lst1.swap(lst2);
+    // 遍历显示
+    cout << "交换后的lst1: ";
+    list<int>::iterator it;
+    for (it = lst1.begin(); it!=lst1.end(); it++)
+        cout << *it << " "; // 输出：2 2 2
+    cout << endl;
+
+    // 遍历显示
+    cout << "交换后的lst2: ";
+    for (it = lst2.begin(); it != lst2.end(); it++)
+        cout << *it << " "; // 输出：1 1 1
+    cout << endl;
+
+    list<int> lst3;
+    lst3.assign(3, 3);
+    list<int> lst4;
+    lst4.assign(3, 4);
+    // 合并两个列表的元素
+    lst4.merge(lst3); // 不是简单的拼接，而是会升序排列
+    cout << "合并后的lst4: ";
+    for (it = lst4.begin(); it != lst4.end(); it++)
+        cout << *it << " "; // 输出：3 3 3 4 4 4
+    cout << endl;
+
+    list<int> lst5;
+    lst5.assign(3, 5);
+    list<int> lst6;
+    lst6.assign(3, 6);
+    // 在lst6的第2个元素处，拼接入lst5
+    lst6.splice(++lst6.begin(), lst5);
+    cout << "拼接后的lst6: ";
+    for (it = lst6.begin(); it != lst6.end(); it++)
+        cout << *it << " "; // 输出：6 5 5 5 6 6
+    cout << endl;
+
+    // 删除容器中相邻的重复元素
+    list<int> lst7;
+    lst7.push_back(1);
+    lst7.push_back(1);
+    lst7.push_back(2);
+    lst7.push_back(2);
+    lst7.push_back(3);
+    lst7.push_back(2);
+    lst7.unique();
+    cout << "删除容器中相邻的重复元素后的lst7: ";
+    for (it = lst7.begin(); it != lst7.end(); it++)
+        cout << *it << " "; // 输出：1 2 3 2
+    cout << endl;
+
+    return 0;
+}</code></pre>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void l.assign (int n, const val)void l.assign (it first, it last)</td>
+<td align="center">将链表l初始化为n个相同的val元素。将链表l初始化为从first到last指针所指向的这一段区域内的元素。It指针同l是一个类型的。方便将另一个链表中的某一段连续的元素copy到新链表。</td>
+</tr>
+<tr>
+<td>reference l.back ()</td>
+<td align="center">返回最后一个元素。经测试，可以直接l.back()=元素。</td>
+</tr>
+<tr>
+<td>It l.begin()</td>
+<td align="center">返回第1个元素的地址。</td>
+</tr>
+<tr>
+<td>Void l.clear()</td>
+<td align="center">清空链表。</td>
+</tr>
+<tr>
+<td>bool l.empty()</td>
+<td align="center">判断链表中是否有元素，若有，返回true。</td>
+</tr>
+<tr>
+<td>It l.end()</td>
+<td align="center">返回最后一个元素的下一个元素的地址，即此地址没有实际元素。</td>
+</tr>
+<tr>
+<td>it l.erase (it pos);it l.erase (it first, it last);</td>
+<td align="center">删除链表中it指针所指向的元素，返回被删元素的下一个元素地址。删除从first到last这一段的所有元素，返回最后一个被删元素的下一个元素地址。</td>
+</tr>
+<tr>
+<td>reference l.front ()</td>
+<td align="center">返回第一个元素。假如a=l.front()，那么a只是一个备份，对a修改不影响链表。</td>
+</tr>
+<tr>
+<td>get_allocator()</td>
+<td align="center">一直不知道此物何用？</td>
+</tr>
+<tr>
+<td>it l.insert (it pos, 元素类型val)void l.insert (it pos, int n,元素类型 val)void l.insert (it pos, it first, it last)</td>
+<td align="center">在pos的前一位置插入val元素，返回该元素的地址。Val元素是不会被修改的，只是拷贝。在pos的前一位置插入n个val元素。在pos的前一位置插入first到last之间的一段元素。可以是自己或其他链表中的。</td>
+</tr>
+<tr>
+<td>int l.max_size()</td>
+<td align="center">返回链表可装入的元素数量上限，一般数字很大。经测，数字已包含了链表中存在的元素。</td>
+</tr>
+<tr>
+<td>void l.merge (list&amp; x)void l.merge (list&amp; x, Compare comp)</td>
+<td align="center">将链表x接在l之后，合并为一个链表l，合并完后链表x中的元素为0了，但x仍存在。（不排序）将两链表合并在一起，按照comp函数的排序规则来排序。</td>
+</tr>
+<tr>
+<td>list&amp; l.operator= (const list&amp; x)</td>
+<td align="center">将整个链表x中所有元素赋给链表l，相当于清空链表l，再将x赋过去。不改变x的数据。注意括号内是参数x。</td>
+</tr>
+<tr>
+<td>void l.pop_back()</td>
+<td align="center">删除链表最后一个元素。</td>
+</tr>
+<tr>
+<td>void l.pop_front()</td>
+<td align="center">删除链表第一个元素。</td>
+</tr>
+<tr>
+<td>void l.push_back (const value_type&amp; val)</td>
+<td align="center">将元素val插入到链表的尾部。</td>
+</tr>
+<tr>
+<td>void l.push_front (const value_type&amp; val)</td>
+<td align="center">将元素val插入到链表的头部。</td>
+</tr>
+<tr>
+<td>it l.rbegin()</td>
+<td align="center">返回“反向链表”的第1个元素的地址。即返回链表的最后一个元素的地址。</td>
+</tr>
+<tr>
+<td>void l.remove (const value_type&amp; val)</td>
+<td align="center">删除值等于val的元素，得一模一样才能删除，估计比对的是整块内存的二进制。与erase不同。</td>
+</tr>
+<tr>
+<td>void l.remove_if (Predicate pred)</td>
+<td align="center">功能：删除元素。将链表中每个元素单独传入pred函数，只要返回的结果为true，就删除。pred不用加括号，它类似于sort里的comp。</td>
+</tr>
+<tr>
+<td>it l.rend()</td>
+<td align="center">返回“反向链表”的最后一个元素的下一个位置，这么说可能不正确，这个函数主要用于反向链表的操作。返回的是地址，该地址没有元素。</td>
+</tr>
+<tr>
+<td>void l.resize (size_type n, value_type val = value_type())</td>
+<td align="center">重新设置链表的元素个数，若大了，会插入默认元素，若少了，或者删除部分元素。标准是已存元素。</td>
+</tr>
+<tr>
+<td>void l.reverse()</td>
+<td align="center">将所有元素的顺序置为相反，比如升序变为降序。</td>
+</tr>
+<tr>
+<td>int l.size()</td>
+<td align="center">返回已存在的元素个数，如果之前刚调用过resize，那size的大小就是resize所设置的。</td>
+</tr>
+<tr>
+<td>void l.sort(comp)Void l.sort()</td>
+<td align="center">排序，按照comp函数所返回的那样，若true则不改变位置，若false则交换位置。排序，按照默认的方法排序，一般为增序，比如整数、字符串比较的是ascii码。</td>
+</tr>
+<tr>
+<td>void l.splice (it pos, list&amp; x)void l.splice (it pos, list&amp; x, it i)void l.splice (it pos, list&amp; x, it first, it last)</td>
+<td align="center">将链表x中所有的元素“剪切”到pos处，其实只是指针操作，不用赋值。将链表x中的元素i“剪切”到pos处，只是单个元素。将链表x中first到last这段元素都迁移到l中的pos处。这些操作都会在链表l中增加新元素，并在x中删除相应元素。</td>
+</tr>
+<tr>
+<td>void l.swap (list&amp; x)</td>
+<td align="center">将两个链表互换名字，元素数量可不同，但类型得相同。</td>
+</tr>
+<tr>
+<td>void l.unique()void l.unique (Predicate pred)</td>
+<td align="center">删除重复的多余元素，使每个元素唯一。相同元素的第一个都不会删。以pred函数为依据，删除重复的元素，当pred返回true时则删除其中一个。</td>
+</tr>
+<tr>
+<td>bool operator== (list&lt;T,Alloc&gt;&amp; lhs,list&lt;T,Alloc&gt;&amp; rhs);bool operator!= ( list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&lt; (list&lt;T,Alloc&gt;&amp; lhs,list&lt;T,Alloc&gt;&amp; rhs);bool operator&lt;= (list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&gt; (list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);bool operator&gt;= ( list&lt;T,Alloc&gt;&amp; lhs, list&lt;T,Alloc&gt;&amp; rhs);</td>
+<td align="center">一堆不常用的符号。直接比较，比如a==b。</td>
+</tr>
+<tr>
+<td>void swap (list&lt;T,Alloc&gt;&amp; x, list&lt;T,Alloc&gt;&amp; y)</td>
+<td align="center">交换两个链表。与l.swap是一样的效果。</td>
+</tr>
+</tbody></table>
+<h2 id="五、迭代器与算法"><a href="#五、迭代器与算法" class="headerlink" title="五、迭代器与算法"></a>五、迭代器与算法</h2><h3 id="1、迭代器"><a href="#1、迭代器" class="headerlink" title="1、迭代器"></a>1、迭代器</h3><ul>
+<li>开始迭代器指针：<code>begin();</code></li>
+<li>末尾迭代器指针：<code>end();</code> // 指向最后一个元素的下一个位置</li>
+<li>指向常量的开始迭代器指针：<code>cbegin();</code> // 意思就是不能通过这个指针来修改所指的内容，但还是可以通过其他方式修改的，而且指针也是可以移动的。</li>
+<li>指向常量的末尾迭代器指针：<code>cend();</code></li>
+<li>反向迭代器指针，指向最后一个元素：<code>rbegin();</code></li>
+<li>反向迭代器指针，指向第一个元素的前一个元素：<code>rend();</code></li>
+</ul>
+<p>代码示例</p>
+<pre class=" language-c++"><code class="language-c++">#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    list<int> lst;
+    lst.push_back(1);
+    lst.push_back(2);
+    lst.push_back(3);
+
+    cout << *(lst.begin()) << endl; // 输出：1
+    cout << *(--lst.end()) << endl; // 输出：3
+    cout << *(lst.cbegin()) << endl; // 输出：1
+    cout << *(--lst.cend()) << endl; // 输出：3
+    cout << *(lst.rbegin()) << endl; // 输出：3
+    cout << *(--lst.rend()) << endl; // 输出：1
+    cout << endl;
+
+    return 0;
+}</code></pre>
+<h3 id="2、算法"><a href="#2、算法" class="headerlink" title="2、算法"></a>2、算法</h3><h4 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h4><pre><code>list&lt;int&gt;::iterator it;
+for (it = lst.begin(); it != lst.end(); it++)
+    cout &lt;&lt; *it &lt;&lt; endl;</code></pre>
+<h4 id="元素翻转"><a href="#元素翻转" class="headerlink" title="元素翻转"></a>元素翻转</h4><pre><code>#include &lt;algorithm&gt;
+reverse(lst.begin(), lst.end());</code></pre>
+<h4 id="元素排序"><a href="#元素排序" class="headerlink" title="元素排序"></a>元素排序</h4><pre><code>#include &lt;algorithm&gt;
+sort(lst.begin(), lst.end()); // 采用的是从小到大的排序
+
+// 如果想从大到小排序，可以采用先排序后反转的方式，也可以采用下面方法:
+// 自定义从大到小的比较器，用来改变排序方式
+bool Comp(const int&amp; a, const int&amp; b) 
+{
+    return a &gt; b;
+}
+
+sort(lst.begin(), lst.end(), Comp);</code></pre>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>1、list 为双向迭代器，故不支持<code>it+=i</code>；</p>
+<p>2、list 不支持下标访问和at方法访问。</p>
+<h2 id="七、代码应用实例–约瑟夫问题"><a href="#七、代码应用实例–约瑟夫问题" class="headerlink" title="七、代码应用实例–约瑟夫问题"></a>七、代码应用实例–约瑟夫问题</h2><pre class=" language-c++"><code class="language-c++">/*
+约瑟夫问题是：有 n 只猴子，按顺时针方向围成一圈选大王（编号为 1~n），从第 1 号开始报数，一直数到 m，数到 m 的猴子退到圈外，剩下的猴子再接着从 1 开始报数。就这样，直到圈内只剩下一只猴子时，这个猴子就是猴王。编程求输入 n、m 后,输出最后猴王的编号。
+
+输入数据：每行是用空格分开的两个整数，第一个是 n，第二个是 m（0<m, n<=1 000 000）。最后一行是：
+0 0
+
+输出要求：对于每行输入数据（最后一行除外），输出数据也是一行，即最后猴王的编号。
+
+输入样例：
+6 2
+12 4
+8 3
+0 0
+
+输出样例：
+5
+1
+7
+*/
+#include <list>
+#include <iostream>
+using namespace std;
+int main()
+{
+    list<int> monkeys;
+    int n, m;
+    while (true) {
+        cin >> n >> m;
+        if (n == 0 && m == 0)
+            break;
+        monkeys.clear();  //清空list容器
+        for (int i = 1; i <= n; ++i)  //将猴子的编号放入list
+            monkeys.push_back(i);
+        list<int>::iterator it = monkeys.begin();
+        while (monkeys.size() > 1) { //只要还有不止一只猴子，就要找一只猴子让其出列
+            for (int i = 1; i < m; ++i) { //报数
+                ++it;
+                if (it == monkeys.end())
+                    it = monkeys.begin();
+            }
+            it = monkeys.erase(it); //删除元素后，迭代器失效，
+                                    //要重新让迭代器指向被删元素的后面
+            if (it == monkeys.end())
+                it = monkeys.begin();
+        }
+        cout << monkeys.front() << endl; //front返回第一个元素的引用
+    }
+    return 0;
+}</code></pre>
+<p>erase 成员函数返回被删除元素后面那个元素的迭代器。如果被删除的是最后一个元素，则返回 end()。</p>
+<p>这个程序也可以用 vector 实现，但是执行速度要慢很多。因为 vector 的 erase 操作牵涉元素的移动，不能在常数时间内完成，所花费的时间和容器中的元素个数有关；而 list 的 erase 操作只是修改几个指针而已，可以在常数时间内完成。当 n 很大（数十万）时，两种写法在速度上会有明显区别。</p>
+<h2 id="八、参考文献以及博客"><a href="#八、参考文献以及博客" class="headerlink" title="八、参考文献以及博客"></a>八、参考文献以及博客</h2><p>1、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxAndMcu/p/10260627.html">https://www.cnblogs.com/linuxAndMcu/p/10260627.html</a></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blog-yejy/p/9535840.html">https://www.cnblogs.com/blog-yejy/p/9535840.html</a></p>
+<p>3、<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/351.html">http://c.biancheng.net/view/351.html</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -590,7 +1194,7 @@ size of second: 4
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jiamingbi.github.io/2020/100528132.html">https://jiamingbi.github.io/2020/100528132.html</a>
+                    <a href="https://jiamingbi.github.io/2020/100655331.html">https://jiamingbi.github.io/2020/100655331.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -800,7 +1404,7 @@ size of second: 4
         repo: 'blogtalk',
         owner: 'JiamingBi',
         admin: "JiamingBi",
-        id: '2020-10-05T23-06-11',
+        id: '2020-10-06T12-31-55',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -828,19 +1432,19 @@ size of second: 4
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/100655331.html">
+                <a href="/2020/10069761.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="STL--list">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="STL--set">
                         
-                        <span class="card-title">STL--list</span>
+                        <span class="card-title">STL--set</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++中关于list容器的使用
+                            C++中关于set和multiset容器的使用
                         
                     </div>
                     <div class="publish-info">
@@ -877,24 +1481,24 @@ size of second: 4
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/100417570.html">
+                <a href="/2020/100528132.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="STL--vector">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="STL--stack">
                         
-                        <span class="card-title">STL--vector</span>
+                        <span class="card-title">STL--stack</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++中用的很多的vector容器的使用，包括函数说明和具体实例。
+                            C++中关于stack(栈)容器的使用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
                             </span>
                         <span class="publish-author">
                             
