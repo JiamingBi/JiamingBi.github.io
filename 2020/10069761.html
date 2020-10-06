@@ -449,7 +449,8 @@ iterator这里就相当于指向节点的指针，内存没有变，指向内存
 （4）set为什么不用hash
 
 首先set，不像map那样是key-value对，它的key与value是相同的。关于set有两种说法，第一个是STL中的set，用的是红黑树；第二个是hash_set，底层用得是hash table。红黑树与hash table最大的不同是，红黑树是有序结构，而hash table不是。但不是说set就不能用hash，如果只是判断set中的元素是否存在，那么hash显然更合适，因为set 的访问操作时间复杂度是log(N)的，而使用hash底层实现的hash_set是近似O(1)的。然而，set应该更加被强调理解为“集合”，而集合所涉及的操作并、交、差等，即STL提供的如交集set_intersection()、并集set_union()、差集set_difference()和对称差集set_symmetric_difference()，都需要进行大量的比较工作，那么使用底层是有序结构的红黑树就十分恰当了，这也是其相对hash结构的优势所在。</code></pre>
-<h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h2><ul>
+<p><strong>multiset</strong></p>
+<ul>
 <li>特点</li>
 <li>数据结构：底层实现与set一样，也采用了红黑树</li>
 <li>允许插入重复的键值，使用insert_equal机制</li>
