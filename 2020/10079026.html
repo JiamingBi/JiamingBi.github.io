@@ -1,0 +1,1667 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="STL--map, Baymax">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>STL--map | Baymax</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+    
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+    
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+    
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+    
+   
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },1000); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+ </script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Baymax" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+ <div id="loading-container">
+     <p class="loading-text">玩命加载中 . . . </p> 
+     <div class="loading-image">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div> 
+         <div></div>
+     </div>
+ </div><body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Baymax</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Baymax</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">STL--map</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/STL/">
+                                <span class="chip bg-color">STL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C/" class="post-category">
+                                C++
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">       
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-10-07
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    21 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、map的概述"><a href="#一、map的概述" class="headerlink" title="一、map的概述"></a>一、map的概述</h2><p>map是STL的一个关联容器，它提供一对一（其中第一个可以称为关键字，每个关键字只能在map中出现一次，第二个可能称为该关键字的值）的数据 处理能力，由于这个特性，它完成有可能在我们处理一对一数据的时候，在编程上提供快速通道。这里说下map内部数据的组织，map内部自建一颗红黑树(一 种非严格意义上的平衡二叉树)，这颗树具有对数据自动排序的功能，所以在map内部所有的数据都是有序的。</p>
+<h4 id="1、map简介"><a href="#1、map简介" class="headerlink" title="1、map简介"></a>1、map简介</h4><p>map是一类关联式容器。它的特点是增加和删除节点对迭代器的影响很小，除了那个操作节点，对其他的节点都没有什么影响。</p>
+<p>对于迭代器来说，可以修改实值，而不能修改key。</p>
+<h4 id="2、map的功能"><a href="#2、map的功能" class="headerlink" title="2、map的功能"></a>2、map的功能</h4><p>自动建立Key － value的对应。key 和 value可以是任意你需要的类型。</p>
+<p>根据key值快速查找记录，查找的复杂度基本是Log(N)，如果有1000个记录，最多查找10次，1,000,000个记录，最多查找20次。</p>
+<p>快速插入Key -Value 记录。</p>
+<p>快速删除记录</p>
+<p>根据Key 修改value记录。</p>
+<p>遍历所有记录。</p>
+<h4 id="3、使用map"><a href="#3、使用map" class="headerlink" title="3、使用map"></a>3、使用map</h4><p>使用map得包含map类所在的头文件</p>
+<p>#include <map> //注意，STL头文件没有扩展名.h</map></p>
+<p>map对象是模板类，需要关键字和存储对象两个模板参数：</p>
+<p>std:map&lt;int,string&gt; personnel;</p>
+<p>这样就定义了一个用int作为索引,并拥有相关联的指向string的指针.</p>
+<p>为了使用方便，可以对模板类进行一下类型定义，</p>
+<p><strong>typedef map&lt;int,CString&gt; UDT_MAP_INT_CSTRING;</strong></p>
+<p><strong>UDT_MAP_INT_CSTRING enumMap;</strong></p>
+<h2 id="二、map的基本操作"><a href="#二、map的基本操作" class="headerlink" title="二、map的基本操作"></a>二、map的基本操作</h2><pre><code>begin()          返回指向map头部的迭代器
+clear()         删除所有元素
+count()          返回指定元素出现的次数
+empty()          如果map为空则返回true
+end()            返回指向map末尾的迭代器
+equal_range()    返回特殊条目的迭代器对
+erase()          删除一个元素
+find()           查找一个元素
+get_allocator()  返回map的配置器
+insert()         插入元素
+key_comp()       返回比较元素key的函数
+lower_bound()    返回键值&gt;=给定元素的第一个位置
+max_size()       返回可以容纳的最大元素个数
+rbegin()         返回一个指向map尾部的逆向迭代器
+rend()           返回一个指向map头部的逆向迭代器
+size()           返回map中元素的个数
+swap()            交换两个map
+upper_bound()     返回键值&gt;给定元素的第一个位置
+value_comp()      返回比较元素value的函数</code></pre>
+<h2 id="三、具体操作详解"><a href="#三、具体操作详解" class="headerlink" title="三、具体操作详解"></a>三、具体操作详解</h2><h4 id="1、插入"><a href="#1、插入" class="headerlink" title="1、插入"></a>1、插入</h4><p>在构造map容器后，我们就可以往里面插入数据了。这里讲三种插入数据的方法：</p>
+<h5 id="1-1-用insert函数插入pair数据"><a href="#1-1-用insert函数插入pair数据" class="headerlink" title="1.1 用insert函数插入pair数据"></a>1.1 用insert函数插入pair数据</h5><pre class=" language-cpp"><code class="language-cpp">map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span>m<span class="token punctuation">;</span>
+m<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token string">"Lee"</span><span class="token punctuation">,</span><span class="token number">104</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="1-2-用insert函数插入value-type数据"><a href="#1-2-用insert函数插入value-type数据" class="headerlink" title="1.2 用insert函数插入value_type数据"></a>1.2 用insert函数插入value_type数据</h5><pre class=" language-cpp"><code class="language-cpp">map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span>m<span class="token punctuation">;</span>
+m<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span><span class="token function">value_type</span><span class="token punctuation">(</span><span class="token string">"Karen"</span><span class="token punctuation">,</span><span class="token number">105</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h5 id="1-3-数组方式插入数据"><a href="#1-3-数组方式插入数据" class="headerlink" title="1.3 数组方式插入数据"></a>1.3 数组方式插入数据</h5><pre class=" language-cpp"><code class="language-cpp">map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span>m<span class="token punctuation">;</span>
+m<span class="token punctuation">[</span><span class="token string">"Bob"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">101</span><span class="token punctuation">;</span>    
+m<span class="token punctuation">[</span><span class="token string">"Alice"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">102</span><span class="token punctuation">;</span>  
+m<span class="token punctuation">[</span><span class="token string">"Eric"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">103</span><span class="token punctuation">;</span>  </code></pre>
+<p>以上三种用法，虽然都可以实现数据的插入，但是它们是有区别的，当然了第一种和第二种在效果上是完成一样的，用insert函数插入数据，在数据的 插入上涉及到集合的唯一性这个概念，即当map中有这个关键字时，insert操作是插入数据不了的，但是用数组方式就不同了，它可以覆盖以前该关键字对应的值，用程序说明：</p>
+<pre class=" language-cpp"><code class="language-cpp">m<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span><span class="token function">value_type</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+m<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span><span class="token function">value_type</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>上面这两条语句执行后，map中1这个关键字对应的值是“student_one”，第二条语句并没有生效，那么这就涉及到我们怎么知道insert语句是否插入成功的问题了，可以用pair来获得是否插入成功，程序如下：</p>
+<pre class=" language-cpp"><code class="language-cpp">pair<span class="token operator">&lt;</span>map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span>iterator<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span> Insert_Pair<span class="token punctuation">;</span>
+
+Insert_Pair <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span><span class="token function">value_type</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>我们通过pair的第二个变量来知道是否插入成功，它的第一个变量返回的是一个map的迭代器，如果插入成功的话Insert_Pair.second应该是true的，否则为false。</p>
+<p>下面给出完成代码，演示插入成功与否问题：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>  </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>  
+    map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span> mapStudent<span class="token punctuation">;</span>  
+    pair<span class="token operator">&lt;</span>map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span>iterator<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span> Insert_Pair<span class="token punctuation">;</span>  
+    Insert_Pair <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Insert_Pair<span class="token punctuation">.</span>second <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Insert Successfully"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+    <span class="token keyword">else</span>  
+        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Insert Failure"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+    Insert_Pair <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Insert_Pair<span class="token punctuation">.</span>second <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Insert Successfully"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+    <span class="token keyword">else</span>  
+        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Insert Failure"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+    map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span>iterator iter<span class="token punctuation">;</span>  
+    <span class="token keyword">for</span><span class="token punctuation">(</span>iter <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter <span class="token operator">!=</span> mapStudent<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">++</span><span class="token punctuation">)</span>  
+       cout<span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token operator">&lt;&lt;</span><span class="token string">' '</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  </code></pre>
+<p>利用数组形式插入数据，则可以覆盖数据，这是不一样的地方</p>
+<h4 id="2-遍历"><a href="#2-遍历" class="headerlink" title="2.遍历"></a>2.遍历</h4><h5 id="2-1-应用前向迭代器"><a href="#2-1-应用前向迭代器" class="headerlink" title="2.1 应用前向迭代器"></a>2.1 应用前向迭代器</h5><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span>m<span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span><span class="token string">"Bob"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">101</span><span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span><span class="token string">"Alice"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">102</span><span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span><span class="token string">"Eric"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">103</span><span class="token punctuation">;</span>
+    map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator iter<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>iter<span class="token operator">=</span>m<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">!=</span>m<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout<span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first <span class="token operator">&lt;&lt;</span><span class="token string">"->"</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>输出为</p>
+<pre class=" language-cpp"><code class="language-cpp">Alice<span class="token operator">-</span><span class="token operator">></span><span class="token number">102</span>
+Bob<span class="token operator">-</span><span class="token operator">></span><span class="token number">101</span>
+Eric<span class="token operator">-</span><span class="token operator">></span><span class="token number">103</span></code></pre>
+<p>可以看到map自动在内部以关键字为准，按字典序排序，而不是根据输入的顺序；</p>
+<p><strong>当询问一个map中不存在的数的时候，返回的值应该是0，不过当你再次遍历的时候，就会发现map中已经多了一个键值对，只不过值是0：</strong></p>
+<h5 id="2-2-应用反相迭代器"><a href="#2-2-应用反相迭代器" class="headerlink" title="2.2 应用反相迭代器"></a>2.2 应用反相迭代器</h5><pre class=" language-cpp"><code class="language-cpp"> map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span> mapStudent<span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"student_two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"student_three"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> nSize <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span>reverse_iterator iter<span class="token punctuation">;</span>  
+    <span class="token keyword">for</span><span class="token punctuation">(</span>iter <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">rbegin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter <span class="token operator">!=</span> mapStudent<span class="token punctuation">.</span><span class="token function">rend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">++</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token operator">&lt;&lt;</span><span class="token string">"  "</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span> </code></pre>
+<h5 id="2-3-用数组的形式"><a href="#2-3-用数组的形式" class="headerlink" title="2.3 用数组的形式"></a>2.3 用数组的形式</h5><pre class=" language-cpp"><code class="language-cpp"> map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span> mapStudent<span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"student_two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"student_three"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> nSize <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token comment" spellcheck="true">//此处应注意，应该是 for(int nindex = 1; nindex &lt;= nSize; nindex++)  </span>
+<span class="token comment" spellcheck="true">//而不是 for(int nindex = 0; nindex &lt; nSize; nindex++)  </span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> nindex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> nindex <span class="token operator">&lt;=</span> nSize<span class="token punctuation">;</span> nindex<span class="token operator">++</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span>mapStudent<span class="token punctuation">[</span>nindex<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span> </code></pre>
+<h4 id="3-查找"><a href="#3-查找" class="headerlink" title="3.查找"></a>3.查找</h4><h5 id="3-1-用count函数"><a href="#3-1-用count函数" class="headerlink" title="3.1 用count函数"></a>3.1 <strong>用count函数</strong></h5><p>判定关键字是否出现，其缺点是无法定位数据出现位置,由于map的特性，一对一的映射关系，就决定了count函数的返回值只有两个，要么是0，要么是1，出现的情况，当然是返回1了</p>
+<h5 id="3-2-用find函数"><a href="#3-2-用find函数" class="headerlink" title="3.2 用find函数"></a>3.2 <strong>用find函数</strong></h5><p>find()函数定位数据出现位置，它返回的一个迭代器，当数据出现时，它返回数据所在位置的迭代器，如果map中没有要查找的数据，它返回的迭代器等于end函数返回的迭代器。</p>
+<p>查找map中是否包含某个关键字条目用find()方法，传入的参数是要查找的key，在这里需要提到的是begin()和end()两个成员，分别代表map对象中第一个条目和最后一个条目，这两个数据的类型是iterator.</p>
+<pre><code>cout&lt;&lt;m.find("Bob")-&gt;second&lt;&lt;endl;</code></pre>
+<p>如果按关键字搜索，搜不到的话会输出乱码</p>
+<pre><code>   map&lt;string,int&gt;::iterator iter1;
+    iter1 = m.find(string("Bob"));
+    if(iter1 != m.end())
+    cout&lt;&lt;iter1-&gt;first &lt;&lt;"-&gt;"&lt;&lt;iter1-&gt;second&lt;&lt;endl;
+    else    
+    cout&lt;&lt;"no fount"&lt;&lt;endl;</code></pre>
+<p>定义一个指针，指向map，如果没有的话会返回m.end()</p>
+<h4 id="4-删除"><a href="#4-删除" class="headerlink" title="4.删除"></a>4.删除</h4><p>移除某个map中某个条目用<strong>erase（）</strong></p>
+<p>该成员方法的定义如下：</p>
+<pre><code>iterator erase（iterator it);//通过一个条目对象删除
+
+iterator erase（iterator first，iterator last）//删除一个范围
+
+size_type erase(const Key&amp;key);//通过关键字删除</code></pre>
+<p>clear()就相当于</p>
+<p>m.erase(m.begin(),m.end());</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>  </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>  
+       map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span> mapStudent<span class="token punctuation">;</span>  
+       mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"student_one"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"student_two"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"student_three"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+        <span class="token comment" spellcheck="true">//如果你要演示输出效果，请选择以下的一种，你看到的效果会比较好  </span>
+         <span class="token comment" spellcheck="true">//如果要删除1,用迭代器删除  </span>
+       map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> string<span class="token operator">></span><span class="token operator">::</span>iterator iter<span class="token punctuation">;</span>  
+       iter <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       mapStudent<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       <span class="token comment" spellcheck="true">//如果要删除1，用关键字删除  </span>
+       <span class="token keyword">int</span> n <span class="token operator">=</span> mapStudent<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果删除了会返回1，否则返回0  </span>
+       <span class="token comment" spellcheck="true">//用迭代器，成片的删除  </span>
+       <span class="token comment" spellcheck="true">//一下代码把整个map清空  </span>
+       mapStudent<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span> mapStudent<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> mapStudent<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>  
+       <span class="token comment" spellcheck="true">//成片删除要注意的是，也是STL的特性，删除区间是一个前闭后开的集合  </span>
+<span class="token punctuation">}</span>  </code></pre>
+<h4 id="5-swap"><a href="#5-swap" class="headerlink" title="5.swap"></a>5.swap</h4><p>map中的swap不是一个容器中的元素交换，而是两个容器所有元素的交换。</p>
+<h4 id="6-排序"><a href="#6-排序" class="headerlink" title="6.排序"></a>6.排序</h4><p>为了实现快速查找，map内部本身就是按序存储的（例如红黑树），在通过键值对实现查询的时候，就会按照key的大小顺序排序。map默认是从小到大顺序排序，因为map提供了默认的最小比较器</p>
+<p>template &lt; class Key, class T, class Compare = less<key>,</key></p>
+<p>​      class Allocator = allocator&lt;pair&lt;const Key,T&gt; &gt; &gt; class map;</p>
+<p>因此如果是需要指定从大到小排序，与less相对的是greater：</p>
+<p>map中的元素是自动按Key升序排序，所以不能对map用sort函数；</p>
+<p>这里要讲的是一点比较高深的用法了,排序问题，STL中默认是采用小于号来排序的，以上代码在排序上是不存在任何问题的，因为上面的关键字是int 型，它本身支持小于号运算，在一些特殊情况，比如关键字是一个结构体，涉及到排序就会出现问题，因为它没有小于号操作，insert等函数在编译的时候过 不去，下面给出两个方法解决这个问题：</p>
+<p>第一种：小于号重载</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map></span>  </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> tagStudentinfo  
+<span class="token punctuation">{</span>  
+       <span class="token keyword">int</span>      niD<span class="token punctuation">;</span>  
+       string   strName<span class="token punctuation">;</span>  
+       <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span>tagStudentinfo <span class="token keyword">const</span><span class="token operator">&amp;</span> _A<span class="token punctuation">)</span> <span class="token keyword">const</span>  
+       <span class="token punctuation">{</span>     <span class="token comment" spellcheck="true">//这个函数指定排序策略，按niD排序，如果niD相等的话，按strName排序  </span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>niD <span class="token operator">&lt;</span> _A<span class="token punctuation">.</span>niD<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
+            <span class="token keyword">if</span><span class="token punctuation">(</span>niD <span class="token operator">==</span> _A<span class="token punctuation">.</span>niD<span class="token punctuation">)</span>  
+                <span class="token keyword">return</span> strName<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>_A<span class="token punctuation">.</span>strName<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
+       <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>Studentinfo<span class="token punctuation">,</span> <span class="token operator">*</span>PStudentinfo<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//学生信息  </span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> nSize<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//用学生信息映射分数  </span>
+    map<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span>mapStudent<span class="token punctuation">;</span>  
+    map<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator iter<span class="token punctuation">;</span>  
+    Studentinfo studentinfo<span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>niD <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>strName <span class="token operator">=</span> <span class="token string">"student_one"</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>studentinfo<span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>niD <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>strName <span class="token operator">=</span> <span class="token string">"student_two"</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>studentinfo<span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>iter<span class="token operator">=</span>mapStudent<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">!=</span>mapStudent<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">++</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token punctuation">.</span>niD<span class="token operator">&lt;&lt;</span><span class="token string">' '</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token punctuation">.</span>strName<span class="token operator">&lt;&lt;</span><span class="token string">' '</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  </code></pre>
+<p>第二种：仿函数的应用，这个时候结构体中没有直接的小于号重载</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map></span>  </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span>  </span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> tagStudentinfo  
+<span class="token punctuation">{</span>  
+       <span class="token keyword">int</span>      niD<span class="token punctuation">;</span>  
+       string   strName<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>Studentinfo<span class="token punctuation">,</span> <span class="token operator">*</span>PStudentinfo<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//学生信息  </span>
+<span class="token keyword">class</span> <span class="token class-name">sort</span>  
+<span class="token punctuation">{</span>  
+<span class="token keyword">public</span><span class="token operator">:</span>  
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Studentinfo <span class="token keyword">const</span> <span class="token operator">&amp;</span>_A<span class="token punctuation">,</span> Studentinfo <span class="token keyword">const</span> <span class="token operator">&amp;</span>_B<span class="token punctuation">)</span> <span class="token keyword">const</span>  
+    <span class="token punctuation">{</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span>_A<span class="token punctuation">.</span>niD <span class="token operator">&lt;</span> _B<span class="token punctuation">.</span>niD<span class="token punctuation">)</span>  
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span>_A<span class="token punctuation">.</span>niD <span class="token operator">==</span> _B<span class="token punctuation">.</span>niD<span class="token punctuation">)</span>  
+            <span class="token keyword">return</span> _A<span class="token punctuation">.</span>strName<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>_B<span class="token punctuation">.</span>strName<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span><span class="token punctuation">;</span>  
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">//用学生信息映射分数  </span>
+    map<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">,</span> sort<span class="token operator">></span>mapStudent<span class="token punctuation">;</span>  
+    map<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator iter<span class="token punctuation">;</span>  
+    Studentinfo studentinfo<span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>niD <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>strName <span class="token operator">=</span> <span class="token string">"student_one"</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>studentinfo<span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>niD <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>  
+    studentinfo<span class="token punctuation">.</span>strName <span class="token operator">=</span> <span class="token string">"student_two"</span><span class="token punctuation">;</span>  
+    mapStudent<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>pair<span class="token operator">&lt;</span>Studentinfo<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>studentinfo<span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>iter<span class="token operator">=</span>mapStudent<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">!=</span>mapStudent<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">++</span><span class="token punctuation">)</span>  
+        cout<span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token punctuation">.</span>niD<span class="token operator">&lt;&lt;</span><span class="token string">' '</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>first<span class="token punctuation">.</span>strName<span class="token operator">&lt;&lt;</span><span class="token string">' '</span><span class="token operator">&lt;&lt;</span>iter<span class="token operator">-</span><span class="token operator">></span>second<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  </code></pre>
+<p>由于STL是一个统一的整体，map的很多用法都和STL中其它的东西结合在一起，比如在排序上，这里默认用的是小于号，即less&lt;&gt;</p>
+<p>map中由于它内部有序，由红黑树保证，因此很多函数执行的时间复杂度都是log2N的，如果用map函数可以实现的功能，而STL Algorithm也可以完成该功能，建议用map自带函数，效率高一些。</p>
+<h2 id="四、操作时间复杂度"><a href="#四、操作时间复杂度" class="headerlink" title="四、操作时间复杂度"></a>四、操作时间复杂度</h2><p>insert() O(logn)<br>erase() O(logn)<br>find()  O(logn) 找不到返回a.end()<br>lower_bound() O(logn) 查找第一个不小于k的元素<br>upper_bound() O(logn) 查找第一个大于k的元素<br>equal_range() O(logn) 返回pair<br>[key]运算符 O(logn) *** //数组有一个下标，如a[i],这里i是int型的。数组可以认为是从int印射到另一个类型的印射，而map是一个任意的印射，所以i可以是任何类型的！</p>
+<h2 id="五、multimap"><a href="#五、multimap" class="headerlink" title="五、multimap"></a>五、multimap</h2><p>multimap 容器保存的是有序的键/值对，但它可以保存重复的元素。multimap 中会出现具有相同键的元素序列，它们会被添加到容器中。multimap 和 map 有相同范围的构造函数，默认的比较键的函数是 less<k>()。</k></p>
+<p>multimap 大部分成员函数的使用方式和 map 相同。因为重复键的原因，multimap 有一些函数的使用方式和 map 有一些区别。</p>
+<p><strong>接下来介绍 multimap 和 map 容器不同的那些成员函数的用法。</strong></p>
+<p>1.multimap 容器的成员函数 insert() 可以插入一个或多个元素，而且插入总是成功。这个函数有很多的版本都可以插入单个元素，它们都会返回一个指向插入元素的迭代器。</p>
+<pre><code>std::multimap&lt;string, string〉 pets; // Element is pair{pet_type, pet_name}
+auto iter = pets.insert (std::pair&lt;string, string&gt;{string{"dog"}, string{"Fang"}});
+iter = pets.insert(iter, std::make_pair("dog", "Spot")); // Insert Spot before Fang
+pets.insert(std::make_pair("dog", "Rover"));// Inserts Rover after Fang
+pets.insert (std::make_pair ("cat", "Korky"));// Inserts Korky before all dogs
+pets.insert ({{ "rat", "Roland"}, {"pig", "Pinky" }, {"pig", "Perky"}});//Inserts list elements</code></pre>
+<p>第三条语句的第一个参数是一个作为提示符的迭代器，它说明了元素应该被插入的位置。元素会被立即插入到 iter 所指向元素的前面，因此，这使我们可以覆盖默认的插入位置。对于默认的插入位置来说，元素会被插入到先前插入的键为 “dog” 的元素的后面。元素默认是按照键的升序插入的。如果没有用提示符改变插入位置，有相同键的元素的位置和插入位置相同。最后一条语句插入了一些初始化列表中的元素。有高级版本的 insert()，它可以接收两个迭代器参数，用来指定插入元素的范围。</p>
+<p>2.和 map —样，multimap 的成员函数 emplace() 可以在容器的适当位置构造元素。在插入具有相同键的元素时，可以使用 multimap 的成员函数 emplace_hint()，可以通过为这个函数提供一个迭代器形式的提示符来控制元素的生成位置：</p>
+<pre><code>auto iter = pets.emplace("rabbit”,"Flopsy");
+iter = pets.emplace_hint (iter, "rabbit", "Mopsy");// Create preceding Flopsy</code></pre>
+<p>这两个函数都返回一个指向插入元素的迭代器。emplace_hint() 函数尽可能近地在第一个参数所指向位置的前面生成一个新元素。如果只使用 emplace() 来插入 “Mopsy”，它可能会被插入到当前所有键为 “rabbit” 的元素的后面。</p>
+<p>3.multimap 不支持下标运算符，因为键并不能确定一个唯一元素。和 map 相似，multimap 也不能使用 at() 函数。multimap 的成员函数 fmd() 可以返回一个键和参数匹配的元素的迭代器。</p>
+<p>4.如果使用 multimap 容器，几乎可以肯定它会包含键重复的元素；否则，就应该使用 map。一般来说，我们想访问给定键对应的所有元素。成员函数 equal_range() 就可以做到这一点。它会返回一个封装了两个迭代器的 pair 对象，这两个迭代器所确定范围内的元素的键和参数值相等。</p>
+<h2 id="六、unordered-map"><a href="#六、unordered-map" class="headerlink" title="六、unordered_map"></a>六、unordered_map</h2><p>unordered_map是c++-11新加的一个标准容器，它提供了一对一的关系，并且在查找速度上能达到O<br>(1)的速度。</p>
+<p> unordered_map底层实现是用哈希桶实现的：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1272978/201806/1272978-20180610192953109-57405861.png" alt="img"></p>
+<p>在unordered_map中，键值通常用于唯一标识元素，而映射值是与该键关联的内容的对象。键和映射值的类型可能不同。</p>
+<p>在内部，unordered_map中的元素<strong>没有按照它们的键值或映射值的任何顺序排序</strong>，而是根据它们的散列值组织成桶以允许通过它们的键值直接快速访问单个元素（具有常数平均时间复杂度）。由于unordered_map内部是用散列表来实现快速查找，因此其内部元素完全是一种无序状态。哈希表利用哈希函数，将关键字的哈希值放都一个桶(bucket)里面，具有相同哈希值的放入到同一个桶。</p>
+<p>unordered_map容器比映射容器更快地通过它们的键来访问各个元素，尽管它们通过其元素的子集进行范围迭代通常效率较低。</p>
+<p>无序映射实现直接访问操作符（operator []），该操作符允许使用其键值作为参数直接访问映射值。</p>
+<p>容器中的迭代器至少是前向迭代器。</p>
+<h4 id="1-std-unordered-map-的定义与特性"><a href="#1-std-unordered-map-的定义与特性" class="headerlink" title="1. std::unordered_map 的定义与特性"></a>1. std::unordered_map 的定义与特性</h4><ul>
+<li><p>所在头文件：**<unordered_map>**</unordered_map></p>
+</li>
+<li><p><strong>std::unorederd_map</strong> 类模板：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span> <span class="token keyword">class</span> <span class="token class-name">Key</span><span class="token punctuation">,</span>                                    <span class="token comment" spellcheck="true">// unordered_map::key_type</span>
+           <span class="token keyword">class</span> <span class="token class-name">T</span><span class="token punctuation">,</span>                                      <span class="token comment" spellcheck="true">// unordered_map::mapped_type</span>
+           <span class="token keyword">class</span> <span class="token class-name">Hash</span> <span class="token operator">=</span> hash<span class="token operator">&lt;</span>Key<span class="token operator">></span><span class="token punctuation">,</span>                       <span class="token comment" spellcheck="true">// unordered_map::hasher</span>
+           <span class="token keyword">class</span> <span class="token class-name">Pred</span> <span class="token operator">=</span> equal_to<span class="token operator">&lt;</span>Key<span class="token operator">></span><span class="token punctuation">,</span>                   <span class="token comment" spellcheck="true">// unordered_map::key_equal</span>
+           <span class="token keyword">class</span> <span class="token class-name">Alloc</span> <span class="token operator">=</span> allocator<span class="token operator">&lt;</span> pair<span class="token operator">&lt;</span><span class="token keyword">const</span> Key<span class="token punctuation">,</span>T<span class="token operator">></span> <span class="token operator">></span>  <span class="token comment" spellcheck="true">// unordered_map::allocator_type</span>
+           <span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">unordered_map</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p><strong>关联性</strong>：std::unorederd_map 是一个关联容器，其中的元素根据键来引用，而不是根据索引来引用。</p>
+</li>
+<li><p><strong>无序性</strong>：在内部，std::unordered_map中的元素不会根据其键值或映射值按任何特定顺序排序，而是<strong>根据其哈希值组织到桶中</strong>，以允许通过键值直接快速访问各个元素（常量的平均时间复杂度）。</p>
+</li>
+<li><p><strong>唯一性</strong>：std::unorederd_map中的元素的键是唯一的。</p>
+</li>
+</ul>
+<h4 id="2-unordered-map的构造函数"><a href="#2-unordered-map的构造函数" class="headerlink" title="2.unordered_map的构造函数"></a>2.unordered_map的构造函数</h4><pre><code>unordered_map&lt;string,int&gt; mapstring;
+
+unordered_map&lt;int,string&gt; mapint;
+
+unordered_map&lt;string,char&gt; mapchar;</code></pre>
+<p>其中第一个参数为主值的类型，第二个参数为键值的类型。unordered_map内部使用哈希表进行存储与搜索。</p>
+<h4 id="3-添加数据"><a href="#3-添加数据" class="headerlink" title="3.添加数据"></a>3.添加数据</h4><pre><code>unordere_map&lt;int,string&gt; maplive;
+//method 1
+maplive.insert(pair&lt;int,string&gt;(102,"active"));
+//method 2
+maplive.insert(unordered_map&lt;int,string&gt;::value_type(321,"hello"));
+//method 3
+maplive[112]="April";  //这种方法是最简单用的最多的</code></pre>
+<h4 id="4-查找数据"><a href="#4-查找数据" class="headerlink" title="4.查找数据"></a>4.查找数据</h4><p>find()函数返回一个迭代器指向键值为key的元素，如果没有找到就返回指向map尾部的迭代器。</p>
+<pre><code>unordered_map&lt;int,string&gt;::iterator it;
+//如果想要偷懒也可以这样写　　　　auto it;
+it = maplive.find(112);  
+if(it!=maplive.end())
+     cout&lt;&lt;"we find key 112.";
+else
+     cout&lt;&lt;"we don't find 112.";</code></pre>
+<h4 id="5-unordered-map中元素的删除"><a href="#5-unordered-map中元素的删除" class="headerlink" title="5.unordered_map中元素的删除"></a>5.unordered_map中元素的删除</h4><p>erase(it)函数会删除迭代器it指向的元素。</p>
+<pre><code>//删除键值为112的元素
+auto it;
+it=maplive.find(112);
+if(it==maplive.end())
+    cout&lt;&lt;"we don't find 112."&lt;&lt;endl;
+else
+    maplive.erase(it); //delete 112</code></pre>
+<h4 id="6-unordered-map中元素的查找-count"><a href="#6-unordered-map中元素的查找-count" class="headerlink" title="6.unordered_map中元素的查找 count"></a>6.unordered_map中元素的查找 count</h4><p>count(a)会返回a元素在map中出现的次数，如果没有出现就返回0.</p>
+<h4 id="7-容量操作"><a href="#7-容量操作" class="headerlink" title="7.容量操作"></a>7.容量操作</h4><table>
+<thead>
+<tr>
+<th>函数声明</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool <strong>empty()</strong> const noexcept;</td>
+<td>unordered_map 是否为空</td>
+</tr>
+<tr>
+<td>size_type <strong>size()</strong> const noexcept;</td>
+<td>获取unordered_map 中元素的数量</td>
+</tr>
+</tbody></table>
+<p>boost::unordered_map， 它与 stl::map的区别就是，stl::map是按照operator&lt;比较判断元素是否相同，以及比较元素的大小，然后选择合适的位置插入到树中。所以，如果对map进行遍历（中序遍历）的话，输出的结果是有序的。顺序就是按照operator&lt; 定义的大小排序。</p>
+<p>而boost::unordered_map是计算元素的Hash值，根据Hash值判断元素是否相同。所以，对unordered_map进行遍历，结果是无序的。</p>
+<p>用法的区别就是，stl::map 的key需要定义operator&lt; 。 而boost::unordered_map需要定义hash_value函数并且重载operator==。对于内置类型，如string，这些都不用操心。对于自定义的类型做key，就需要自己重载operator&lt; 或者hash_value()了。 </p>
+<p>当不需要结果排好序时，最好用unordered_map。</p>
+<p>其实，stl::map对于与java中的TreeMap，而boost::unordered_map对应于java中的HashMap。 </p>
+<p>unordered_map需要重载hash_value函数，并重载operator ==运算符。</p>
+<h2 id="六、map和unordered-map的比较汇总"><a href="#六、map和unordered-map的比较汇总" class="headerlink" title="六、map和unordered_map的比较汇总"></a>六、map和unordered_map的比较汇总</h2><p><strong>1.map底层为红黑树查找大致为logN的时间复杂度；unordered_map底层是闭散列的哈希桶，查找为O(1)，性能更优。</strong></p>
+<p><strong>2.调用insert操作，map相较于unordered_map操作慢，大致有2到3倍差异；但是map插入更加稳定</strong></p>
+<p><strong>3.unordered_map的erase操作会缩容，导致元素重新映射，降低性能。</strong></p>
+<p><strong>4.unordered_map要求传入的数据能够进行大小比较，“==”关系比较；所以自定义数据需要定置hash_value仿函数同时重载operator==。</strong></p>
+<p>总的来说</p>
+<p><strong>运行效率方面</strong>：unordered_map最高，而map效率较低但 提供了稳定效率和有序的序列。<br><strong>占用内存方面</strong>：map内存占用略低，unordered_map内存占用略高,而且是线性成比例的。<br>需要无序容器，快速查找删除，不担心略高的内存时用unordered_map；有序容器稳定查找删除效率，内存很在意时候用map。</p>
+<h2 id="七、参考博客"><a href="#七、参考博客" class="headerlink" title="七、参考博客"></a>七、参考博客</h2><p>1、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28351609/article/details/84630535">https://blog.csdn.net/qq_28351609/article/details/84630535</a></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/dyhaohaoxuexi/p/11257335.html">https://www.cnblogs.com/dyhaohaoxuexi/p/11257335.html</a></p>
+<p>3、<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/518.html">http://c.biancheng.net/view/518.html</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Baymax</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jiamingbi.github.io/2020/10079026.html">https://jiamingbi.github.io/2020/10079026.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Baymax</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/STL/">
+                                    <span class="chip bg-color">STL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '38d5e0386b57ac4a08a0',
+        clientSecret: '193c9bdb953effcb9cfed62f0b88dd3f9db19ae9',
+        repo: 'blogtalk',
+        owner: 'JiamingBi',
+        admin: "JiamingBi",
+        id: '2020-10-07T08-50-44',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/10079026.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="STL--map">
+                        
+                        <span class="card-title">STL--map</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C++中关于map、multimap、unordered_map容器的使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/100613394.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="STL--queue">
+                        
+                        <span class="card-title">STL--queue</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C++中关于queue容器的使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4,h5,h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4,h5,h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Baymax</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">28k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "9";
+                    var startDate = "29";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/JiamingBi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1756494670@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1756494670" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1756494670" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+    <script type="text/javascript">
+    //只在桌面版网页启用特效
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+       document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+    </script>
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
