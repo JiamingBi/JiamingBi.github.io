@@ -540,21 +540,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-06
+                    2020-10-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    4.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    20 分
                 </div>
                 
 
@@ -573,7 +573,7 @@
 <p>stl_list其中的增删改查的细节实现本质是一样的，都是处理指针偏移。相比于vector，stl_List在插入和删除的时候可以达到O(1)的时间复杂度。</p>
 <p>stl_list是一个双向循环链表，相对单链表来说查找效率高，无论是插入时的前插和后插，还是从后往前查找某个元素等。既然查找效率高了，自然添加，删除和修改元素时效率也就更高。唯一一个可以称为不足的就是每个节点需要耗费4字节指针来保存前一个节点的地址，因此如果遇到对内存要求比较苛刻的场景，而且一些操作单链表即可满足，那么可以考虑使用标准库中的forward_list（单链表）。</p>
 <h2 id="二、定义和初始化"><a href="#二、定义和初始化" class="headerlink" title="二、定义和初始化"></a>二、定义和初始化</h2><p>使用之前必须加相应容器的头文件：</p>
-<pre class=" language-c++"><code class="language-c++">#include <list> // list属于std命名域的，因此需要通过命名限定，例如using std::list;</code></pre>
+<pre><code>#include &lt;list&gt; // list属于std命名域的，因此需要通过命名限定，例如using std::list;</code></pre>
 <p>定义的代码如下：</p>
 <pre class=" language-c++"><code class="language-c++">list<int> a; // 定义一个int类型的列表a
 list<int> a(10); // 定义一个int类型的列表a，并设置初始大小为10
@@ -893,27 +893,27 @@ __YAMI_END
 <li>容器判空：empty();</li>
 </ul>
 <p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    for (int i = 0; i<6; i++)
-    {
-        lst.push_back(i);
-    }
-    cout << lst.size() << endl; // 输出：6
-    cout << lst.max_size() << endl; // 输出：357913941
-    lst.resize(0); // 更改元素大小
-    cout << lst.size() << endl; // 输出：0
-    if (lst.empty())
-        cout << "元素为空" << endl; // 输出：元素为空
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> lst<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：6</span>
+    cout <span class="token operator">&lt;&lt;</span> lst<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：357913941</span>
+    lst<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 更改元素大小</span>
+    cout <span class="token operator">&lt;&lt;</span> lst<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：0</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"元素为空"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：元素为空</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="2、添加函数"><a href="#2、添加函数" class="headerlink" title="2、添加函数"></a>2、添加函数</h3><ul>
 <li>头部添加元素：<code>push_front(const T&amp; x);</code></li>
 <li>末尾添加元素：<code>push_back(const T&amp; x);</code></li>
@@ -922,35 +922,35 @@ int main(int argc, char* argv[])
 <li>插入另一个向量的 [forst,last] 间的数据：<code>insert(iterator it, iterator first, iterator last);</code></li>
 </ul>
 <p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-int main(int argc, char* argv[])
-{
-    list<int> lst;
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst<span class="token punctuation">;</span>
 
-    // 头部增加元素
-    lst.push_front(4);
-    // 末尾添加元素
-    lst.push_back(5);
-    // 任意位置插入一个元素
-    list<int>::iterator it = lst.begin();
-    lst.insert(it, 2);
-    // 任意位置插入n个相同元素
-    lst.insert(lst.begin(), 3, 9);
-    // 插入另一个向量的[forst,last]间的数据
-    list<int> lst2(5, 8);
-    lst.insert(lst.begin(), lst2.begin(), ++lst2.begin());
+    <span class="token comment" spellcheck="true">// 头部增加元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 末尾添加元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 任意位置插入一个元素</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator it <span class="token operator">=</span> lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 任意位置插入n个相同元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 插入另一个向量的[forst,last]间的数据</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">lst2</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lst2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">++</span>lst2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 遍历显示
-    for (it = lst.begin(); it != lst.end(); it++)
-        cout << *it << " "; // 输出：8 9 9 9 2 4 5
-    cout << endl;
+    <span class="token comment" spellcheck="true">// 遍历显示</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：8 9 9 9 2 4 5</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="3、删除函数"><a href="#3、删除函数" class="headerlink" title="3、删除函数"></a>3、删除函数</h3><ul>
 <li>头部删除元素：<code>pop_front();</code></li>
 <li>末尾删除元素：<code>pop_back();</code></li>
@@ -959,41 +959,41 @@ int main(int argc, char* argv[])
 <li>清空所有元素：<code>clear();</code></li>
 </ul>
 <p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    for (int i = 0; i < 8; i++)
-        lst.push_back(i);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 头部删除元素
-    lst.pop_front();
-    // 末尾删除元素
-    lst.pop_back();
-    // 任意位置删除一个元素
-    list<int>::iterator it = lst.begin();
-    lst.erase(it);
-    // 删除[first,last]之间的元素
-    lst.erase(lst.begin(), ++lst.begin());
+    <span class="token comment" spellcheck="true">// 头部删除元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 末尾删除元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 任意位置删除一个元素</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator it <span class="token operator">=</span> lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 删除[first,last]之间的元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">++</span>lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 遍历显示
-    for (it = lst.begin(); it != lst.end(); it++)
-        cout << *it << " "; // 输出：3 4 5 6
-    cout << endl;
+    <span class="token comment" spellcheck="true">// 遍历显示</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：3 4 5 6</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    // 清空所有元素
-    lst.clear();
+    <span class="token comment" spellcheck="true">// 清空所有元素</span>
+    lst<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 判断list是否为空
-    if (lst.empty())
-    cout << "元素为空" << endl; // 输出：元素为空
+    <span class="token comment" spellcheck="true">// 判断list是否为空</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"元素为空"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：元素为空</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="4、查询函数"><a href="#4、查询函数" class="headerlink" title="4、查询函数"></a>4、查询函数</h3><ul>
 <li>访问第一个元素：<code>front();</code></li>
 <li>访问最后一个元素：<code>back();</code></li>
@@ -1025,73 +1025,73 @@ int main(int argc, char* argv[])
 <li>删除容器中相邻的重复元素：<code>unique();</code></li>
 </ul>
 <p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-int main(int argc, char* argv[])
-{
-    // 多个元素赋值s
-    list<int> lst1;
-    lst1.assign(3, 1);
-    list<int> lst2;
-    lst2.assign(3, 2);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 多个元素赋值s</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst1<span class="token punctuation">;</span>
+    lst1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst2<span class="token punctuation">;</span>
+    lst2<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    // 交换两个容器的元素
-    // swap(lst1, lst2); // ok
-    lst1.swap(lst2);
-    // 遍历显示
-    cout << "交换后的lst1: ";
-    list<int>::iterator it;
-    for (it = lst1.begin(); it!=lst1.end(); it++)
-        cout << *it << " "; // 输出：2 2 2
-    cout << endl;
+    <span class="token comment" spellcheck="true">// 交换两个容器的元素</span>
+    <span class="token comment" spellcheck="true">// swap(lst1, lst2); // ok</span>
+    lst1<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span>lst2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 遍历显示</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"交换后的lst1: "</span><span class="token punctuation">;</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator it<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>lst1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：2 2 2</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    // 遍历显示
-    cout << "交换后的lst2: ";
-    for (it = lst2.begin(); it != lst2.end(); it++)
-        cout << *it << " "; // 输出：1 1 1
-    cout << endl;
+    <span class="token comment" spellcheck="true">// 遍历显示</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"交换后的lst2: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：1 1 1</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    list<int> lst3;
-    lst3.assign(3, 3);
-    list<int> lst4;
-    lst4.assign(3, 4);
-    // 合并两个列表的元素
-    lst4.merge(lst3); // 不是简单的拼接，而是会升序排列
-    cout << "合并后的lst4: ";
-    for (it = lst4.begin(); it != lst4.end(); it++)
-        cout << *it << " "; // 输出：3 3 3 4 4 4
-    cout << endl;
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst3<span class="token punctuation">;</span>
+    lst3<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst4<span class="token punctuation">;</span>
+    lst4<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 合并两个列表的元素</span>
+    lst4<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>lst3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 不是简单的拼接，而是会升序排列</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"合并后的lst4: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst4<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst4<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：3 3 3 4 4 4</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    list<int> lst5;
-    lst5.assign(3, 5);
-    list<int> lst6;
-    lst6.assign(3, 6);
-    // 在lst6的第2个元素处，拼接入lst5
-    lst6.splice(++lst6.begin(), lst5);
-    cout << "拼接后的lst6: ";
-    for (it = lst6.begin(); it != lst6.end(); it++)
-        cout << *it << " "; // 输出：6 5 5 5 6 6
-    cout << endl;
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst5<span class="token punctuation">;</span>
+    lst5<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst6<span class="token punctuation">;</span>
+    lst6<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 在lst6的第2个元素处，拼接入lst5</span>
+    lst6<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token operator">++</span>lst6<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lst5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"拼接后的lst6: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst6<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst6<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：6 5 5 5 6 6</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    // 删除容器中相邻的重复元素
-    list<int> lst7;
-    lst7.push_back(1);
-    lst7.push_back(1);
-    lst7.push_back(2);
-    lst7.push_back(2);
-    lst7.push_back(3);
-    lst7.push_back(2);
-    lst7.unique();
-    cout << "删除容器中相邻的重复元素后的lst7: ";
-    for (it = lst7.begin(); it != lst7.end(); it++)
-        cout << *it << " "; // 输出：1 2 3 2
-    cout << endl;
+    <span class="token comment" spellcheck="true">// 删除容器中相邻的重复元素</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst7<span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst7<span class="token punctuation">.</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"删除容器中相邻的重复元素后的lst7: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>it <span class="token operator">=</span> lst7<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> lst7<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：1 2 3 2</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <table>
 <thead>
 <tr>
@@ -1133,7 +1133,7 @@ int main(int argc, char* argv[])
 </tr>
 <tr>
 <td>get_allocator()</td>
-<td align="center">一直不知道此物何用？</td>
+<td align="center">返回链表的配置器。</td>
 </tr>
 <tr>
 <td>it l.insert (it pos, 元素类型val)void l.insert (it pos, int n,元素类型 val)void l.insert (it pos, it first, it last)</td>
@@ -1229,28 +1229,28 @@ int main(int argc, char* argv[])
 <li>反向迭代器指针，指向第一个元素的前一个元素：<code>rend();</code></li>
 </ul>
 <p>代码示例</p>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-#include <list>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
 
-using namespace std;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-int main(int argc, char* argv[])
-{
-    list<int> lst;
-    lst.push_back(1);
-    lst.push_back(2);
-    lst.push_back(3);
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> lst<span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lst<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    cout << *(lst.begin()) << endl; // 输出：1
-    cout << *(--lst.end()) << endl; // 输出：3
-    cout << *(lst.cbegin()) << endl; // 输出：1
-    cout << *(--lst.cend()) << endl; // 输出：3
-    cout << *(lst.rbegin()) << endl; // 输出：3
-    cout << *(--lst.rend()) << endl; // 输出：1
-    cout << endl;
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：1</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">--</span>lst<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：3</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">cbegin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：1</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">--</span>lst<span class="token punctuation">.</span><span class="token function">cend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：3</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>lst<span class="token punctuation">.</span><span class="token function">rbegin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：3</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">--</span>lst<span class="token punctuation">.</span><span class="token function">rend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出：1</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="2、算法"><a href="#2、算法" class="headerlink" title="2、算法"></a>2、算法</h3><h4 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h4><pre><code>list&lt;int&gt;::iterator it;
 for (it = lst.begin(); it != lst.end(); it++)
     cout &lt;&lt; *it &lt;&lt; endl;</code></pre>
@@ -1269,10 +1269,10 @@ bool Comp(const int&amp; a, const int&amp; b)
 sort(lst.begin(), lst.end(), Comp);</code></pre>
 <h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>1、list 为双向迭代器，故不支持<code>it+=i</code>；</p>
 <p>2、list 不支持下标访问和at方法访问。</p>
-<h2 id="七、代码应用实例–约瑟夫问题"><a href="#七、代码应用实例–约瑟夫问题" class="headerlink" title="七、代码应用实例–约瑟夫问题"></a>七、代码应用实例–约瑟夫问题</h2><pre class=" language-c++"><code class="language-c++">/*
+<h2 id="七、代码应用实例–约瑟夫问题"><a href="#七、代码应用实例–约瑟夫问题" class="headerlink" title="七、代码应用实例–约瑟夫问题"></a>七、代码应用实例–约瑟夫问题</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/*
 约瑟夫问题是：有 n 只猴子，按顺时针方向围成一圈选大王（编号为 1~n），从第 1 号开始报数，一直数到 m，数到 m 的猴子退到圈外，剩下的猴子再接着从 1 开始报数。就这样，直到圈内只剩下一只猴子时，这个猴子就是猴王。编程求输入 n、m 后,输出最后猴王的编号。
 
-输入数据：每行是用空格分开的两个整数，第一个是 n，第二个是 m（0<m, n<=1 000 000）。最后一行是：
+输入数据：每行是用空格分开的两个整数，第一个是 n，第二个是 m（0&lt;m, n&lt;=1 000 000）。最后一行是：
 0 0
 
 输出要求：对于每行输入数据（最后一行除外），输出数据也是一行，即最后猴王的编号。
@@ -1287,37 +1287,37 @@ sort(lst.begin(), lst.end(), Comp);</code></pre>
 5
 1
 7
-*/
-#include <list>
-#include <iostream>
-using namespace std;
-int main()
-{
-    list<int> monkeys;
-    int n, m;
-    while (true) {
-        cin >> n >> m;
-        if (n == 0 && m == 0)
-            break;
-        monkeys.clear();  //清空list容器
-        for (int i = 1; i <= n; ++i)  //将猴子的编号放入list
-            monkeys.push_back(i);
-        list<int>::iterator it = monkeys.begin();
-        while (monkeys.size() > 1) { //只要还有不止一只猴子，就要找一只猴子让其出列
-            for (int i = 1; i < m; ++i) { //报数
-                ++it;
-                if (it == monkeys.end())
-                    it = monkeys.begin();
-            }
-            it = monkeys.erase(it); //删除元素后，迭代器失效，
-                                    //要重新让迭代器指向被删元素的后面
-            if (it == monkeys.end())
-                it = monkeys.begin();
-        }
-        cout << monkeys.front() << endl; //front返回第一个元素的引用
-    }
-    return 0;
-}</code></pre>
+*/</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> monkeys<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> m <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        monkeys<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//清空list容器</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//将猴子的编号放入list</span>
+            monkeys<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator it <span class="token operator">=</span> monkeys<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>monkeys<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//只要还有不止一只猴子，就要找一只猴子让其出列</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//报数</span>
+                <span class="token operator">++</span>it<span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> monkeys<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    it <span class="token operator">=</span> monkeys<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            it <span class="token operator">=</span> monkeys<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//删除元素后，迭代器失效，</span>
+                                    <span class="token comment" spellcheck="true">//要重新让迭代器指向被删元素的后面</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> monkeys<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                it <span class="token operator">=</span> monkeys<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout <span class="token operator">&lt;&lt;</span> monkeys<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//front返回第一个元素的引用</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>erase 成员函数返回被删除元素后面那个元素的迭代器。如果被删除的是最后一个元素，则返回 end()。</p>
 <p>这个程序也可以用 vector 实现，但是执行速度要慢很多。因为 vector 的 erase 操作牵涉元素的移动，不能在常数时间内完成，所花费的时间和容器中的元素个数有关；而 list 的 erase 操作只是修改几个指针而已，可以在常数时间内完成。当 n 很大（数十万）时，两种写法在速度上会有明显区别。</p>
 <h2 id="八、参考文献以及博客"><a href="#八、参考文献以及博客" class="headerlink" title="八、参考文献以及博客"></a>八、参考文献以及博客</h2><p>1、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxAndMcu/p/10260627.html">https://www.cnblogs.com/linuxAndMcu/p/10260627.html</a></p>
@@ -1895,7 +1895,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.2k</span>&nbsp;字
+                class="white-color">22.8k</span>&nbsp;字
             
             
             

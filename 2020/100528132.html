@@ -445,21 +445,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-06
+                    2020-10-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    9 分
                 </div>
                 
 
@@ -477,7 +477,7 @@
                 <h2 id="一、stack的简介"><a href="#一、stack的简介" class="headerlink" title="一、stack的简介"></a>一、stack的简介</h2><p>C++ Stack（堆栈） 是一个容器类的改编，为程序员提供了堆栈的全部功能，也就是说实现了一个先进后出（FILO）的数据结构。</p>
 <p>C++ STL 的堆栈泛化是直接通过现有的序列容器来实现的，默认使用双端队列deque的数据结构，当然，可以采用其他线性结构（vector 或 list等），只要提供堆栈的入栈、出栈、栈顶元素访问和判断是否为空的操作即可。由于堆栈的底层使用的是其他容器，因此，堆栈可看做是一种适配器，将一种容器转换为另一种容器(堆栈容器)。<br>   为了严格遵循堆栈的数据后进先出原则，stack 不提供元素的任何迭代器操作，因此，stack 容器也就不会向外部提供可用的前向或反向迭代器类型。</p>
 <p><strong>c++ stl栈stack的头文件为</strong>: </p>
-<p>#include<stack> </stack></p>
+<pre><code>include &lt;stack&gt;</code></pre>
 <h2 id="二、stack操作汇总"><a href="#二、stack操作汇总" class="headerlink" title="二、stack操作汇总"></a>二、stack操作汇总</h2><ul>
 <li>top()：返回一个栈顶元素的引用，类型为 T&amp;。如果栈为空，返回值未定义。</li>
 <li>push(const T&amp; obj)：可以将对象副本压入栈顶。这是通过调用底层容器的 push_back() 函数完成的。</li>
@@ -494,7 +494,7 @@
 <h4 id="元素入栈"><a href="#元素入栈" class="headerlink" title="元素入栈"></a>元素入栈</h4><p>   stack堆栈容器的元素入栈函数为 push 函数。由于 C++ STL 的堆栈函数是不预设大小的，因此，入栈函数就不考虑堆栈空间是否为满，均将元素压入堆栈，从而函数没有标明入栈成功与否的返回值。<br>   如下是他的使用原型：<br>   void push(const value_type&amp; x) </p>
 <h4 id="元素出栈"><a href="#元素出栈" class="headerlink" title="元素出栈"></a>元素出栈</h4><p>   stack容器的元素出栈函数为 pop 函数，由于函数并没有判断堆栈是否为空，才进行元素的弹出，因此，需要自行判断堆栈是否为空，才可执行 pop 函数。<br>   void pop()</p>
 <p>   下面的示例代码，将堆栈的所有元素全部出栈，这也是经常拿来清除stack中的成员</p>
-<pre class=" language-c++"><code class="language-c++"> stack<int> s;
+<pre><code> stack&lt;int&gt; s;
  while(!s.empty())
  {
      s.pop();// 出栈
@@ -503,7 +503,7 @@
 <h4 id="堆栈非空判断"><a href="#堆栈非空判断" class="headerlink" title="堆栈非空判断"></a>堆栈非空判断</h4><p>   随着堆栈元素不断出栈，堆栈可能会出现空的情况，因此，一般需要调用 empty 函数判断是否非空，才作元素出栈和取栈顶元素的操作。<br>   bool empty()<br>   判断堆栈是否为空，返回 true 表示堆栈已空，false 表示堆栈非空。</p>
 <h2 id="四、栈的实现原理"><a href="#四、栈的实现原理" class="headerlink" title="四、栈的实现原理"></a>四、栈的实现原理</h2><p>以某种既有容器作为底部结构，将其接口改变，使之符合“先进后出”的特性，形成一个 stack，是很容易做到的。deque 是双向开口的数据结构，若以 deque 为底部结构并封闭其头端开口，便轻而易举地形成了一个 stack。因此，STL便以 deque 作为缺省情况下的 stack 底部结构。</p>
 <p>  由于 stack 系以底部容器完成其所有工作，而具有这种“修改某物接口，形成另一种风貌”之性质者，称为 adapter（配接器），因此 stack 往往被归类为容器配接器。</p>
-<h2 id="五、栈的完整定义"><a href="#五、栈的完整定义" class="headerlink" title="五、栈的完整定义"></a>五、栈的完整定义</h2><pre class=" language-C++"><code class="language-C++">stl_stack.h
+<h2 id="五、栈的完整定义"><a href="#五、栈的完整定义" class="headerlink" title="五、栈的完整定义"></a>五、栈的完整定义</h2><pre><code>stl_stack.h
 // Filename:    stl_stack.h
 
 
@@ -516,16 +516,16 @@ __STL_BEGIN_NAMESPACE
 // 那么就需要手工指定, 本实作stack内部容器默认使用deque
 // 选用deque可以在存储空间不足时可以动态增加, 而且代价很低
 #ifndef __STL_LIMITED_DEFAULT_TEMPLATES
-template <class T, class Sequence = deque<T> >
+template &lt;class T, class Sequence = deque&lt;T&gt; &gt;
 #else
-template <class T, class Sequence>
+template &lt;class T, class Sequence&gt;
 #endif
 class stack
 {
-  // 特化的全局运算符, 提供operator==和<重载则构建出所有运算符
-  // 其具体细节见<stl_pair.h>中的说明
-  friend bool operator== __STL_NULL_TMPL_ARGS (const stack&, const stack&);
-  friend bool operator< __STL_NULL_TMPL_ARGS (const stack&, const stack&);
+  // 特化的全局运算符, 提供operator==和&lt;重载则构建出所有运算符
+  // 其具体细节见&lt;stl_pair.h&gt;中的说明
+  friend bool operator== __STL_NULL_TMPL_ARGS (const stack&amp;, const stack&amp;);
+  friend bool operator&lt; __STL_NULL_TMPL_ARGS (const stack&amp;, const stack&amp;);
 
 public:
   // 由于stack仅支持对栈顶元素的操作, 所以不定义STL要求的
@@ -553,7 +553,7 @@ public:
   const_reference top() const { return c.back(); }
 
   // 在栈顶追加新元素
-  void push(const value_type& x) { c.push_back(x); }
+  void push(const value_type&amp; x) { c.push_back(x); }
 
   // 移除栈顶元素, 注意不返回元素的引用,
   // 很多初学者随机用此容器时经常误认为pop()操作同时会返回栈顶元素的引用
@@ -562,16 +562,16 @@ public:
 
 // 判断两个stack是否相等, 就要测试其内部维护容器是否相等
 // x.c == y.c会调用容器重载的operator ==
-template <class T, class Sequence>
-bool operator==(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
+template &lt;class T, class Sequence&gt;
+bool operator==(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y)
 {
   return x.c == y.c;
 }
 
-template <class T, class Sequence>
-bool operator<(const stack<T, Sequence>& x, const stack<T, Sequence>& y)
+template &lt;class T, class Sequence&gt;
+bool operator&lt;(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y)
 {
-  return x.c < y.c;
+  return x.c &lt; y.c;
 }
 __STL_END_NAMESPACE
 #endif /* __SGI_STL_INTERNAL_STACK_H */
@@ -579,36 +579,36 @@ __STL_END_NAMESPACE
 // mode:C++
 // End:</code></pre>
 <p>stack虽然默认基于deque（双端队列）实现的，但是我们可以传入参数，使其底层以其他可以的顺序容器来实现，比如：</p>
-<pre class=" language-c++"><code class="language-c++">stack<int, list<int>> 
-stack<int, vector<int>>
-stack<int, array<int>></code></pre>
+<pre><code>stack&lt;int, list&lt;int&gt;&gt; 
+stack&lt;int, vector&lt;int&gt;&gt;
+stack&lt;int, array&lt;int&gt;&gt;</code></pre>
 <p>下面给出stl的stack的使用示例：</p>
-<pre class=" language-c++"><code class="language-c++">
+<pre><code>
 // constructing stacks
-#include <iostream>       // std::cout
-#include <stack>          // std::stack
-#include <vector>         // std::vector
-#include <deque>          // std::deque
+#include&lt;iostream&gt;       // std::cout
+#include&lt;stack&gt;          // std::stack
+#include&lt;vector&gt;         // std::vector
+#include&lt;deque&gt;          // std::deque
 
 int main ()
 {
-  std::deque<int> mydeque (3,100);          // deque with 3 elements
-  std::vector<int> myvector (2,200);        // vector with 2 elements
+  std::deque&lt;int&gt; mydeque (3,100);          // deque with 3 elements
+  std::vector&lt;int&gt; myvector (2,200);        // vector with 2 elements
 
-  std::stack<int> first;                    // empty stack
-  std::stack<int> second (mydeque);         // stack initialized to copy of deque
+  std::stack&lt;int&gt; first;                    // empty stack
+  std::stack&lt;int&gt; second (mydeque);         // stack initialized to copy of deque
 
-  std::stack<int,std::vector<int> > third;  // empty stack using vector
-  std::stack<int,std::vector<int> > fourth (myvector);
+  std::stack&lt;int,std::vector&lt;int&gt; &gt; third;  // empty stack using vector
+  std::stack&lt;int,std::vector&lt;int&gt; &gt; fourth (myvector);
 
-  std::cout << "size of first: " << first.size() << '\n';
-  std::cout << "size of second: " << second.size() << '\n';
-  std::cout << "size of third: " << third.size() << '\n';
-  std::cout << "size of fourth: " << fourth.size() << '\n';
+  std::cout &lt;&lt; "size of first: " &lt;&lt; first.size() &lt;&lt; '\n';
+  std::cout &lt;&lt; "size of second: " &lt;&lt; second.size() &lt;&lt; '\n';
+  std::cout &lt;&lt; "size of third: " &lt;&lt; third.size() &lt;&lt; '\n';
+  std::cout &lt;&lt; "size of fourth: " &lt;&lt; fourth.size() &lt;&lt; '\n';
   second.push(2);
-  std::cout << "The element at the top of stack second is: "
-        << second.top( ) << "." << std::endl;
-  std::cout << "size of second: " << second.size() << '\n';
+  std::cout &lt;&lt; "The element at the top of stack second is: "
+        &lt;&lt; second.top( ) &lt;&lt; "." &lt;&lt; std::endl;
+  std::cout &lt;&lt; "size of second: " &lt;&lt; second.size() &lt;&lt; '\n';
 
   return 0;
 }
@@ -1102,7 +1102,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.2k</span>&nbsp;字
+                class="white-color">22.8k</span>&nbsp;字
             
             
             
