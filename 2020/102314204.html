@@ -540,7 +540,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-23
+                    2020-10-24
                 </div>
                 
 
@@ -1441,6 +1441,8 @@ tar <span class="token operator">-</span>zxvf 打包文件<span class="token pun
 <li>创建用户时，默认会创建一个和用户名同名的组名</li>
 <li>用户信息保存在 /etc/passwd 文件中</li>
 </ul>
+<p>在这里推荐一个简便的创建用户的方法，否则在切换用户的时候只出现$问题</p>
+<pre><code>useradd -d /home/tt -m sam -s /bin/bash -g root</code></pre>
 <h3 id="查看用户信息"><a href="#查看用户信息" class="headerlink" title="查看用户信息"></a>查看用户信息</h3><table>
 <thead>
 <tr>
@@ -1539,8 +1541,7 @@ chown 用户名 文件名<span class="token operator">|</span>目录名
 # 递归修改文件<span class="token operator">|</span>目录的组
 chgrp <span class="token operator">-</span>R 组名 文件名<span class="token operator">|</span>目录名
 # 递归修改文件权限
-chmod <span class="token operator">-</span>R <span class="token number">755</span> 文件名<span class="token operator">|</span>目录名
-<span class="token number">123456</span></code></pre>
+chmod <span class="token operator">-</span>R <span class="token number">755</span> 文件名<span class="token operator">|</span>目录名</code></pre>
 <h1 id="远程管理常用命令"><a href="#远程管理常用命令" class="headerlink" title="远程管理常用命令"></a>远程管理常用命令</h1><h2 id="关机-重启"><a href="#关机-重启" class="headerlink" title="关机/重启"></a>关机/重启</h2><table>
 <thead>
 <tr>
@@ -1567,8 +1568,7 @@ $ shutdown <span class="token number">20</span><span class="token punctuation">:
 # 系统再过十分钟后自动关机
 $ shutdown <span class="token operator">+</span><span class="token number">10</span>
 # 取消之前指定的关机计划
-$ shutdown <span class="token operator">-</span>c
-<span class="token number">12345678910</span></code></pre>
+$ shutdown <span class="token operator">-</span>c</code></pre>
 <p>不指定选项和参数，默认表示 1 分钟之后 关闭电脑<br>远程维护服务器时，最好不要关闭系统，而应该重新启动系统</p>
 <h2 id="查看配置网卡信息"><a href="#查看配置网卡信息" class="headerlink" title="查看配置网卡信息"></a>查看配置网卡信息</h2><table>
 <thead>
@@ -1596,15 +1596,13 @@ $ shutdown <span class="token operator">-</span>c
 <pre class=" language-c"><code class="language-c"># 查看网卡配置信息
 $ ifconfig
 # 查看网卡对应的 IP 地址
-$ ifconfig <span class="token operator">|</span> grep inet
-<span class="token number">1234</span></code></pre>
+$ ifconfig <span class="token operator">|</span> grep inet</code></pre>
 <p>提示：一台计算机中有可能会有一个 物理网卡 和 多个虚拟网卡，在 Linux 中物理网卡的名字通常以 ensXX 表示<br>127.0.0.1 被称为 <strong>本地回环/环回地址</strong>，一般用来测试本机网卡是否正常</p>
 <h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>ping 一般用于检测当前计算机到目标计算机之间的网络 <strong>是否通畅，数值越大，速度越慢</strong></p>
 <pre class=" language-c"><code class="language-c"># 检测到目标主机是否连接正常
 $ ping IP地址
 # 检测本地网卡工作正常
-$ ping <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>
-<span class="token number">1234</span></code></pre>
+$ ping <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span></code></pre>
 <p>ping 的工作原理与潜水艇的声纳相似， ping 这个命令就是取自 声纳的声音<br>网络管理员之间也常将 ping 用作动词 —— ping 一下计算机X，看他是否开着</p>
 <h2 id="远程登录和赋值文件"><a href="#远程登录和赋值文件" class="headerlink" title="远程登录和赋值文件"></a>远程登录和赋值文件</h2><h3 id="ssh-基础（重点）"><a href="#ssh-基础（重点）" class="headerlink" title="ssh 基础（重点）"></a>ssh 基础（重点）</h3><p>在 Linux 中 SSH 是 <strong>常用</strong> 的工具，通过 <strong>SSH 客户端</strong> 我们可以连接到运行了 <strong>SSH 服务器</strong> 的远程机器上。</p>
 <p>SSH是一种安全通道协议，主要用来实现字符界面的远程登录、远程复制等功能。SSH协议对通信双方的数据传输进行了加密处理，其中包括用户登录时输入的用户口令。与早期的telnet、rsh、rcp等应用相比，SSH协议提供了更好的安全性。</p>
@@ -1624,15 +1622,15 @@ $ ping <span class="token number">127.0</span><span class="token punctuation">.<
 <li>在工作中，SSH 服务器的端口号很有可能<strong>不是 22</strong>，如果遇到这种情况就需要<strong>使用 -p 选项</strong>，指定正确的端口号，否则无法正常连接到服务器</li>
 </ul>
 <h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>scp 就是 secure copy ，是一个在 Linux 下用来进行 <strong>远程拷贝文件</strong> 的命令<br>它的<strong>地址格式与 ssh 基本相同</strong>，需要注意的是，在指定端口时用的是大写的 -P 而不是小写的</p>
-<pre class=" language-c"><code class="language-c"># 把本地当前目录下的 <span class="token number">01</span><span class="token punctuation">.</span>py 文件 复制到 远程 家目录下的 Desktop<span class="token operator">/</span><span class="token number">01</span><span class="token punctuation">.</span>py
+<pre class=" language-c"><code class="language-c"># 把本地当前目录下的 <span class="token number">1</span><span class="token punctuation">.</span>txt 文件 复制到 远程 家目录下的 Desktop<span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">.</span>txt
 # 注意：`<span class="token punctuation">:</span>` 后面的路径如果不是绝对路径，则以用户的家目录作为参照路径
-scp <span class="token operator">-</span>P port <span class="token number">01</span><span class="token punctuation">.</span>py user@remote<span class="token punctuation">:</span>Desktop<span class="token operator">/</span><span class="token number">01</span><span class="token punctuation">.</span>py
-# 把远程 家目录下的 Desktop<span class="token operator">/</span><span class="token number">01</span><span class="token punctuation">.</span>py 文件 复制到 本地当前目录下的 <span class="token number">01</span><span class="token punctuation">.</span>py
-scp <span class="token operator">-</span>P port user@remote<span class="token punctuation">:</span>Desktop<span class="token operator">/</span><span class="token number">01</span><span class="token punctuation">.</span>py <span class="token number">01</span><span class="token punctuation">.</span>py
+scp <span class="token operator">-</span>P port <span class="token number">1</span><span class="token punctuation">.</span>txt user@remote<span class="token punctuation">:</span>Desktop<span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">.</span>txt
+# 把远程 家目录下的 Desktop<span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">.</span>txt 文件 复制到 本地当前目录下的 <span class="token number">1</span><span class="token punctuation">.</span>txt
+scp <span class="token operator">-</span>P port user@remote<span class="token punctuation">:</span>Desktop<span class="token operator">/</span><span class="token number">01</span><span class="token punctuation">.</span>py <span class="token number">1</span><span class="token punctuation">.</span>txt
 # 加上 <span class="token operator">-</span>r 选项可以传送文件夹
 # 把当前目录下的 demo 文件夹 复制到 远程 家目录下的 Desktop
 scp <span class="token operator">-</span>r demo user@remote<span class="token punctuation">:</span>Desktop
-# 把远程 家目录下的 Desktop 复制到 当前目录下的 demo 文件夹
+# 把远程家目录下的 Desktop 复制到 当前目录下的 demo 文件夹
 scp <span class="token operator">-</span>r user@remote<span class="token punctuation">:</span>Desktop demo</code></pre>
 <table>
 <thead>
@@ -2225,7 +2223,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">39.5k</span>&nbsp;字
+                class="white-color">39.6k</span>&nbsp;字
             
             
             
