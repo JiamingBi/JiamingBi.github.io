@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="添加Gitalk评论插件, Baymax">
+    <meta name="keywords" content="远程服务器之screen, Baymax">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>添加Gitalk评论插件 | Baymax</title>
+    <title>远程服务器之screen | Baymax</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -386,12 +386,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/image/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">添加Gitalk评论插件</h1>
+                    <h1 class="description center-align post-title">远程服务器之screen</h1>
                 </div>
             </div>
         </div>
@@ -401,10 +401,105 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -413,8 +508,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">
-                                <span class="chip bg-color">评论插件</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -425,8 +520,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
-                                博客
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -438,28 +533,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-30
+                    2020-11-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-03
+                    2020-11-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    607
+                    947
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -474,37 +569,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Gitalk-评论插件"><a href="#Gitalk-评论插件" class="headerlink" title="Gitalk 评论插件"></a>Gitalk 评论插件</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Gitalk 是一个利用 Github API,基于 Github issue 和 Preact 开发的评论插件，在 Gitalk 之前还有一个 <a target="_blank" rel="noopener" href="https://github.com/imsun/gitment">gitment</a> 插件也是基于这个原理开发的,不过 gitment 已经很久没人维护了。</p>
-<h3 id="集成-Gitalk"><a href="#集成-Gitalk" class="headerlink" title="集成 Gitalk"></a>集成 Gitalk</h3><p>需要配置下面几个参数：</p>
-<pre class=" language-js"><code class="language-js">clientID<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`Github Application clientID`</span></span><span class="token punctuation">,</span>
-clientSecret<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`Github Application clientSecret`</span></span><span class="token punctuation">,</span>
-repo<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`Github 仓库名`</span></span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span>
-owner<span class="token punctuation">:</span> <span class="token string">'Github 用户名'</span><span class="token punctuation">,</span>
-admin<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'Github 用户名'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//这个仓库的管理员，可以有多个，用数组表示，一般写自己,</span>
-id<span class="token punctuation">:</span> <span class="token string">'window.location.pathname'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span></code></pre>
-<p>当然，还有其他很多参数，有兴趣的话可以 <a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk#options"> 点这里</a>。</p>
-<p>比如我就增加了这个全屏遮罩的参数。</p>
-<pre><code>distractionFreeMode: true,</code></pre>
-<h3 id="创建-Github-Application"><a href="#创建-Github-Application" class="headerlink" title="创建 Github Application"></a>创建 Github Application</h3><p>Gitalk 需要一个 <strong>Github Application</strong>，<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">点击这里申请</a>。</p>
-<p>填写下面参数：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jaib6fj30jo0gaacs.jpg"></p>
-<p>点击创建</p>
-<p>获取 <code>Client ID</code> 和 <code>Client Secret</code> 填入你的我们 Gitalk 参数中</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jrzff6j30lc0budhp.jpg"></p>
-<p>当你参数都设置好，将代码推送到 Github 仓库后，没什么问题的话，当你点击进入你的博客页面后就会出现评论框了。</p>
-<p>当你用 github 帐号登录（管理员），并且第一次加载该会比较慢，因为第一次加载会自动在你 <code>repo</code> 的仓库下创建对应 issue。</p>
-<p>比如说这样：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmm867n88cj30l809mjse.jpg"></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm8a0i0jkj30rr0ct42t.jpg"></p>
-<h3 id="可能遇到的坑"><a href="#可能遇到的坑" class="headerlink" title="可能遇到的坑"></a>可能遇到的坑</h3><p>1、在配置好Gitalk后页面会出现</p>
-<p><img src="https://img.gorpeln.com/blog_gittalk_003.jpeg" alt="blog_gittalk_003"></p>
-<p>Gitalk在使用时要为每篇博文都进行一次初始化，就是需要管理员（你创建Gitalk的GitHub账号）登录一下。PS：我的GitHub账号一直处于登录状态，发布文章后，我在预览的过程就实现了初始化，感觉影响不大。</p>
-<p>如果你实在忍不了，可以看一下大佬实现的<a target="_blank" rel="noopener" href="https://draveness.me/git-comments-initialize">自动初始化</a>。</p>
-<p>2、评论初始化404</p>
-<p>出现这种错误是因为：</p>
-<p>issue的标签label有长度限制！labels的最大长度限制是50个字符</p>
-<p>在生成label的时候 id:window.location.pathname</p>
-<p>可能会根据编码不同而导致实际id超出50个字符，就会报错404</p>
+                <h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>Screen是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。GNU Screen可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。</p>
+<p>在Screen环境下，所有的会话都独立的运行，并拥有各自的编号、输入、输出和窗口缓存。用户可以通过快捷键在不同的窗口下切换，并可以自由的重定向各个窗口的输入和输出。</p>
+<p>在很多情况下，我们可能需要用服务器跑代码，但是由于代码工程巨大，跑起来需要花费几个小时的时间，而此时我们想关闭ssh远程连接，去做其他事情。就想让服务器能够在后台继续运行刚刚没有跑完的代码。所以，screen很好地满足了我们的需求。</p>
+<h3 id="常用的screen参数"><a href="#常用的screen参数" class="headerlink" title="常用的screen参数"></a>常用的screen参数</h3><pre><code>screen -S yourname  新建一个叫yourname的session
+screen -ls          列出当前所有的session
+screen -r yourname  回到yourname这个session
+screen -d yourname  远程detach某个session
+screen -d -r yourname  结束当前session并回到yourname这个session</code></pre>
+<h3 id="在Session下，使用ctrl-a-C-a"><a href="#在Session下，使用ctrl-a-C-a" class="headerlink" title="在Session下，使用ctrl+a(C-a)"></a>在Session下，使用ctrl+a(C-a)</h3><pre><code>C-a ?  显示所有键绑定信息
+C-a c  创建一个新的运行shell的窗口并切换到该窗口
+C-a n  Next，切换到下一个 window 
+C-a p  Previous，切换到前一个 window 
+C-a 0..9  切换到第 0..9 个 window
+Ctrl+a [Space]  由视窗0循序切换到视窗9
+C-a C-a  在两个最近使用的 window 间切换 
+C-a x  锁住当前的 window，需用用户密码解锁
+C-a d  detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
+C-a z  把当前session放到后台执行，用 shell 的 fg 命令则可回去。
+C-a w  显示所有窗口列表
+C-a t  time，显示当前时间，和系统的 load 
+C-a k  kill window，强行关闭当前的 window</code></pre>
+<h3 id="下面举例一个实际的操作"><a href="#下面举例一个实际的操作" class="headerlink" title="下面举例一个实际的操作"></a>下面举例一个实际的操作</h3><h4 id="1-首先使用ssh连接到远程服务器"><a href="#1-首先使用ssh连接到远程服务器" class="headerlink" title="1.首先使用ssh连接到远程服务器"></a>1.首先使用ssh连接到远程服务器</h4><p>​    ssh 用户名@ip地址</p>
+<h4 id="2-创建一个新的screen"><a href="#2-创建一个新的screen" class="headerlink" title="2.创建一个新的screen"></a>2.创建一个新的screen</h4><p>​     screen -S test</p>
+<h4 id="3-查看刚才创建的screen"><a href="#3-查看刚才创建的screen" class="headerlink" title="3.查看刚才创建的screen"></a>3.查看刚才创建的screen</h4><p>​    screen -ls</p>
+<h4 id="4-到服务器中你文件的存放位置"><a href="#4-到服务器中你文件的存放位置" class="headerlink" title="4.到服务器中你文件的存放位置"></a>4.到服务器中你文件的存放位置</h4><p>​    cd 需要跑代码的文件路径</p>
+<h4 id="5-运行代码"><a href="#5-运行代码" class="headerlink" title="5.运行代码"></a>5.运行代码</h4><p>​    screen 运行命令</p>
+<h4 id="6-使用ctrl-a-d退出screen"><a href="#6-使用ctrl-a-d退出screen" class="headerlink" title="6.使用ctrl+a+d退出screen"></a>6.使用ctrl+a+d退出screen</h4><p>​    此时可以关闭窗口，这个时候代码已经在服务器后台运行了，就算掉线也没有关系。</p>
+<h4 id="7-查看自己所有screen"><a href="#7-查看自己所有screen" class="headerlink" title="7.查看自己所有screen"></a>7.查看自己所有screen</h4><p>​    当你想重新看自己代码跑得怎么样的时候，可以重新登录服务器，使用</p>
+<p>​    scree -ls查看自己的screen.</p>
+<p>​    需要注意的是Detached是当前screen没有被打开，Attached表示当前screen正处在打开状态。</p>
+<h4 id="8-重新打开screen"><a href="#8-重新打开screen" class="headerlink" title="8.重新打开screen"></a>8.重新打开screen</h4><p>​    screen -r screen进程号</p>
+<p>​    但是，这里会发现使用screen恢复会话时出现There is no screen to be resumed matching错误</p>
+<p>​    这个时候可以利用以下命令解决问题</p>
+<p>​    screen -D -r screen号</p>
+<p>​    或者</p>
+<p>​    screen -d screen号</p>
+<p>​    screen -r screen号</p>
+<p>​    就可以完美看到自己代码跑的情况了。</p>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37968799/article/details/63754180">https://blog.csdn.net/weixin_37968799/article/details/63754180</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fionaai/article/details/105174160">https://blog.csdn.net/fionaai/article/details/105174160</a></p>
+<p>​    </p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -548,7 +653,7 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jiamingbi.github.io/2020/093038727.html">https://jiamingbi.github.io/2020/093038727.html</a>
+                    <a href="https://jiamingbi.github.io/2020/11036782.html">https://jiamingbi.github.io/2020/11036782.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,8 +691,8 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/">
-                                    <span class="chip bg-color">评论插件</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -758,7 +863,7 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
         repo: 'blogtalk',
         owner: 'JiamingBi',
         admin: "JiamingBi",
-        id: '2020-09-30T08-02-46',
+        id: '2020-11-03T09-28-02',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -782,45 +887,48 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/093022851.html">
+                <a href="/2020/11036782.html">
                     <div class="card-image">
                         
-                        <img src="/image/3.jpg" class="responsive-img" alt="分布式计算的概念">
                         
-                        <span class="card-title">分布式计算的概念</span>
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="远程服务器之screen">
+                        
+                        <span class="card-title">远程服务器之screen</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            介绍分布式计算的一些概念，方便扫盲。
+                            使用screen实现 关掉本地计算机 而远程服务器继续跑代码
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" class="post-category">
-                                    分布式计算
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/">
-                        <span class="chip bg-color">分布式计算</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -834,23 +942,24 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/093056989.html">
+                <a href="/2020/102314204.html">
                     <div class="card-image">
                         
-                        <img src="/image/1.jpg" class="responsive-img" alt="Linux系统下升级cmake版本">
                         
-                        <span class="card-title">Linux系统下升级cmake版本</span>
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux系统目录结构和常见操作命令大全">
+                        
+                        <span class="card-title">Linux系统目录结构和常见操作命令大全</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            如何升级Linux系统下的cmake版本
+                            Linux系统目录结构和常见操作命令汇总
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-23
                             </span>
                         <span class="publish-author">
                             
@@ -867,8 +976,8 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/cmake/">
-                        <span class="chip bg-color">cmake</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -907,6 +1016,100 @@ id<span class="token punctuation">:</span> <span class="token string">'window.lo
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4,h5,h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4,h5,h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
