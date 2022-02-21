@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>new start</title>
+      <link href="2022/022128745.html"/>
+      <url>2022/022128745.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>​        来北航读研究生半年了，发觉很久没有在博客上写文章了。新的学期，新的开始，祝愿自己能够学业有成，希望我爱的人身体健康，开开心心！</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> life </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>远程服务器之screen</title>
       <link href="2020/11036782.html"/>
       <url>2020/11036782.html</url>
