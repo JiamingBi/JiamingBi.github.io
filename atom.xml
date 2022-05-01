@@ -6,7 +6,7 @@
   <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiamingbi.github.io/"/>
-  <updated>2022-05-01T14:38:29.462Z</updated>
+  <updated>2022-05-01T14:44:11.256Z</updated>
   <id>https://jiamingbi.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jiamingbi.github.io/2022/050119604.html"/>
     <id>https://jiamingbi.github.io/2022/050119604.html</id>
     <published>2022-05-01T14:07:18.000Z</published>
-    <updated>2022-05-01T14:38:29.462Z</updated>
+    <updated>2022-05-01T14:44:11.256Z</updated>
     
     
       
@@ -33,6 +33,8 @@
       
     
     
+    
+    <category term="算法题" scheme="https://jiamingbi.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
     
     
     <category term="Leetcode" scheme="https://jiamingbi.github.io/tags/Leetcode/"/>
