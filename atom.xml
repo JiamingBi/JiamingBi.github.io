@@ -6,7 +6,7 @@
   <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiamingbi.github.io/"/>
-  <updated>2022-05-18T08:46:37.831Z</updated>
+  <updated>2022-05-18T08:53:14.860Z</updated>
   <id>https://jiamingbi.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数字转换为十六进制数</title>
+    <link href="https://jiamingbi.github.io/2022/051854553.html"/>
+    <id>https://jiamingbi.github.io/2022/051854553.html</id>
+    <published>2022-05-18T08:39:17.000Z</published>
+    <updated>2022-05-18T08:53:14.860Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;给定一个整数，编写一个算法将这个数转换为十六进制数。对于负整数，我们通常使用 补码运算</summary>
+        
+      
+    
+    
+    
+    <category term="算法题" scheme="https://jiamingbi.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+    
+    <category term="Leetcode" scheme="https://jiamingbi.github.io/tags/Leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>重建二叉树</title>

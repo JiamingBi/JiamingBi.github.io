@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>数字转换为十六进制数</title>
+      <link href="2022/051854553.html"/>
+      <url>2022/051854553.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个整数，编写一个算法将这个数转换为十六进制数。对于负整数，我们通常使用 补码运算 方法。</p><p>注意:</p><ol><li>十六进制中所有字母(a-f)都必须是小写。</li><li>十六进制字符串中不能包含多余的前导零。如果要转化的数为0，那么以单个字符’0’来表示；对于其他情况，</li><li>十六进制字符串中的第一个字符将不会是0字符。 </li><li>给定的数确保在32位有符号整数范围内。</li><li>不能使用任何由库提供的将数字直接转换或格式化为十六进制的方法。</li></ol><p>题目来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/convert-a-number-to-hexadecimal">https://leetcode.cn/problems/convert-a-number-to-hexadecimal</a></p><p><strong>示例 1：</strong></p><pre><code>输入:26输出:"1a"</code></pre><p><strong>示例 2：</strong></p><pre><code>输入:-1输出:"ffffffff"</code></pre><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>题目要求将给定的整数 num 转换为十六进制数，负整数使用补码运算方法。</p><p>在补码运算中，最高位表示符号位，符号位是 0 表示正整数和零，符号位是 1表示负整数。3232 位有符号整数的二进制数有 32位，由于一位十六进制数对应四位二进制数，因此 32位有符号整数的十六进制数有 8位。将 num 的二进制数按照四位一组分成 8组，依次将每一组转换为对应的十六进制数，即可得到 num 的十六进制数。</p><p>假设二进制数的 8组从低位到高位依次是第 0 组到第 7 组，则对于第 i 组，可以通过(nums&gt;&gt;(4×i)) &amp; 0xf 得到该组的值，其取值范围是 00到 15（即十六进制的 f）。将每一组的值转换为十六进制数的做法如下：</p><p>对于 0到 9，数字本身就是十六进制数；</p><p>对于 10到15，将其转换为a 到 f 中的对应字母。</p><p>对于负整数，由于最高位一定不是 0，因此不会出现前导零。对于零和正整数，可能出现前导零。避免前导零的做法如下：</p><p>如果 num=0，则直接返回 0；</p><p>如果num&gt;0，则在遍历每一组的值时，从第一个不是 0 的值开始拼接成十六进制数。</p><h1 id="详细代码"><a href="#详细代码" class="headerlink" title="详细代码"></a>详细代码</h1><pre class=" language-c++"><code class="language-c++">class Solution {public:    string toHex(int num) {        if (num == 0) {            return "0";        }        string sb;        for (int i = 7; i >= 0; i --) {            int val = (num >> (4 * i)) & 0xf;            if (sb.length() > 0 || val > 0) {                char digit = val < 10 ? (char) ('0' + val) : (char) ('a' + val - 10);                sb.push_back(digit);            }        }        return sb;    }};</code></pre><h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><p>时间复杂度：O(k)，其中 k 是整数的十六进制数的位数，这道题中 k=8。无论 num 的值是多少，都需要遍历 num 的十六进制表示的全部数位。</p><p>空间复杂度：O(k)，其中 k是整数的十六进制数的位数，这道题中k=8。空间复杂度主要取决于中间结果的存储空间，这道题中需要存储 num 的十六进制表示中的除了前导零以外的全部数位。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://leetcode.cn/problems/convert-a-number-to-hexadecimal/solution/shu-zi-zhuan-huan-wei-shi-liu-jin-zhi-sh-2srt/">https://leetcode.cn/problems/convert-a-number-to-hexadecimal/solution/shu-zi-zhuan-huan-wei-shi-liu-jin-zhi-sh-2srt/</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重建二叉树</title>
       <link href="2022/050119604.html"/>
       <url>2022/050119604.html</url>
