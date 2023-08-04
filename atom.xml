@@ -6,7 +6,7 @@
   <link href="https://jiamingbi.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiamingbi.github.io/"/>
-  <updated>2023-07-15T16:27:32.000Z</updated>
+  <updated>2023-08-04T04:51:15.130Z</updated>
   <id>https://jiamingbi.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数组的最大美丽值</title>
+    <link href="https://jiamingbi.github.io/2023/0804300.html"/>
+    <id>https://jiamingbi.github.io/2023/0804300.html</id>
+    <published>2023-08-04T04:49:56.000Z</published>
+    <updated>2023-08-04T04:51:15.130Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给你一个下标从 &lt;strong&gt;0&lt;/strong&gt; 开始的整数数组 &lt;code&gt;nums&lt;/code&gt; 和一个</summary>
+        
+      
+    
+    
+    
+    <category term="算法题" scheme="https://jiamingbi.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+    
+    <category term="Leetcode" scheme="https://jiamingbi.github.io/tags/Leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>课程排序</title>
+    <link href="https://jiamingbi.github.io/2023/080426009.html"/>
+    <id>https://jiamingbi.github.io/2023/080426009.html</id>
+    <published>2023-08-04T04:47:17.000Z</published>
+    <updated>2023-08-04T04:48:58.559Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;现在总共有 &lt;code&gt;numCourses&lt;/code&gt; 门课需要选，记为 &lt;code&gt;0&lt;/code&gt; 到</summary>
+        
+      
+    
+    
+    
+    <category term="算法题" scheme="https://jiamingbi.github.io/categories/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+    
+    <category term="Leetcode" scheme="https://jiamingbi.github.io/tags/Leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>最长公共子序列</title>
