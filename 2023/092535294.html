@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="远程服务器之screen, Baymax">
+    <meta name="keywords" content="23种设计模式, Baymax">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>远程服务器之screen | Baymax</title>
+    <title>23种设计模式 | Baymax</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -386,12 +386,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">远程服务器之screen</h1>
+                    <h1 class="description center-align post-title">23种设计模式</h1>
                 </div>
             </div>
         </div>
@@ -508,8 +508,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">设计模式</span>
                             </a>
                         
                     </div>
@@ -520,8 +520,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" class="post-category">
+                                软件开发
                             </a>
                         
                     </div>
@@ -533,28 +533,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-03
+                    2023-09-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-03
+                    2023-09-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -569,50 +569,40 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>Screen是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。GNU Screen可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。</p>
-<p>在Screen环境下，所有的会话都独立的运行，并拥有各自的编号、输入、输出和窗口缓存。用户可以通过快捷键在不同的窗口下切换，并可以自由的重定向各个窗口的输入和输出。</p>
-<p>在很多情况下，我们可能需要用服务器跑代码，但是由于代码工程巨大，跑起来需要花费几个小时的时间，而此时我们想关闭ssh远程连接，去做其他事情。就想让服务器能够在后台继续运行刚刚没有跑完的代码。所以，screen很好地满足了我们的需求。</p>
-<h3 id="常用的screen参数"><a href="#常用的screen参数" class="headerlink" title="常用的screen参数"></a>常用的screen参数</h3><pre><code>screen -S yourname  新建一个叫yourname的session
-screen -ls          列出当前所有的session
-screen -r yourname  回到yourname这个session
-screen -d yourname  远程detach某个session
-screen -d -r yourname  结束当前session并回到yourname这个session</code></pre>
-<h3 id="在Session下，使用ctrl-a-C-a"><a href="#在Session下，使用ctrl-a-C-a" class="headerlink" title="在Session下，使用ctrl+a(C-a)"></a>在Session下，使用ctrl+a(C-a)</h3><pre><code>C-a ?  显示所有键绑定信息
-C-a c  创建一个新的运行shell的窗口并切换到该窗口
-C-a n  Next，切换到下一个 window 
-C-a p  Previous，切换到前一个 window 
-C-a 0..9  切换到第 0..9 个 window
-Ctrl+a [Space]  由视窗0循序切换到视窗9
-C-a C-a  在两个最近使用的 window 间切换 
-C-a x  锁住当前的 window，需用用户密码解锁
-C-a d  detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
-C-a z  把当前session放到后台执行，用 shell 的 fg 命令则可回去。
-C-a w  显示所有窗口列表
-C-a t  time，显示当前时间，和系统的 load 
-C-a k  kill window，强行关闭当前的 window</code></pre>
-<h3 id="下面举例一个实际的操作"><a href="#下面举例一个实际的操作" class="headerlink" title="下面举例一个实际的操作"></a>下面举例一个实际的操作</h3><h4 id="1-首先使用ssh连接到远程服务器"><a href="#1-首先使用ssh连接到远程服务器" class="headerlink" title="1.首先使用ssh连接到远程服务器"></a>1.首先使用ssh连接到远程服务器</h4><p>​    ssh 用户名@ip地址</p>
-<h4 id="2-创建一个新的screen"><a href="#2-创建一个新的screen" class="headerlink" title="2.创建一个新的screen"></a>2.创建一个新的screen</h4><p>​     screen -S test</p>
-<h4 id="3-查看刚才创建的screen"><a href="#3-查看刚才创建的screen" class="headerlink" title="3.查看刚才创建的screen"></a>3.查看刚才创建的screen</h4><p>​    screen -ls</p>
-<h4 id="4-到服务器中你文件的存放位置"><a href="#4-到服务器中你文件的存放位置" class="headerlink" title="4.到服务器中你文件的存放位置"></a>4.到服务器中你文件的存放位置</h4><p>​    cd 需要跑代码的文件路径</p>
-<h4 id="5-运行代码"><a href="#5-运行代码" class="headerlink" title="5.运行代码"></a>5.运行代码</h4><p>​    screen 运行命令</p>
-<h4 id="6-使用ctrl-a-d退出screen"><a href="#6-使用ctrl-a-d退出screen" class="headerlink" title="6.使用ctrl+a+d退出screen"></a>6.使用ctrl+a+d退出screen</h4><p>​    此时可以关闭窗口，这个时候代码已经在服务器后台运行了，就算掉线也没有关系。</p>
-<h4 id="7-查看自己所有screen"><a href="#7-查看自己所有screen" class="headerlink" title="7.查看自己所有screen"></a>7.查看自己所有screen</h4><p>​    当你想重新看自己代码跑得怎么样的时候，可以重新登录服务器，使用</p>
-<p>​    scree -ls查看自己的screen.</p>
-<p>​    需要注意的是Detached是当前screen没有被打开，Attached表示当前screen正处在打开状态。</p>
-<h4 id="8-重新打开screen"><a href="#8-重新打开screen" class="headerlink" title="8.重新打开screen"></a>8.重新打开screen</h4><p>​    screen -r screen进程号</p>
-<p>​    这里来一个小tips，退出服务器要使用exit。养成良好习惯，否则会出现不可言语的错误。</p>
-<p>​    如果服务器非正常退出，再次打开的时候，这里会发现使用screen恢复会话时出现There is no screen to be resumed matching错误</p>
-<p>​    这个时候可以利用以下命令解决问题</p>
-<p>​    screen -D -r screen号</p>
-<p>​    或者</p>
-<p>​    screen -d screen号</p>
-<p>​    screen -r screen号</p>
-<p>​    就可以完美看到自己代码跑的情况了。</p>
-<h4 id="9-删除screen会话"><a href="#9-删除screen会话" class="headerlink" title="9.删除screen会话"></a>9.删除screen会话</h4><p>​    如果想杀死一个已经detached的screen会话，可以使用以下命令：</p>
-<p>​    screen -X -S [session # you want to kill] quit</p>
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p>​    <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37968799/article/details/63754180">https://blog.csdn.net/weixin_37968799/article/details/63754180</a></p>
-<p>​    <a target="_blank" rel="noopener" href="https://blog.csdn.net/fionaai/article/details/105174160">https://blog.csdn.net/fionaai/article/details/105174160</a></p>
-<p>​    </p>
+                <h1 id="六大设计开发原则"><a href="#六大设计开发原则" class="headerlink" title="六大设计开发原则"></a>六大设计开发原则</h1><h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>就一个类而言，应该仅有一个引起它变化的原因。</p>
+<p>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱他的设计，当变化发生时，设计会遭受到意想不到的破坏；软件设计真正要做的许多内容就是发现职责并把那些职责相互分离。</p>
+<h2 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h2><p>软件实体应该可以扩展，但不可修改。该原则是面向对象设计的核心所在，遵循这个原则可以带来面向对象技术所声称的可维护、可扩展、可复用、灵活性好。</p>
+<p>设计人员必须对于他设计的模块应该对哪种变化封闭做出选择，必须先猜测出最有可能发生的变化种类，然后构造抽象来隔离那些变化。最初编写程序时假设变化不会发生，当变化发生时，就创建抽象来隔离以后发生的同类变化，拒绝不成熟的抽象。</p>
+<h2 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h2><p>子类型必须能够替换掉它们的父类型。由于子类型的可替换性才使得使用父类类型的模块在无需修改的情况下就可以扩展。</p>
+<h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><p>高层模块不应该依赖低层模块，两个都应该依赖抽象；抽象不应该依赖细节，细节应该依赖抽象。</p>
+<p>要针对接口编程，不要针对实现编程。该原则可以说是面向对象设计的标志，编写时考虑的是如何对抽象编程而不是针对细节编程，即程序中所有的依赖关系都是终止于抽象类或者接口。</p>
+<h2 id="迪迷特原则（最少知识原则）"><a href="#迪迷特原则（最少知识原则）" class="headerlink" title="迪迷特原则（最少知识原则）"></a>迪迷特原则（最少知识原则）</h2><p>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用；如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。</p>
+<p>该原则其根本思想，是强调了类之间的松耦合；类之间的耦合越弱，越利于复用，一个处在弱耦合的类被修改，不会对有关系的类造成波及。在类的结构设计上，每一个类都应当尽量降低成员的访问权限。</p>
+<h2 id="合成-聚合复用原则"><a href="#合成-聚合复用原则" class="headerlink" title="合成/聚合复用原则"></a>合成/聚合复用原则</h2><p>尽量使用合成/聚合，尽量不要使用类继承。</p>
+<p>聚合表示一种弱的“拥有”关系，体现的是A对象可以包含B对象，但B对象不是A对象的一部分；合成则是一种强的“拥有”关系，体现了严格的部分和整体的关系，部分和整体的生命周期一样。</p>
+<h1 id="23种设计模式"><a href="#23种设计模式" class="headerlink" title="23种设计模式"></a>23种设计模式</h1><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类。</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>将一个类的接口转换成客户希望的另外一个接口。Adapter 模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>将抽象部分与它的实现部分分离，使它们都可以独立地变化。</p>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><p>将对象组合成树形结构以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator 模式相比生成子类更为灵活。</p>
+<h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><p>为子系统中的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>运用共享技术有效地支持大量细粒度的对象。</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>为其他对象提供一种代理以控制对这个对象的访问。</p>
+<h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><p>给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。</p>
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod 使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><p>将一个请求封装为一个对象，从而使你可用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤消的操作。</p>
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><p>提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示。</p>
+<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><p>用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p>
+<h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时, 所有依赖于它的对象都得到通知并被自动更新。</p>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><p>允许一个对象在其内部状态改变时改变它的行为。对象看起来似乎修改了它的类。</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。</p>
+<h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod 使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -656,7 +646,7 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jiamingbi.github.io/2020/11036782.html">https://jiamingbi.github.io/2020/11036782.html</a>
+                    <a href="https://jiamingbi.github.io/2023/092535294.html">https://jiamingbi.github.io/2023/092535294.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -694,8 +684,8 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">设计模式</span>
                                 </a>
                             
                         </div>
@@ -866,7 +856,7 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
         repo: 'blogtalk',
         owner: 'JiamingBi',
         admin: "JiamingBi",
-        id: '2020-11-03T09-28-02',
+        id: '2023-09-25T13-36-43',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -890,45 +880,48 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/022128745.html">
+                <a href="/2023/092535294.html">
                     <div class="card-image">
                         
-                        <img src="/image/2.jpg" class="responsive-img" alt="new start">
                         
-                        <span class="card-title">new start</span>
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="23种设计模式">
+                        
+                        <span class="card-title">23种设计模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            研究生新的开始
+                            主要介绍常见的设计原则和设计模式
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%94%9F%E6%B4%BB/" class="post-category">
-                                    生活
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" class="post-category">
+                                    软件开发
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/life/">
-                        <span class="chip bg-color">life</span>
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>
@@ -942,31 +935,31 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/102314204.html">
+                <a href="/2023/0804300.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux系统目录结构和常见操作命令大全">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="数组的最大美丽值">
                         
-                        <span class="card-title">Linux系统目录结构和常见操作命令大全</span>
+                        <span class="card-title">数组的最大美丽值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux系统目录结构和常见操作命令汇总
+                            数组的最大美丽值
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" class="post-category">
+                                    算法题
                                 </a>
                             
                             
@@ -976,8 +969,8 @@ C-a k  kill window，强行关闭当前的 window</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Leetcode/">
+                        <span class="chip bg-color">Leetcode</span>
                     </a>
                     
                 </div>
